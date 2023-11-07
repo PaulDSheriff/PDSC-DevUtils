@@ -23,7 +23,6 @@ For best results, it is important that you read the documentation.
 You will find the documentation under the \Documentation folder. The current documentation is PDSC-DeveloperUtilities.pdf.
 
 ## How to Use PDSC Developer Utilities v9 
-1. Download the PDSC-DeveloperUtilities to you computer.
-2. Unzip or go to the folder where you did the git.
-3. Run the PDSCDeveloperUtilities.exe.
-4. Read the PDSC-DeveloperUtilities.pdf file
+1. Download the PDSC-DevUtils repo to you computer.
+2. Run the PDSCDeveloperUtilities.exe.
+3. Read the PDSC-DeveloperUtilities.pdf file
