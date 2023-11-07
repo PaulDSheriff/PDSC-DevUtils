@@ -1,5 +1,19 @@
 # PDSC Developer Utilities V9
-PDS Consulting has created a set of tools to help you develop WPF, MVC, or .NET MAUI applications for .NET 7+ quickly and easily. Within this utility are all of the tools you need to get started.
+PDS Consulting has created a set of tools to help you develop applications for .NET 7+ quickly and easily. The following tools are included within this utility.
+
+- Computer Cleaner
+- Project Cleaner
+- Property Generator
+- JSON Generator
+- XML Generator
+- Code Generator
+	- MVC website CRUD applications
+	- .NET MAUI CRUD applications
+	- WPF CRUD applications
+	- Web API CRUD applications using MVC
+	- Minimal Web API CRUD applications
+	- Mock Entity and Repository classes
+- SQL Compare
 
 This utility is written in .NET 7.
 
