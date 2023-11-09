@@ -13,7 +13,7 @@ XML Files
   LanguageScopes
   
 
-PDSC Developer Utilities v9.0.1 - 11/098/2023
+PDSC Developer Utilities v9.0.1 - 11/09/2023
 -----------------------------------------------------
 Computer Cleaner: Eliminated some messages to speed up the process, and to not pollute the log file
 Strong named all the assemblies for the PDSC Developer Utilities
