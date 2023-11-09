@@ -1,9 +1,12 @@
 ﻿PDSC Utilities Enhancement List
 ------------------------------------------------------------------------------
+Code Generation
+  If you uncheck all Search and Description fields, the code won't compile
+    Ensure you always have one checked
+
 Document: How to add new code generation templates
 Xml File Edit Screens: Add help for each XML file editor
 XML Files
-  Property Generation - Also add ability to create a new template
   LanguageDataTypes
   CodeGen-Controls
   Languages
@@ -17,3 +20,9 @@ This is the first release of the PDSC Developer Utilities written in .NET 7
 XML Generation: Fixed bug where the XSD file was not written to a file
 All Generators: Added a 'Total Rows to Generate' field so you can just select a few rows from a table for JSON, XML or Hard-Coded Repository data
 Computer Cleaner: Eliminated some messages to speed up the process, and to not pollute the log file
+Strong named all the assemblies for the PDSC Developer Utilities
+Fixed bug where the XML List screen was not cleared when displaying an XML edit screen
+Add Property Generation Template XML file editing to XML List tool
+Fixed problem where the Help file could not be found on some screens
+Fixed bug where Guid Primary Key and String Primary key were not generating correctly
+Fixed bug where Password columns were not displaying on the edit screen.

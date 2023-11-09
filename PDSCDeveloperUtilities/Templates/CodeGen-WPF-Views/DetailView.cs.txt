@@ -29,7 +29,9 @@ public partial class <|CLASS_NAME|>DetailView : UserControlBase
     // Create Repository for View Model
     if (_MainWindow != null) {
       ViewModel.Repository = new <|CLASS_NAME|>Repository(_MainWindow.Settings.DbContext);
+      {|REMOVE_WHEN:IsAutoIncrementOrIsPrimaryKeyNotInteger|}
       ViewModel.NextId = ID;
+      {|END_REMOVE|}
 
       {|REMOVE_WHEN:NoForeignKeys|}
       // Set FK Repositories

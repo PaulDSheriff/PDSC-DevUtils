@@ -133,7 +133,7 @@
   <XmlFile>
     <FileName>PropertyGen-Templates.xml</FileName>
     <Description>Template file names used in the Property Generation utility</Description>
-    <IsEditable>False</IsEditable>
+    <IsEditable>True</IsEditable>
   </XmlFile>
   <XmlFile>
     <FileName>XmlFileList.xml</FileName>
