@@ -1,0 +1,3 @@
+﻿{|FOR EACH TABLE|}
+      services.AddScoped<<|REPOSITORY_INTERFACE|>, <|CLASS_NAME|>Repository>();
+{|END_LOOP|}

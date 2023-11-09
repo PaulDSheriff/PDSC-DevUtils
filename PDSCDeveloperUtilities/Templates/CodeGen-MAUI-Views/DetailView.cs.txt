@@ -1,0 +1,51 @@
+﻿using <|NAMESPACE|>.MAUI.CommandClasses;
+
+namespace <|NAMESPACE|>.MAUI.Views;
+
+[QueryProperty(nameof(<|PK_PROPERTY_NAME|>), "id")]
+[QueryProperty(nameof(IsAdding), "isAdding")]
+public partial class <|CLASS_NAME|>DetailView : ContentPage
+{
+  public <|CLASS_NAME|>DetailView(<|CLASS_NAME|>ViewModelCommands viewModel)
+  {
+    InitializeComponent();
+
+    ViewModel = viewModel;
+  }
+
+  private readonly <|CLASS_NAME|>ViewModelCommands ViewModel;
+  {|REMOVE_WHEN:IsPrimaryKeyNotGuid|}
+  public string <|PK_PROPERTY_NAME|> { get; set; }
+  {|END_REMOVE|}
+  {|REMOVE_WHEN:IsPrimaryKeyGuid|}
+  public <|PK_LANGUAGE_DATA_TYPE|> <|PK_PROPERTY_NAME|> { get; set; }
+  {|END_REMOVE|}
+  public bool IsAdding { get; set; }
+
+  protected async override void OnAppearing()
+  {
+    base.OnAppearing();
+
+    BindingContext = ViewModel;
+
+    ViewModel.IsAdding = IsAdding;
+    if (IsAdding) {
+      ViewModel.CurrentEntity = ViewModel.CreateEmpty();
+    }
+    else {
+      // Load <|CLASS_NAME_PLURAL|> First
+      {|REMOVE_WHEN:IsPrimaryKeyNotGuid|}
+      await ViewModel.GetAsync(new Guid(<|PK_PROPERTY_NAME|>));
+      {|END_REMOVE|}
+      {|REMOVE_WHEN:IsPrimaryKeyGuid|}
+      await ViewModel.GetAsync(<|PK_PROPERTY_NAME|>);
+      {|END_REMOVE|}
+      {|REMOVE_WHEN:NoForeignKeys|}
+      // Get Data for all Foreign Keys
+      {|END_REMOVE|}
+      {|FOR EACH FK_TABLE|}
+      await ViewModel.Load<|CLASS_NAME_PLURAL|>Async();
+      {|END_LOOP|}
+    }
+  }
+}

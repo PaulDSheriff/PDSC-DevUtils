@@ -1,0 +1,14 @@
+﻿namespace <|NAMESPACE|>.ExtensionClasses;
+
+public static class WebApplicationBuilderExtensions
+{
+  public static void ConfigureGlobalSettings(this WebApplicationBuilder builder)
+  {
+    // Configure Global Settings
+
+    // Read "<|NAMESPACE_CLEAN|>AppSettings" section
+    // Use the IOptionsMonitor<<|NAMESPACE_CLEAN|>AppSettings> in controller's constructor
+    builder.Services.Configure<<|NAMESPACE_CLEAN|>AppSettings>(
+      builder.Configuration.GetSection("<|NAMESPACE_CLEAN|>AppSettings"));
+  }
+}

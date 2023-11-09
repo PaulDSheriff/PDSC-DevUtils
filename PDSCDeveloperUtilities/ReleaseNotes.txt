@@ -1,0 +1,19 @@
+﻿PDSC Utilities Enhancement List
+------------------------------------------------------------------------------
+Document: How to add new code generation templates
+Xml File Edit Screens: Add help for each XML file editor
+XML Files
+  Property Generation - Also add ability to create a new template
+  LanguageDataTypes
+  CodeGen-Controls
+  Languages
+  LanguageScopes
+
+
+PDSC Developer Utilities v9.0.0 - 11/??/2023
+-----------------------------------------------------
+This is the first release of the PDSC Developer Utilities written in .NET 7
+  Converted all DLLs and EXE to .NET 7
+XML Generation: Fixed bug where the XSD file was not written to a file
+All Generators: Added a 'Total Rows to Generate' field so you can just select a few rows from a table for JSON, XML or Hard-Coded Repository data
+Computer Cleaner: Eliminated some messages to speed up the process, and to not pollute the log file

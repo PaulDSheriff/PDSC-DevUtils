@@ -1,0 +1,95 @@
+﻿namespace <|NAMESPACE|>;
+
+/// <summary>
+/// This class creates fake data for the <|TABLE_NAME|> table.
+/// </summary>
+public partial class <|CLASS_NAME|>Repository
+{
+  #region Get Method
+  /// <summary>
+  /// Get all <|CLASS_DESC_SINGULAR|> objects
+  /// </summary>
+  /// <returns>A list of <|CLASS_DESC_PLURAL|> objects</returns>
+  public static List<<|CLASS_NAME|>> Get()
+  {
+    return new List<<|CLASS_NAME|>>
+    {
+      <|HARD_CODED_DATA|>
+    };
+  }
+  #endregion
+
+  #region Get(id) Method
+  /// <summary>
+  /// Get a single <|CLASS_DESC_SINGULAR|> object
+  /// </summary>
+  /// <param name="id">The value to locate</param>
+  /// <returns>A valid <|CLASS_DESC_SINGULAR|> object, or null if not found</returns>
+  public <|CLASS_NAME|>? Get(<|PK_LANGUAGE_DATA_TYPE|> id) {
+    return Get().Where(row => row.<|PK_PROPERTY_NAME|> == id).FirstOrDefault();
+  }
+  #endregion
+
+  #region Insert Method
+  /// <summary>
+  /// Insert a new <|CLASS_DESC_SINGULAR|> object
+  /// </summary>
+  /// <param name="entity">The data to insert</param>
+  /// <returns>The inserted <|CLASS_DESC_SINGULAR|> object</returns>
+  public <|CLASS_NAME|>? Insert(<|CLASS_NAME|> entity) {    
+    // Increment the Primary Key field
+    entity.<|PK_PROPERTY_NAME|> = Get().Max(row => row.<|PK_PROPERTY_NAME|>) + 1;
+
+    // Add to collection
+    Get().Add(entity);
+
+    // TODO: Insert into data store
+
+    return entity;
+  }
+  #endregion
+
+  #region Update Method
+  /// <summary>
+  /// Update existing <|CLASS_DESC_SINGULAR|> object
+  /// </summary>
+  /// <param name="entity">The data to update</param>
+  /// <returns>The updated <|CLASS_DESC_SINGULAR|> object</returns>
+  public <|CLASS_NAME|>? Update(<|CLASS_NAME|> entity) {
+    // Look up the data by the specified id
+    <|CLASS_NAME|>? current = Get(entity.<|PK_PROPERTY_NAME|>);
+
+    if (current != null) {
+      // TODO: Update data store
+
+    }
+
+    return current;
+  }
+  #endregion
+
+  #region Delete Method
+  /// <summary>
+  /// Delete a <|CLASS_DESC_SINGULAR|> object
+  /// </summary>
+  /// <param name="entity">The data to insert</param>
+  /// <returns>True if delete, false if not found</returns>
+  public bool Delete(<|CLASS_NAME|> entity) {
+    bool ret = false;
+
+    // Look up the data to delete by the primary key
+    <|CLASS_NAME|>? current = Get(entity.<|PK_PROPERTY_NAME|>);
+
+    if (current != null) {
+      // Remove data from collection
+      Get().RemoveAll(row => row.<|PK_PROPERTY_NAME|> == entity.<|PK_PROPERTY_NAME|>);
+
+      // TODO: Delete data from data store
+
+      ret = true;
+    }
+
+    return ret;
+  }
+  #endregion
+}
