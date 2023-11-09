@@ -1,9 +1,8 @@
 ﻿PDSC Utilities Enhancement List
 ------------------------------------------------------------------------------
 Code Generation
-  If you uncheck all Search and Description fields, the code won't compile
-    Ensure you always have one checked
-
+  Generate readonly pages/searching for SQL Server Views and Tables with no primary keys
+  
 Document: How to add new code generation templates
 Xml File Edit Screens: Add help for each XML file editor
 XML Files
@@ -11,9 +10,22 @@ XML Files
   CodeGen-Controls
   Languages
   LanguageScopes
+
+
+PDSC Developer Utilities v9.0.2 - 11/9/2023
+-----------------------------------------------------
+Code Generation
+  Added code to check for tables with multiple or no primary key columns
+    Mark the table as not being able to be generated
+  Display a reason why the table can not be generated
+  If the table was previously saved, all the information is now re-loaded and the table is marked for generation
+  Added Uncheck all tables check box
+  If you uncheck all Search and Description fields, the code generator will not generate that table
+
+
   
 
-PDSC Developer Utilities v9.0.1 - 11/09/2023
+PDSC Developer Utilities v9.0.1 - 11/9/2023
 -----------------------------------------------------
 Computer Cleaner: Eliminated some messages to speed up the process, and to not pollute the log file
 Strong named all the assemblies for the PDSC Developer Utilities
