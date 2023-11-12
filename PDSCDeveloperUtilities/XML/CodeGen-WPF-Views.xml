@@ -10,6 +10,8 @@
     <OutputFileSuffix>DetailView</OutputFileSuffix>
     <UseClassNameAsFileName>true</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - DetailView.cs</Name>
@@ -21,6 +23,8 @@
     <OutputFileSuffix>DetailView</OutputFileSuffix>
     <UseClassNameAsFileName>true</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - ListView.xaml</Name>
@@ -32,6 +36,8 @@
     <OutputFileSuffix>ListView</OutputFileSuffix>
     <UseClassNameAsFileName>true</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - ListView.cs</Name>
@@ -43,5 +49,20 @@
     <OutputFileSuffix>ListView</OutputFileSuffix>
     <UseClassNameAsFileName>true</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>false</IsView>
+  </Template>
+  <Template>
+    <Name>WPF - View ListView.cs</Name>
+    <TemplateFileName>CodeGen-WPF-Views\ViewListView.cs.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>{|NAMESPACE|}.WPF\Views</OutputSubFolder>
+    <OutputFileExtension>.xaml.cs</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix>ListView</OutputFileSuffix>
+    <UseClassNameAsFileName>true</UseClassNameAsFileName>
+    <AppendToFile>false</AppendToFile>
+    <IsTable>false</IsTable>
+    <IsView>true</IsView>
   </Template>
 </CodeGenTemplates>

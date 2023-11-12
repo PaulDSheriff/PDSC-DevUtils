@@ -17,6 +17,11 @@
                   ContentTemplate="{DataTemplate views:<|CLASS_NAME|>ListView}"
                   Route="<|CLASS_NAME_PLURAL|>List" />
     {|END_LOOP|}
+    {|FOR EACH VIEW|}
+    <ShellContent Title="<|CLASS_NAME_PLURAL|>"
+                  ContentTemplate="{DataTemplate views:<|CLASS_NAME|>ListView}"
+                  Route="<|CLASS_NAME_PLURAL|>List" />
+    {|END_LOOP|}
    
   </TabBar>
   

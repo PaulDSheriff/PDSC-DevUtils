@@ -58,38 +58,12 @@ public partial class <|CLASS_NAME|>ListView : UserControlBase
   {
     GetAll();
   }
-
-  private void Add_Click(object sender, RoutedEventArgs e)
-  {
-    <|CLASS_NAME|>DetailView uc = new() {
-      {|REMOVE_WHEN:IsAutoIncrementOrIsPrimaryKeyNotInteger|}
-      ID = ViewModel.NextId,
-      {|END_REMOVE|}
-      IsAdding = true
-    };    
-    _MainWindow?.RouteToUserControl(uc);
-  }
-
-  private void EditButton_Click(object sender, RoutedEventArgs e)
+ 
+  private void DisplayButton_Click(object sender, RoutedEventArgs e)
   {
     <|CLASS_NAME|>DetailView uc = new() {
       CurrentEntity = (EntityLayer.<|CLASS_NAME|>)((Button)sender).Tag
     };
     _MainWindow?.RouteToUserControl(uc);
-  }
-
-  private async void DeleteButton_Click(object sender, RoutedEventArgs e)
-  {
-    MessageBoxResult dr;
-    <|PK_LANGUAGE_DATA_TYPE|> id = ((EntityLayer.<|CLASS_NAME|>)((Button)sender).Tag).<|PK_PROPERTY_NAME|>;
-
-    dr = MessageBox.Show("Delete this <|CLASS_NAME_SINGULAR|>?", "Delete?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
-
-    if (dr == MessageBoxResult.Yes) {
-      // Delete the record
-      await ViewModel.DeleteAsync(id);
-      // Refresh the list
-      GetAll();
-    }
   }
 }

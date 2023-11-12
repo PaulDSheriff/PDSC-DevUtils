@@ -1,0 +1,296 @@
+using <|NAMESPACE|>.EntityLayer;
+using <|NAMESPACE|>.ViewModelLayer.AppClasses;
+using Microsoft.Extensions.Logging;
+using PDSC.Common;
+using PDSC.Common.HelperClasses;
+using System.Collections.ObjectModel;
+using System.Net;
+
+namespace <|NAMESPACE|>.ViewModelLayer;
+
+/// <summary>
+/// The view model class is used to wrap up all functionality for
+/// working with pages/screens in your application and for working
+/// with views in databases.
+/// This class makes async calls to your repository class.
+/// </summary>
+public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, IViewViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search>
+{
+  #region Constructors
+  /// <summary>
+  ///  NOTE: You need to have a parameterless constructor for Post-Backs in MVC    
+  /// </summary>
+  public <|CLASS_NAME|>ViewModel()
+  {
+  }
+
+  public <|CLASS_NAME|>ViewModel(IViewRepository<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>, <|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>Search> repository) : base()
+  {
+    Repository = repository;
+  }
+
+  public <|CLASS_NAME|>ViewModel(IViewRepository<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>, <|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>Search> repository,
+    ILogger<<|CLASS_NAME|>ViewModel> logger) : base(logger)
+  {
+    Repository = repository;
+  }    
+  #endregion
+
+  #region Private Variables
+  private ObservableCollection<<|CLASS_NAME|>> _<|CLASS_NAME_PLURAL|> = new();
+  private <|CLASS_NAME|>? _CurrentEntity = new();
+  private <|CLASS_NAME|>Search _SearchEntity = new() {
+    SortExpression = nameof(<|CLASS_NAME|>Search.<|FIRST_SORT_FIELD|>)
+  };
+  #endregion
+
+  #region Public Properties
+  public IViewRepository<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>, <|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>Search>? Repository { get; set; }
+  public ObservableCollection<<|CLASS_NAME|>> <|CLASS_NAME_PLURAL|>
+  {
+    get { return _<|CLASS_NAME_PLURAL|>; }
+    set
+    {
+      _<|CLASS_NAME_PLURAL|> = value;
+      RaisePropertyChanged(nameof(<|CLASS_NAME_PLURAL|>));
+    }
+  }
+
+  public <|CLASS_NAME|>? CurrentEntity
+  {
+    get { return _CurrentEntity; }
+    set
+    {
+      _CurrentEntity = value;
+      RaisePropertyChanged(nameof(CurrentEntity));
+    }
+  }
+
+  public <|CLASS_NAME|>Search SearchEntity
+  {
+    get { return _SearchEntity; }
+    set
+    {
+      _SearchEntity = value;
+      RaisePropertyChanged(nameof(SearchEntity));
+    }
+  }
+  #endregion
+    
+  #region Init Method
+  public override void Init() {
+    base.Init();
+    
+    ClassDescriptionSingular = "<|CLASS_DESC_SINGULAR|>";
+    ClassDescriptionPlural = "<|CLASS_DESC_PLURAL|>";
+
+    RepositoryNotSetMessage = $"The Repository Object is not set in the {nameof(<|CLASS_NAME|>ViewModel)} Class.";
+  }
+  #endregion
+
+  #region GetAsync Method
+  public async Task<DataResponse<ObservableCollection<<|CLASS_NAME|>>>> GetAsync()
+  {
+    IsDetailVisible = false;
+    DataResponse<ObservableCollection<<|CLASS_NAME|>>> ret = new();
+
+    // Ensure Repository Object is Set
+    if (Repository == null) {
+      SetRepositoryNotSetStatus(ret);
+    }
+    else {
+      // Reset RowsAffected and Message Properties
+      ResetRowsAffectedAndMessages();
+      
+      InfoMessage = $"Loading {ClassDescriptionPlural}...";
+
+      try {
+        var list = await Repository.GetAsync();
+        <|CLASS_NAME_PLURAL|> = new ObservableCollection<<|CLASS_NAME|>>(list);
+
+        if (<|CLASS_NAME_PLURAL|>.Count > 0) {
+          RowsAffected = <|CLASS_NAME_PLURAL|>.Count;
+          ret.StatusMessage = "Success";
+          ret.ResultMessage = $"Found {RowsAffected} {ClassDescriptionPlural}.";
+          ret.StatusCode = HttpStatusCode.OK;
+        }
+        else {
+          ret.StatusMessage = "NotFound";
+          ret.ResultMessage = $"No {ClassDescriptionPlural} are available.";
+          ret.LastErrorMessage = ret.ResultMessage;
+          ret.StatusCode = HttpStatusCode.NotFound;
+        }
+        ret.Data = <|CLASS_NAME_PLURAL|>;
+        ret.RowsAffected = RowsAffected;
+      }
+      catch (Exception ex) {
+        // Publish the exception here
+        PublishException(ex, ret);
+        // Do NOT send the real exception to the user
+        ret = SetGenericExceptionStatus(ret, $"Exception while trying to get all {ClassDescriptionPlural}.");
+      }
+    }
+    
+    // Set View Model Info and Error Message objects
+    SetInfoAndErrorMessages(ret);
+
+    return ret;
+  }
+  #endregion
+
+  #region GetAsync(entity) Method
+  public async Task<DataResponse<<|CLASS_NAME|>>> GetAsync(<|CLASS_NAME|> entity)
+  {
+    IsAdding = false;
+    IsDetailVisible = true;
+    DataResponse<<|CLASS_NAME|>> ret = new();
+
+    // Ensure Repository Object is Set
+    if (Repository == null) {
+      SetRepositoryNotSetStatus(ret);
+    }
+    else {
+      // Reset RowsAffected and Message Properties
+      ResetRowsAffectedAndMessages();
+      
+      InfoMessage = $"Loading a {ClassDescriptionSingular}...";
+
+      try {
+        CurrentEntity = await Repository.GetAsync(entity);
+
+        if (CurrentEntity != null) {
+          RowsAffected = 1;
+          ret.StatusMessage = "Success";
+          ret.ResultMessage = $"Found a {ClassDescriptionSingular}.";
+          ret.StatusCode = HttpStatusCode.OK;
+        }
+        else {
+          ret.StatusMessage = "NotFound";
+          ret.ResultMessage = $"Can't find a {ClassDescriptionSingular}.";
+          ret.LastErrorMessage = ret.ResultMessage;
+          ret.StatusCode = HttpStatusCode.NotFound;
+        }
+        ret.Data = CurrentEntity;
+        ret.RowsAffected = RowsAffected;
+      }
+      catch (Exception ex) {
+        // Publish the exception here
+        PublishException(ex, ret);
+        // Do NOT send the real exception to the user
+        ret = SetGenericExceptionStatus(ret, $"Exception while trying to get a {ClassDescriptionSingular}.");
+      }
+    }
+    
+    // Set View Model Info and Error Message objects
+    SetInfoAndErrorMessages(ret);
+
+    return ret;
+  }
+  #endregion
+
+  #region SearchAsync Method
+  public async Task<DataResponse<ObservableCollection<<|CLASS_NAME|>>>> SearchAsync()
+  {
+    return await SearchAsync(SearchEntity);
+  }
+
+  public async Task<DataResponse<ObservableCollection<<|CLASS_NAME|>>>> SearchAsync(<|CLASS_NAME|>Search search)
+  {
+    IsDetailVisible = false;
+    DataResponse<ObservableCollection<<|CLASS_NAME|>>> ret = new();
+    
+    // Ensure Repository Object is Set
+    if (Repository == null) {
+      SetRepositoryNotSetStatus(ret);
+    }
+    else {
+      // Reset RowsAffected and Message Properties
+      ResetRowsAffectedAndMessages();
+      
+      InfoMessage = $"Searching for {ClassDescriptionPlural}...";
+
+      try {
+        var list = await Repository.SearchAsync(search);
+        <|CLASS_NAME_PLURAL|> = new ObservableCollection<<|CLASS_NAME|>>(list);
+
+        if (<|CLASS_NAME_PLURAL|>.Count > 0) {
+          RowsAffected = <|CLASS_NAME_PLURAL|>.Count;
+          ret.StatusMessage = "Success";
+          ret.ResultMessage = $"Found {RowsAffected} {ClassDescriptionPlural}.";
+          ret.StatusCode = HttpStatusCode.OK;
+        }
+        else {
+          ret.StatusMessage = "NotFound";
+          ret.ResultMessage = $"No {ClassDescriptionPlural} match the search criteria of '{JsonHelper.SerializeEntity<<|CLASS_NAME|>Search>(search)}'.";
+          ret.LastErrorMessage = ret.ResultMessage;
+          ret.StatusCode = HttpStatusCode.NotFound;
+        }
+        ret.Data = <|CLASS_NAME_PLURAL|>;
+        ret.RowsAffected = RowsAffected;
+      }
+      catch (Exception ex) {
+        // Publish the exception here
+        PublishException(ex, ret);
+        // Do NOT send the real exception to the user
+        ret = SetGenericExceptionStatus(ret, $"Exception while trying to search for {ClassDescriptionPlural}.");
+      }
+    }
+    
+    // Set View Model Info and Error Message objects
+    SetInfoAndErrorMessages(ret);
+
+    return ret;
+  }
+  #endregion
+
+  #region CountAsync Method
+  public async Task<DataResponse<int>> CountAsync(<|CLASS_NAME|>Search? search)
+  {
+    IsDetailVisible = false;
+    DataResponse<int> ret = new();
+
+    // Ensure Repository Object is Set
+    if (Repository == null) {
+      SetRepositoryNotSetStatus(ret);
+    }
+    else {
+      // Reset RowsAffected and Message Properties
+      ResetRowsAffectedAndMessages();
+      
+      InfoMessage = $"Counting {ClassDescriptionPlural}...";
+
+      // Ensure we have a valid search entity
+      search ??= new();
+
+      try {
+        RowsAffected = await Repository.CountAsync(search);
+
+        if (RowsAffected > 0) {
+          ret.StatusMessage = "Success";
+          ret.ResultMessage = $"Counted {RowsAffected} {ClassDescriptionPlural}.";
+          ret.StatusCode = HttpStatusCode.OK;
+        }
+        else {
+          ret.StatusMessage = "NotFound";
+          ret.ResultMessage = $"No {ClassDescriptionPlural} match the search criteria of '{JsonHelper.SerializeEntity<<|CLASS_NAME|>Search>(search)}'.";
+          ret.LastErrorMessage = ret.ResultMessage;
+          ret.StatusCode = HttpStatusCode.NotFound;
+        }
+        ret.Data = RowsAffected;
+        ret.RowsAffected = RowsAffected;
+      }
+      catch (Exception ex) {
+        // Publish the exception here
+        PublishException(ex, ret);
+        // Do NOT send the real exception to the user
+        ret = SetGenericExceptionStatus(ret, $"Exception while trying to count {ClassDescriptionPlural}.");
+      }
+    }
+    
+    // Set View Model Info and Error Message objects
+    SetInfoAndErrorMessages(ret);
+
+    return ret;
+  }
+  #endregion
+}

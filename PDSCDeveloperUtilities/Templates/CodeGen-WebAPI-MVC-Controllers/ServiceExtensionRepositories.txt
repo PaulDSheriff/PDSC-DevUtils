@@ -1,3 +1,6 @@
 ﻿{|FOR EACH TABLE|}
       services.AddScoped<<|REPOSITORY_INTERFACE|>, <|CLASS_NAME|>Repository>();
 {|END_LOOP|}
+{|FOR EACH VIEW|}
+      services.AddScoped<IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>Repository>();
+{|END_LOOP|}

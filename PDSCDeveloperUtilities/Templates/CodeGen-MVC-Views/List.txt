@@ -1,5 +1,11 @@
 @using <|NAMESPACE|>.EntityLayer
 @model <|NAMESPACE|>.ViewModelLayer.<|CLASS_NAME|>ViewModel
+{|REMOVE_WHEN:IsTable|}
+@{
+  int index = 0;
+  Dictionary<string, string> parms;
+}
+{|END_REMOVE|}
 
 @if (Model.<|CLASS_NAME_PLURAL|>.Count > 0) {
   <table class="table table-bordered table-hover table-striped">
@@ -9,12 +15,26 @@
         {|FOR EACH COLUMN:DisplayInTable|}
         <th><|PROPERTY_LABEL|></th>
         {|END_LOOP|}
+        {|REMOVE_WHEN:IsView|}
         <th>Delete</th>
+        {|END_REMOVE|}
       </tr>
     </thead>
     <tbody>
+      <|COMMA_SET|>
       @foreach (<|CLASS_NAME|> item in Model.<|CLASS_NAME_PLURAL|>) {
+        {|REMOVE_WHEN:IsTable|}
+        {
+          parms = new Dictionary<string, string> {
+            { "RowIndex", index.ToString() },
+            {|FOR EACH COLUMN:IsSearchField|}
+            { "<|PROPERTY_NAME|>", Model.SearchEntity.<|PROPERTY_NAME|> ?? "" }<|COMMA|>
+            {|END_LOOP|}
+          };
+        }
+        {|END_REMOVE|}
       <tr>
+        {|REMOVE_WHEN:IsView|}
         <td>
           <a asp-action="<|CLASS_NAME|>Edit"
              asp-route-id="@item.<|PK_PROPERTY_NAME|>"
@@ -22,9 +42,20 @@
             Edit
           </a>
         </td>
+        {|END_REMOVE|}
+        {|REMOVE_WHEN:IsTable|}
+        <td>
+          <a asp-action="<|CLASS_NAME|>Display"
+             asp-all-route-data="parms"
+             class="btn btn-primary">
+            Display
+          </a>
+        </td>
+        {|END_REMOVE|}
         {|FOR EACH COLUMN:DisplayInTable|}
         <td>@Html.DisplayFor(m => item.<|PROPERTY_NAME|>)</td>
         {|END_LOOP|}
+        {|REMOVE_WHEN:IsView|}
         <td>
           @Html.ActionLink("Delete", "<|CLASS_NAME|>Delete",
               new { id = item.<|PK_PROPERTY_NAME|> },
@@ -34,7 +65,13 @@
                     @class = "btn btn-danger"
                 })
         </td>
+        {|END_REMOVE|}
       </tr>
+        {|REMOVE_WHEN:IsTable|}
+        {
+          index++;
+        }
+        {|END_REMOVE|}
       }
     </tbody>
   </table>

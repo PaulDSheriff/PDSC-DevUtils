@@ -11,7 +11,7 @@ namespace PDSC.Common;
 /// <typeparam name="TEntity">An entity type</typeparam>
 /// <typeparam name="TSearch">An entity search type</typeparam>
 /// </summary>
-public abstract class ViewModelBase<TEntity, TSearch> : CommonBase
+public abstract class ViewModelBase<TEntity, TSearch> : CommonBase where TEntity : class, new() where TSearch : class
 {
   #region Private Variables
   private int _RowsAffected;
@@ -136,15 +136,15 @@ public abstract class ViewModelBase<TEntity, TSearch> : CommonBase
   #endregion
 
   #region Abstract Methods
-  public abstract TEntity SetValues(TEntity current, TEntity changes);
-  public abstract TEntity CreateEmpty();
+  public virtual TEntity SetValues(TEntity current, TEntity changes) { return new(); }
+  public virtual TEntity CreateEmpty() { return new(); }
   #endregion
 
   #region Validate Method
   public bool Validate<T>(T entity)
   {
     ValidationMessages.Clear();
-    
+
     if (entity != null) {
       // Create instance of ValidationContext object
       ValidationContext context = new(entity, serviceProvider: null, items: null);
@@ -153,7 +153,7 @@ public abstract class ViewModelBase<TEntity, TSearch> : CommonBase
       // Call TryValidateObject() method
       if (!Validator.TryValidateObject(entity, context, results, true)) {
         // Get validation results
-        foreach (ValidationResult item in results) {         
+        foreach (ValidationResult item in results) {
           string propName = string.Empty;
           if (item.MemberNames.Any()) {
             propName = ((string[])item.MemberNames)[0];
@@ -186,7 +186,8 @@ public abstract class ViewModelBase<TEntity, TSearch> : CommonBase
   #endregion
 
   #region SetRepositoryNotSetStatus Method
-  protected virtual void SetRepositoryNotSetStatus<T>(DataResponse<T> response) {
+  protected virtual void SetRepositoryNotSetStatus<T>(DataResponse<T> response)
+  {
     response.StatusMessage = "InternalServerError";
     response.ResultMessage = RepositoryNotSetMessage;
     response.StatusCode = HttpStatusCode.InternalServerError;

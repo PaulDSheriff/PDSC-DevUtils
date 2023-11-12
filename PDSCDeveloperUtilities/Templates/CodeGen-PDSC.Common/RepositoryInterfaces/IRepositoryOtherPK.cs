@@ -1,7 +1,7 @@
 namespace PDSC.Common;
 
 /// <summary>
-/// Interface for all repository classes when the primary key data type is other than 'int'
+/// Interface for all table repository classes when the primary key data type is other than 'int'
 /// </summary>
 /// <typeparam name="TPK">Primary Key Data Type (string, guid, etc.)</typeparam>
 /// <typeparam name="TEntity">An entity class</typeparam>

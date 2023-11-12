@@ -27,6 +27,11 @@
               <a class="nav-link text-dark" asp-area="" asp-controller="<|CLASS_NAME|>" asp-action="<|CLASS_NAME|>Index"><|CLASS_DESC_PLURAL|></a>
             </li>
             {|END_LOOP|}
+            {|FOR EACH VIEW|}
+            <li class="nav-item">
+              <a class="nav-link text-dark" asp-area="" asp-controller="<|CLASS_NAME|>" asp-action="<|CLASS_NAME|>Index"><|CLASS_DESC_PLURAL|></a>
+            </li>
+            {|END_LOOP|}
             <li class="nav-item">
               <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </li>

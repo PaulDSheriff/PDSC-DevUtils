@@ -1,0 +1,179 @@
+﻿using <|NAMESPACE|>.EntityLayer;
+using <|NAMESPACE|>.ViewModelLayer;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using PDSC.Common;
+using System.Collections.ObjectModel;
+using System.Net;
+
+namespace <|NAMESPACE|>.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class <|CLASS_NAME|>Controller : ControllerBaseAPI
+{
+  #region Constructor
+  public <|CLASS_NAME|>Controller(IViewViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search> vm,
+    ILogger<<|CLASS_NAME|>Controller> logger,
+    IOptionsMonitor<<|NAMESPACE_CLEAN|>AppSettings> settings) : base(logger)
+  {
+    ViewModel = vm;
+    Settings = settings.CurrentValue;
+    ClassDescriptionSingular = "<|CLASS_DESC_SINGULAR|>";
+    ClassDescriptionPlural = "<|CLASS_DESC_PLURAL|>";
+  }
+  #endregion
+
+  #region Private Variables
+  private readonly IViewViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search> ViewModel;
+  private readonly <|NAMESPACE_CLEAN|>AppSettings Settings;
+  #endregion
+
+  #region Get Method
+  [HttpGet]
+  [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DataResponse<ObservableCollection<<|CLASS_NAME|>>>))]
+  [ProducesResponseType(StatusCodes.Status404NotFound)]
+  [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+  public async Task<ActionResult<DataResponse<ObservableCollection<<|CLASS_NAME|>>>>> Get()
+  {
+    ActionResult<DataResponse<ObservableCollection<<|CLASS_NAME|>>>> ret;
+    DataResponse<ObservableCollection<<|CLASS_NAME|>>> response = new();
+    
+    try {
+      // Attempt to get all rows in the data store
+      response = await ViewModel.GetAsync();
+
+      if (response.StatusCode == HttpStatusCode.OK) {
+        // Success, return a '200 OK'
+        ret = StatusCode(StatusCodes.Status200OK, response);
+      }
+      else if (response.StatusCode == HttpStatusCode.NotFound) {
+        // No data found, return '404 Not Found'
+        ret = StatusCode(StatusCodes.Status404NotFound, response);
+      }
+      else {
+        // Return generic message for the user
+        response.LastErrorMessage = Settings.InfoMessageDefault
+          .Replace("{Verb}", "GET")
+          .Replace("{ClassName}", nameof(<|CLASS_NAME|>Controller));
+
+        // Error, return a '500 Internal Server Error'
+        ret = StatusCode(StatusCodes.Status500InternalServerError, response);
+      }
+    }
+    catch (Exception) {
+      // Error, return a '500 Internal Server Error'
+      response.StatusMessage = "InternalServerError";
+      response.StatusCode = HttpStatusCode.InternalServerError;
+      ret = StatusCode(StatusCodes.Status500InternalServerError, response);
+    }
+
+    return ret;
+  }
+  #endregion
+
+  #region Search Method
+  [HttpGet()]
+  [Route("Search")]
+  [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DataResponse<ObservableCollection<<|CLASS_NAME|>>>))]
+  [ProducesResponseType(StatusCodes.Status404NotFound)]
+  [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+  public async Task<ActionResult<DataResponse<ObservableCollection<<|CLASS_NAME|>>>>> Search([FromQuery()] <|SEARCH_METHOD_PARAMS|>, string? sortExpression)
+  {
+    ActionResult<DataResponse<ObservableCollection<<|CLASS_NAME|>>>> ret;
+    DataResponse<ObservableCollection<<|CLASS_NAME|>>> response = new();
+
+    <|COMMA_SET|>
+    // Create Search Object
+    <|CLASS_NAME|>Search search = new() {
+      {|FOR EACH COLUMN:IsSearchField|}
+      <|PROPERTY_NAME|> = <|PROPERTY_NAME_LOWER_FIRSTCHAR|><|COMMA|>
+      {|END_LOOP|}
+      SortExpression = sortExpression
+    };
+
+    try {
+      // Attempt to search for rows in the data store
+      response = await ViewModel.SearchAsync(search);
+
+      if (response.StatusCode == HttpStatusCode.OK) {
+        // Success, return a '200 OK'
+        ret = StatusCode(StatusCodes.Status200OK, response);
+      }
+      else if (response.StatusCode == HttpStatusCode.NotFound) {
+        // No data found, return '404 Not Found'
+        ret = StatusCode(StatusCodes.Status404NotFound, response);
+      }
+      else {
+        // Return generic message for the user
+        response.LastErrorMessage = Settings.InfoMessageDefault
+          .Replace("{Verb}", "GET")
+          .Replace("{ClassName}", nameof(<|CLASS_NAME|>Controller));
+
+        // Error, return a '500 Internal Server Error'
+        ret = StatusCode(StatusCodes.Status500InternalServerError, response);
+      }
+    }
+    catch (Exception) {
+      // Error, return a '500 Internal Server Error'
+      response.StatusMessage = "InternalServerError";
+      response.StatusCode = HttpStatusCode.InternalServerError;
+      ret = StatusCode(StatusCodes.Status500InternalServerError, response);
+    }
+
+    return ret;
+  }
+  #endregion
+
+  #region Count Method
+  [HttpGet]
+  [Route("Count")]
+  [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DataResponse<int>))]
+  [ProducesResponseType(StatusCodes.Status404NotFound)]
+  [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+  public async Task<ActionResult<DataResponse<int>>> Count([FromQuery()] <|SEARCH_METHOD_PARAMS|>)
+  {
+    ActionResult<DataResponse<int>> ret;
+    DataResponse<int> response = new();
+    
+    <|COMMA_RESET|>
+    // Create Search Object
+    <|CLASS_NAME|>Search search = new() {
+      {|FOR EACH COLUMN:IsSearchField|}
+      <|COMMA|><|PROPERTY_NAME|> = <|PROPERTY_NAME_LOWER_FIRSTCHAR|>
+      {|END_LOOP|}
+    };
+
+    try {
+      // Count the rows in the data store
+      response = await ViewModel.CountAsync(search);
+
+      if (response.StatusCode == HttpStatusCode.OK) {
+        // Success, return a '200 OK'
+        ret = StatusCode(StatusCodes.Status200OK, response);
+      }
+      else if (response.StatusCode == HttpStatusCode.NotFound) {
+        // No data found, return '404 Not Found'
+        ret = StatusCode(StatusCodes.Status404NotFound, response);
+      }
+      else {
+        // Return generic message for the user
+        response.LastErrorMessage = Settings.InfoMessageDefault
+          .Replace("{Verb}", "GET")
+          .Replace("{ClassName}", nameof(<|CLASS_NAME|>Controller));
+
+        // Error, return a '500 Internal Server Error'
+        ret = StatusCode(StatusCodes.Status500InternalServerError, response);
+      }
+    }
+    catch (Exception) {
+      // Error, return a '500 Internal Server Error'
+      response.StatusMessage = "InternalServerError";
+      response.StatusCode = HttpStatusCode.InternalServerError;
+      ret = StatusCode(StatusCodes.Status500InternalServerError, response);
+    }
+
+    return ret;
+  }
+  #endregion
+}

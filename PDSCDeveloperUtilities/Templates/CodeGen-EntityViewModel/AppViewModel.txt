@@ -9,7 +9,7 @@ namespace <|NAMESPACE|>.ViewModelLayer.AppClasses;
 /// </summary>
 /// <typeparam name="TEntity">An entity data type</typeparam>
 /// <typeparam name="TSearch">A search entity data type</typeparam>
-public abstract class AppViewModel<TEntity, TSearch> : ViewModelEFBase<TEntity, TSearch> {
+public abstract class AppViewModel<TEntity, TSearch> : ViewModelEFBase<TEntity, TSearch>  where TEntity : class, new() where TSearch : class {
   #region Constructors
   public AppViewModel()
   {

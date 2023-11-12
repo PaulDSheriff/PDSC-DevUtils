@@ -1,15 +1,34 @@
-﻿PDSC Utilities Enhancement List
-------------------------------------------------------------------------------
+﻿PDSC Developer Utilities v9.0.3 - 11/12/2023
+-----------------------------------------------------
+Added the following XML Editing Screens to the XML List Tool
+  Language Data Types
+  Languages XML
+  Language Scopes
+  Code Generation Controls
+  Code Generation Template Groups
+
 Code Generation
-  Generate readonly pages/searching for SQL Server Views and Tables with no primary keys
-  
-Document: How to add new code generation templates
-Xml File Edit Screens: Add help for each XML file editor
+  Added {|REMOVE_WHEN:IsTable|} token
+  Added {|REMOVE_WHEN:IsView|} token
+  Added {|FOR EACH VIEW|} token
+  Added <|VIEW_NAME|> token
+  Can now generate views and tables with no primary key for WPF applications
+  Can now generate views and tables with no primary key for MVC applications
+  Can now generate views and tables with no primary key for Web API MVC applications
+  Can now generate views and tables with no primary key for Minimal Web API applications
+  Can now generate views and tables with no primary key for .NET MAUI applications
+  Can now generate views and tables with no primary key for Hard-Coded Repository classes
+    Hard-Coded Repository now generates just those fields marked DisplayInTable and any Primary Key fields
+
 XML Files
-  LanguageDataTypes
-  CodeGen-Controls
-  Languages
-  LanguageScopes
+  Added <IsTable> and <IsView> to all Template XML files
+
+Tables/Views Loading
+  Can now see all tables and views in one list
+
+Documentation: Updated all docs to reflect the above changes
+
+
 
 
 PDSC Developer Utilities v9.0.2 - 11/9/2023
@@ -21,7 +40,7 @@ Code Generation
   If the table was previously saved, all the information is now re-loaded and the table is marked for generation
   Added Uncheck all tables check box
   If you uncheck all Search and Description fields, the code generator will not generate that table
-
+  Created the appropriate XML entries and templates to work with SQL Server views
 
   
 

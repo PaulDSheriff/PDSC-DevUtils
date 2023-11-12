@@ -39,10 +39,12 @@
         <HorizontalStackLayout Grid.Row="<|GRID_ROW|>"
                                Grid.Column="0"
                                Grid.ColumnSpan="2">
+          {|REMOVE_WHEN:IsView|}
           <ImageButton Source="save.png"
                        ToolTipProperties.Text="Save <|CLASS_NAME_SINGULAR|>"
                        BackgroundColor="{StaticResource SaveButton}"
                        Command="{Binding SaveCommand}" />
+          {|END_REMOVE|}
           <ImageButton Source="cancel.png"
                        BackgroundColor="{StaticResource CancelButton}"
                        ToolTipProperties.Text="Cancel Edit/Return to List"
@@ -51,6 +53,7 @@
                  Text="{Binding LastErrorMessage}"/>
         </HorizontalStackLayout>
 
+        {|REMOVE_WHEN:IsView|}
         <!-- ******************************** -->
         <!-- Validation Failure Messages Area -->
         <!-- ******************************** -->
@@ -75,6 +78,7 @@
             </ListView>
           </VerticalStackLayout>
         </Border>
+        {|END_REMOVE|}
       </Grid>
     </Border>
   </ScrollView>

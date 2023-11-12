@@ -3,8 +3,8 @@ using <|NAMESPACE|>.EntityLayer;
 using <|NAMESPACE|>.ViewModelLayer;
 using <|NAMESPACE|>.WPF.BaseClasses;
 using PDSC.Common;
-using System;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace <|NAMESPACE|>.WPF.Views;
@@ -15,15 +15,15 @@ public partial class <|CLASS_NAME|>DetailView : UserControlBase
   {
     InitializeComponent();
 
-    // Create View Model Object
-    ViewModel = new();
     // Assign DataContext of this UserControl to the View Model
     DataContext = ViewModel;
   }
 
-  public <|CLASS_NAME|>ViewModel ViewModel { get; set; }
-  public <|PK_LANGUAGE_DATA_TYPE|> ID { get; set; }
-
+  public <|CLASS_NAME|>ViewModel ViewModel { get; set; } = new();
+  public <|CLASS_NAME|> CurrentEntity { get; set; } = new();
+  {|REMOVE_WHEN:IsAutoIncrementOrIsPrimaryKeyNotInteger|}
+  public int ID { get; set; } = 0;
+  {|END_REMOVE|}
   protected void InitViewModel()
   {
     // Create Repository for View Model
@@ -49,6 +49,7 @@ public partial class <|CLASS_NAME|>DetailView : UserControlBase
 
     ViewModel.IsAdding = IsAdding;
     if (IsAdding) {
+      // Create new Entity
       ViewModel.CurrentEntity = ViewModel.CreateEmpty();
     }
     else {
@@ -59,11 +60,12 @@ public partial class <|CLASS_NAME|>DetailView : UserControlBase
       await ViewModel.Load<|CLASS_NAME_PLURAL|>Async();
       {|END_LOOP|}
 
-      // Load Detail Data
-      await ViewModel.GetAsync(ID);
+      // Set Detail Object into View Model
+      await Task.Run(() => ViewModel.CurrentEntity = CurrentEntity);
     }
   }
 
+  {|REMOVE_WHEN:IsView|}
   private async void SaveButton_Click(object sender, RoutedEventArgs e)
   {
     DataResponse<EntityLayer.<|CLASS_NAME|>> response = await ViewModel.SaveAsync();
@@ -73,7 +75,7 @@ public partial class <|CLASS_NAME|>DetailView : UserControlBase
       GoBack();
     }
   }
-
+  {|END_REMOVE|}
   private void CancelButton_Click(object sender, RoutedEventArgs e)
   {
     GoBack();

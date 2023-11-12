@@ -1,7 +1,5 @@
 ﻿using <|NAMESPACE|>.WPF.ConfigurationClasses;
 using <|NAMESPACE|>.WPF.Views;
-using PDSC.Common;
-using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,11 +10,9 @@ public partial class MainWindow : Window
   public MainWindow()
   {
     InitializeComponent();
-
-    Settings = new();
   }
 
-  public <|NAMESPACE|>AppSettings Settings { get; set; }
+  public <|NAMESPACE|>AppSettings Settings { get; set; } = new();
 
   private void Window_Loaded(object sender, RoutedEventArgs e)
   {
@@ -48,12 +44,18 @@ public partial class MainWindow : Window
         ContentArea.Children.Add(new <|CLASS_NAME|>ListView());
         break;
       {|END_LOOP|}
+      {|FOR EACH VIEW|}
+      case "<|CLASS_NAME_ALL_LOWER|>listview":
+        ContentArea.Children.Add(new <|CLASS_NAME|>ListView());
+        break;
+      {|END_LOOP|}
       case "exit":
         this.Close();
         break;
     }
   }
 
+  #region Navigate to Detail and List User Control Methods
   public UserControl? LastUserControl { get; set; }
 
   public void GoBack()
@@ -65,26 +67,15 @@ public partial class MainWindow : Window
     }
   }
 
-  public void RouteToDetail<T>(string url, T id, bool isAdding = false)
+  public void RouteToUserControl(UserControl uc)
   {
-    UserControl uc;
-
     // Save the last user control displayed
     if (ContentArea.Children.Count > 0) {
       LastUserControl = (UserControl)ContentArea.Children[0];
     }
 
     ContentArea.Children.Clear();
-    switch (url.ToLower()) {
-      {|FOR EACH TABLE|}
-      case "<|CLASS_NAME_ALL_LOWER|>detailview":
-        uc = new <|CLASS_NAME|>DetailView() {
-          ID = GenericsHelpers.ChangeType<<|PK_LANGUAGE_DATA_TYPE|>>(id),
-          IsAdding = isAdding
-        };
-        ContentArea.Children.Add(uc);
-        break;
-      {|END_LOOP|}
-    }
+    ContentArea.Children.Add(uc);
   }
+  #endregion
 }

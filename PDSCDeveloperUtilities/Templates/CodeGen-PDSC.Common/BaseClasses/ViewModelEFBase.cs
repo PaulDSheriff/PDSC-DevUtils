@@ -7,7 +7,7 @@ namespace PDSC.Common;
 /// </summary>
 /// <typeparam name="TEntity">An entity type</typeparam>
 /// <typeparam name="TSearch">An entity search type</typeparam>
-public abstract class ViewModelEFBase<TEntity, TSearch> : ViewModelBase<TEntity, TSearch>
+public abstract class ViewModelEFBase<TEntity, TSearch> : ViewModelBase<TEntity, TSearch> where TEntity : class, new() where TSearch : class
 {
   #region Constructors
   public ViewModelEFBase() : base()

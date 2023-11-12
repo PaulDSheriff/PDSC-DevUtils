@@ -51,6 +51,7 @@
       <StackPanel Grid.Row="<|GRID_ROW|>"
                   Grid.Column="1"
                   Orientation="Horizontal">
+        {|REMOVE_WHEN:IsView|}
         <Button IsDefault="True"
                 Click="SaveButton_Click"
                 ToolTip="Save this <|CLASS_NAME_SINGULAR|>"
@@ -58,6 +59,7 @@
                 Style="{StaticResource Button.WithImage}">
           <Image Source="/Resources/Images/Save.png" />
         </Button>
+        {|END_REMOVE|}
         <Button IsCancel="True"
                 Click="CancelButton_Click"
                 ToolTip="Cancel and Return to <|CLASS_NAME_SINGULAR|> List"
@@ -67,6 +69,7 @@
         </Button>
       </StackPanel>
 
+      {|REMOVE_WHEN:IsView|}
       <!-- ******************************** -->
       <!-- Validation Failure Messages Area -->
       <!-- ******************************** -->
@@ -88,6 +91,7 @@
                    DisplayMemberPath="Message" />
         </StackPanel>
       </Border>
+      {|END_REMOVE|}
     </Grid>
   </ScrollViewer>
 </wpfBase:UserControlBase>

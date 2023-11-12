@@ -1,21 +1,17 @@
 namespace PDSC.Common;
 
 /// <summary>
-/// Interface for all table repository classes
+/// Interface for all view repository classes
 /// </summary>
 /// <typeparam name="TEntity">An entity class</typeparam>
 /// <typeparam name="TSearch">A search entity class</typeparam>
-public interface IRepository<TEntity, TSearch>
+public interface IViewRepository<TEntity, TSearch>
 {
   DataResponseBase? ResponseObject { get; set; }
 
   Task<List<TEntity>> GetAsync();
-  Task<TEntity?> GetAsync(int id);
   Task<List<TEntity>> SearchAsync(TSearch search);
+  Task<TEntity?> GetAsync(TEntity entity);
 
   Task<int> CountAsync(TSearch search);
-
-  Task<TEntity?> InsertAsync(TEntity? entity);
-  Task<TEntity?> UpdateAsync(TEntity? entity);
-  Task<bool?> DeleteAsync(TEntity? entity);
 }

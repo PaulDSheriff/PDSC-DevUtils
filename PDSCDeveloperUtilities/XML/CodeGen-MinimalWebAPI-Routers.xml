@@ -10,6 +10,21 @@
     <OutputFileSuffix>Router</OutputFileSuffix>
     <UseClassNameAsFileName>true</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>false</IsView>
+  </Template>
+  <Template>
+    <Name>Minimal Web API - View Router Class</Name>
+    <TemplateFileName>CodeGen-Minimal-WebAPI-Router\ViewRouter.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>{|NAMESPACE|}.MinWebAPI\RouterClasses</OutputSubFolder>
+    <OutputFileExtension>.cs</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix>Router</OutputFileSuffix>
+    <UseClassNameAsFileName>true</UseClassNameAsFileName>
+    <AppendToFile>false</AppendToFile>
+    <IsTable>false</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>Minimal Web API - Minimal Search Class</Name>
@@ -21,5 +36,7 @@
     <OutputFileSuffix>BindSearch</OutputFileSuffix>
     <UseClassNameAsFileName>true</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
 </CodeGenTemplates>

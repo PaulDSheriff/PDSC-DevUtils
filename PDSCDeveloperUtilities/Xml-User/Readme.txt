@@ -1,4 +1,4 @@
-﻿Xml-User Folder
+﻿XML-User Folder
 --------------------------
 This folder is for you to add any extra settings you want
 Copy any of the files from the XML folder into this folder

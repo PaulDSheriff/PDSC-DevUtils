@@ -32,6 +32,11 @@
                 Tag="<|CLASS_NAME|>ListView"
                 Click="Menu_Click" />
       {|END_LOOP|}
+      {|FOR EACH VIEW|}
+      <MenuItem Header="<|CLASS_DESC_PLURAL|>"
+                Tag="<|CLASS_NAME|>ListView"
+                Click="Menu_Click" />
+      {|END_LOOP|}
     </Menu>
     <Border Grid.Row="1"
             Style="{StaticResource Border.Page}">

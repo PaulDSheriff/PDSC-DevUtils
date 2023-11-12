@@ -14,13 +14,19 @@ public static class ServiceExtension
     {|FOR EACH TABLE|}
     services.AddScoped<<|REPOSITORY_INTERFACE|>, <|CLASS_NAME|>Repository>();
     {|END_LOOP|}
+    {|FOR EACH VIEW|}
+    services.AddScoped<IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>Repository>();
+    {|END_LOOP|}
   }
   
   public static void AddViewModelClasses(this IServiceCollection services)
   {
     // Add View Model Classes
     {|FOR EACH TABLE|}
-    services.AddScoped<<|CLASS_NAME|>ViewModel, <|CLASS_NAME|>ViewModel>();
+    services.AddScoped<<|VIEWMODEL_INTERFACE|>, <|CLASS_NAME|>ViewModel>();
+    {|END_LOOP|}
+    {|FOR EACH VIEW|}
+    services.AddScoped<IViewViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>ViewModel>();
     {|END_LOOP|}
   }
 

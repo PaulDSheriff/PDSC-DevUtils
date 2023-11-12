@@ -10,6 +10,9 @@
       {|FOR EACH TABLE|}
       Routing.RegisterRoute(nameof(Views.<|CLASS_NAME|>DetailView), typeof(Views.<|CLASS_NAME|>DetailView));
       {|END_LOOP|}
+       {|FOR EACH VIEW|}
+      Routing.RegisterRoute(nameof(Views.<|CLASS_NAME|>DetailView), typeof(Views.<|CLASS_NAME|>DetailView));
+      {|END_LOOP|}
     }
   }
 }

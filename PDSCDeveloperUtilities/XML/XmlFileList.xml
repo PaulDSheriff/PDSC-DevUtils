@@ -3,7 +3,7 @@
   <XmlFile>
     <FileName>CodeGen-Controls.xml</FileName>
     <Description>Control template file names for different types of data, for different technologies (MAUI, MVC, WPF, etc.)</Description>
-    <IsEditable>False</IsEditable>
+    <IsEditable>True</IsEditable>
   </XmlFile>
   <XmlFile>
     <FileName>CodeGen-DataAnnotations.xml</FileName>
@@ -88,7 +88,7 @@
   <XmlFile>
     <FileName>CodeGen-TemplateGroups.xml</FileName>
     <Description>The template group list that appears on the Code Generator utility</Description>
-    <IsEditable>False</IsEditable>
+    <IsEditable>True</IsEditable>
   </XmlFile>
   <XmlFile>
     <FileName>CodeGen-WebAPI-MVC-App-Controllers.xml</FileName>
@@ -113,17 +113,17 @@
   <XmlFile>
     <FileName>LanguageDataTypes.xml</FileName>
     <Description>Data types used for each language supported in the PDSC Developer Utilities</Description>
-    <IsEditable>False</IsEditable>
+    <IsEditable>True</IsEditable>
   </XmlFile>
   <XmlFile>
     <FileName>Languages.xml</FileName>
     <Description>Languages supported in the PDSC Developer Utilities</Description>
-    <IsEditable>False</IsEditable>
+    <IsEditable>True</IsEditable>
   </XmlFile>
   <XmlFile>
     <FileName>LanguageScopes.xml</FileName>
     <Description>Scope keywords for each language supported in the PDSC Developer Utilities</Description>
-    <IsEditable>False</IsEditable>
+    <IsEditable>True</IsEditable>
   </XmlFile>
   <XmlFile>
     <FileName>ProjectCleaner-SourceControlTags.xml</FileName>

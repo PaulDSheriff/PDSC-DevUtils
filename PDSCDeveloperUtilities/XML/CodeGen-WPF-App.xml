@@ -10,6 +10,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - Create Solution Instructions</Name>
@@ -21,6 +23,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - AppSettings Class</Name>
@@ -32,6 +36,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - App.config</Name>
@@ -43,6 +49,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - App.xaml</Name>
@@ -54,6 +62,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - App.cs</Name>
@@ -65,6 +75,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - UserControlBase.xaml</Name>
@@ -76,6 +88,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - HeaderView.xaml</Name>
@@ -87,6 +101,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - HeaderView.cs</Name>
@@ -98,6 +114,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
 		<Name>WPF - MainWindow.xaml</Name>
@@ -109,6 +127,8 @@
 		<OutputFileSuffix></OutputFileSuffix>
 		<UseClassNameAsFileName>false</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - MainWindow.cs</Name>
@@ -120,6 +140,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - HomeView.xaml</Name>
@@ -131,6 +153,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - HomeView.cs</Name>
@@ -142,6 +166,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - LoginView.xaml</Name>
@@ -153,6 +179,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>WPF - LoginView.cs</Name>
@@ -164,5 +192,7 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
 </CodeGenTemplates>

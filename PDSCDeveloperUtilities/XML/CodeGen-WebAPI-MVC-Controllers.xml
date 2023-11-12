@@ -10,6 +10,21 @@
 		<OutputFileSuffix>Controller</OutputFileSuffix>
 		<UseClassNameAsFileName>true</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>false</IsView>
+  </Template>
+  <Template>
+    <Name>MVC Web API - View Controller Class</Name>
+    <TemplateFileName>CodeGen-WebAPI-MVC-Controllers\ViewController.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>{|NAMESPACE|}.WebAPI\Controllers</OutputSubFolder>
+    <OutputFileExtension>.cs</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix>Controller</OutputFileSuffix>
+    <UseClassNameAsFileName>true</UseClassNameAsFileName>
+    <AppendToFile>false</AppendToFile>
+    <IsTable>false</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>Service Extensions - Repository Classes</Name>
@@ -21,5 +36,7 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>true</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
 </CodeGenTemplates>

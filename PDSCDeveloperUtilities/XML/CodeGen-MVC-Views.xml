@@ -10,7 +10,22 @@
 		<OutputFileSuffix>Controller</OutputFileSuffix>
 		<UseClassNameAsFileName>true</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
-	</Template>
+    <IsTable>true</IsTable>
+    <IsView>false</IsView>
+  </Template>
+  <Template>
+    <Name>View Controller Class</Name>
+    <TemplateFileName>CodeGen-MVC-Views\ViewController.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>{|NAMESPACE|}.MVC\Controllers</OutputSubFolder>
+    <OutputFileExtension>.cs</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix>Controller</OutputFileSuffix>
+    <UseClassNameAsFileName>true</UseClassNameAsFileName>
+    <AppendToFile>false</AppendToFile>
+    <IsTable>false</IsTable>
+    <IsView>true</IsView>
+  </Template>
 	<Template>
 		<Name>Index Page</Name>
 		<TemplateFileName>CodeGen-MVC-Views\Index.txt</TemplateFileName>
@@ -21,7 +36,9 @@
 		<OutputFileSuffix>Index</OutputFileSuffix>
 		<UseClassNameAsFileName>true</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
-	</Template>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
+  </Template>
 	<Template>
 		<Name>Detail Page</Name>
 		<TemplateFileName>CodeGen-MVC-Views\Detail.txt</TemplateFileName>
@@ -32,7 +49,9 @@
 		<OutputFileSuffix>Detail</OutputFileSuffix>
 		<UseClassNameAsFileName>true</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
-	</Template>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
+  </Template>
 	<Template>
 		<Name>List Page</Name>
 		<TemplateFileName>CodeGen-MVC-Views\List.txt</TemplateFileName>
@@ -43,7 +62,9 @@
 		<OutputFileSuffix>List</OutputFileSuffix>
 		<UseClassNameAsFileName>true</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
-	</Template>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
+  </Template>
 	<Template>
 		<Name>Search Page</Name>
 		<TemplateFileName>CodeGen-MVC-Views\Search.txt</TemplateFileName>
@@ -54,5 +75,20 @@
 		<OutputFileSuffix>Search</OutputFileSuffix>
 		<UseClassNameAsFileName>true</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
-	</Template>
+    <IsTable>true</IsTable>
+    <IsView>false</IsView>
+  </Template>
+  <Template>
+    <Name>View Search Page</Name>
+    <TemplateFileName>CodeGen-MVC-Views\ViewSearch.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>{|NAMESPACE|}.MVC\Views\{|CLASS_NAME|}</OutputSubFolder>
+    <OutputFileExtension>.cshtml</OutputFileExtension>
+    <OutputFilePrefix>_</OutputFilePrefix>
+    <OutputFileSuffix>Search</OutputFileSuffix>
+    <UseClassNameAsFileName>true</UseClassNameAsFileName>
+    <AppendToFile>false</AppendToFile>
+    <IsTable>false</IsTable>
+    <IsView>true</IsView>
+  </Template>
 </CodeGenTemplates>

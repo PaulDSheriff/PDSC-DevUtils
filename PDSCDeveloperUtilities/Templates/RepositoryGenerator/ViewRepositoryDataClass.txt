@@ -1,0 +1,21 @@
+﻿namespace <|NAMESPACE|>;
+
+/// <summary>
+/// This class creates fake data for the <|VIEW_NAME|> view.
+/// </summary>
+public partial class <|CLASS_NAME|>Repository
+{
+  #region Get Method
+  /// <summary>
+  /// Get all <|CLASS_DESC_SINGULAR|> objects
+  /// </summary>
+  /// <returns>A list of <|CLASS_DESC_PLURAL|> objects</returns>
+  public static List<<|CLASS_NAME|>> Get()
+  {
+    return new List<<|CLASS_NAME|>>
+    {
+      <|HARD_CODED_DATA|>
+    };
+  }
+  #endregion
+}

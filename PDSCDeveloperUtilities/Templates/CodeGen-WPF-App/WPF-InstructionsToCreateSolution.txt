@@ -22,11 +22,12 @@ Open the <|NAMESPACE|>.WPF.sln file using Visual Studio.
 
 Step 3: Set Images to Resource
 Expand the \Resources\Images folder
-Highlight all the files in this folder
+Highlight all the image files in this folder
 Bring up the Properties Window
-Set the Build Action on all files to Resource
+Set the Build Action on all files to 'Resource'
+Select Build | Rebuild Solution from the Visual Studio menu
 
 Step 4: Run the project
 Click on the Start button 
-You should also see your WPF main window appear.
+You should see your WPF main window appear.
 Click on the different menu items to see the data appear.

@@ -8,9 +8,9 @@ namespace <|NAMESPACE|>.DataLayer;
 public partial class <|DB_CONTEXT|> : DbContext {
   public <|DB_CONTEXT|>(DbContextOptions<<|DB_CONTEXT|>> options) : base(options) {
   }
-        
-  // Add your DbSet Classes here
-{|INCLUDE:DbContextDbSets.txt|}
+  
+  // Add your DbSet Classes for Tables/Views here
+  {|INCLUDE:DbContextDbSets.txt|}
 
   protected override void OnModelCreating(ModelBuilder modelBuilder) {
     // The following is an example of adding a table with multiple primary keys
@@ -19,7 +19,16 @@ public partial class <|DB_CONTEXT|> : DbContext {
     //   key.AddressID 
     // });
 
-{|INCLUDE:DbContextMultiplePKs.txt|}
+    {|REMOVE_WHEN:IsView|}
+    // Add any tables with more than one primary key field
+    {|INCLUDE:DbContextMultiplePKs.txt|}
+    {|END_REMOVE|}
+
+    // Add any Views here
+    // Example: modelBuilder.Entity<ViewName>().HasNoKey().ToView("ViewName", schema: "dbo");
+    {|FOR EACH VIEW|}
+    modelBuilder.Entity<<|CLASS_NAME|>>().HasNoKey().ToView("<|VIEW_NAME|>", schema: "<|SCHEMA_NAME|>");
+    {|END_LOOP|}
 
     base.OnModelCreating(modelBuilder);
   }

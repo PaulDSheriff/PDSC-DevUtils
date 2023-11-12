@@ -10,6 +10,8 @@
     <OutputFileSuffix>DetailView</OutputFileSuffix>
     <UseClassNameAsFileName>true</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>.NET MAUI - DetailView.cs</Name>
@@ -21,6 +23,21 @@
     <OutputFileSuffix>DetailView</OutputFileSuffix>
     <UseClassNameAsFileName>true</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>false</IsView>
+  </Template>
+  <Template>
+    <Name>.NET MAUI - View DetailView.cs</Name>
+    <TemplateFileName>CodeGen-MAUI-Views\ViewDetailView.cs.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>{|NAMESPACE|}.MAUI\Views</OutputSubFolder>
+    <OutputFileExtension>.xaml.cs</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix>DetailView</OutputFileSuffix>
+    <UseClassNameAsFileName>true</UseClassNameAsFileName>
+    <AppendToFile>false</AppendToFile>
+    <IsTable>false</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>.NET MAUI - ListView.xaml</Name>
@@ -32,6 +49,8 @@
     <OutputFileSuffix>ListView</OutputFileSuffix>
     <UseClassNameAsFileName>true</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>.NET MAUI - ListView.cs</Name>
@@ -43,6 +62,8 @@
     <OutputFileSuffix>ListView</OutputFileSuffix>
     <UseClassNameAsFileName>true</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>.NET MAUI - MauiProgram.cs Dependency Injections</Name>
@@ -54,6 +75,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>true</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>.NET MAUI - ViewModelCommands Class</Name>
@@ -65,5 +88,20 @@
     <OutputFileSuffix>ViewModelCommands</OutputFileSuffix>
     <UseClassNameAsFileName>true</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>false</IsView>
+  </Template>
+  <Template>
+    <Name>.NET MAUI - View ViewModelCommands Class</Name>
+    <TemplateFileName>CodeGen-MAUI-Views\ViewViewModelCommands.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>{|NAMESPACE|}.MAUI\CommandClasses</OutputSubFolder>
+    <OutputFileExtension>.cs</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix>ViewModelCommands</OutputFileSuffix>
+    <UseClassNameAsFileName>true</UseClassNameAsFileName>
+    <AppendToFile>false</AppendToFile>
+    <IsTable>false</IsTable>
+    <IsView>true</IsView>
   </Template>
 </CodeGenTemplates>

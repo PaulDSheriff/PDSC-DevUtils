@@ -14,6 +14,7 @@ public class SearchBase : CommonBase
 
   private string? _SortExpression = string.Empty;
   private string _NoFilterAppliedMessage = string.Empty;
+  private int _RowIndex = 0;
 
   /// <summary>
   /// Get/Set SortExpression
@@ -39,6 +40,20 @@ public class SearchBase : CommonBase
     {
       _NoFilterAppliedMessage = value;
       RaisePropertyChanged(nameof(NoFilterAppliedMessage));
+    }
+  }
+
+  /// <summary>
+  /// Get/Set RowIndex
+  /// </summary>
+  [JsonIgnore]
+  public int RowIndex
+  {
+    get { return _RowIndex; }
+    set
+    {
+      _RowIndex = value;
+      RaisePropertyChanged(nameof(RowIndex));
     }
   }
 }

@@ -13,7 +13,7 @@ namespace <|NAMESPACE|>.Controllers;
 public class <|CLASS_NAME|>Controller : ControllerBaseAPI
 {
   #region Constructor
-  public <|CLASS_NAME|>Controller(<|CLASS_NAME|>ViewModel vm,
+  public <|CLASS_NAME|>Controller(<|VIEWMODEL_INTERFACE|> vm,
     ILogger<<|CLASS_NAME|>Controller> logger,
     IOptionsMonitor<<|NAMESPACE_CLEAN|>AppSettings> settings) : base(logger)
   {
@@ -25,7 +25,7 @@ public class <|CLASS_NAME|>Controller : ControllerBaseAPI
   #endregion
 
   #region Private Variables
-  private readonly <|CLASS_NAME|>ViewModel ViewModel;
+  private readonly <|VIEWMODEL_INTERFACE|> ViewModel;
   private readonly <|NAMESPACE_CLEAN|>AppSettings Settings;
   #endregion
 

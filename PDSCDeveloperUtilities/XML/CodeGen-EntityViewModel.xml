@@ -10,6 +10,8 @@
 		<OutputFileSuffix></OutputFileSuffix>
 		<UseClassNameAsFileName>true</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>AppEntity Class</Name>
@@ -21,6 +23,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>AppSearch Class</Name>
@@ -32,6 +36,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
 		<Name>Search Class</Name>
@@ -43,9 +49,11 @@
 		<OutputFileSuffix>Search</OutputFileSuffix>
 		<UseClassNameAsFileName>true</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
-	</Template>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
+  </Template>
 	<Template>
-		<Name>View Model Class</Name>
+		<Name>View Model Class for Tables</Name>
 		<TemplateFileName>CodeGen-EntityViewModel\ViewModel.txt</TemplateFileName>
 		<BaseClassName></BaseClassName>
 		<OutputSubFolder>{|NAMESPACE|}.ViewModelLayer\ViewModelClasses</OutputSubFolder>
@@ -54,7 +62,22 @@
 		<OutputFileSuffix>ViewModel</OutputFileSuffix>
 		<UseClassNameAsFileName>true</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
-	</Template>
+    <IsTable>true</IsTable>
+    <IsView>false</IsView>
+  </Template>
+  <Template>
+    <Name>View Model Class for Views</Name>
+    <TemplateFileName>CodeGen-EntityViewModel\ViewViewModel.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>{|NAMESPACE|}.ViewModelLayer\ViewModelClasses</OutputSubFolder>
+    <OutputFileExtension>.cs</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix>ViewModel</OutputFileSuffix>
+    <UseClassNameAsFileName>true</UseClassNameAsFileName>
+    <AppendToFile>false</AppendToFile>
+    <IsTable>false</IsTable>
+    <IsView>true</IsView>
+  </Template>
   <Template>
     <Name>AppViewModel Class</Name>
     <TemplateFileName>CodeGen-EntityViewModel\AppViewModel.txt</TemplateFileName>
@@ -65,5 +88,7 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
 </CodeGenTemplates>

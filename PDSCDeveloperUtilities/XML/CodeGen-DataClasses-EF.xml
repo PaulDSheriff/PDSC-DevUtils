@@ -10,7 +10,9 @@
 		<OutputFileSuffix>Repository</OutputFileSuffix>
 		<UseClassNameAsFileName>true</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
-	</Template>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
+  </Template>
 	<Template>
 		<Name>DbContext Class</Name>
 		<TemplateFileName>CodeGen-DataClasses-EF\DbContext.txt</TemplateFileName>
@@ -21,7 +23,9 @@
 		<OutputFileSuffix></OutputFileSuffix>
 		<UseClassNameAsFileName>false</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
-	</Template>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
+  </Template>
 	<Template>
 		<Name>DbContext DbSets</Name>
 		<TemplateFileName>CodeGen-DataClasses-EF\DbContextDbSets.txt</TemplateFileName>
@@ -32,7 +36,9 @@
 		<OutputFileSuffix></OutputFileSuffix>
 		<UseClassNameAsFileName>false</UseClassNameAsFileName>
 		<AppendToFile>true</AppendToFile>
-	</Template>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
+  </Template>
 	<Template>
 		<Name>DbContext Multiple PKs</Name>
 		<TemplateFileName>CodeGen-DataClasses-EF\DbContextMultiplePKs.txt</TemplateFileName>
@@ -43,5 +49,7 @@
 		<OutputFileSuffix></OutputFileSuffix>
 		<UseClassNameAsFileName>false</UseClassNameAsFileName>
 		<AppendToFile>true</AppendToFile>
-	</Template>
+    <IsTable>true</IsTable>
+    <IsView>false</IsView>
+  </Template>
 </CodeGenTemplates>

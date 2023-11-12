@@ -22,7 +22,12 @@
     <!-- *********** -->
     <partialViews:HeaderView Grid.Row="0"
                              ViewTitle="<|CLASS_NAME_SINGULAR|> List"
+    {|REMOVE_WHEN:IsView|}
                              ViewDescription="List, Search, Add, and Select <|CLASS_NAME_PLURAL|>." />
+    {|END_REMOVE|}
+    {|REMOVE_WHEN:IsTable|}
+                             ViewDescription="List, Search, and Select <|CLASS_NAME_PLURAL|>." />
+    {|END_REMOVE|}
 
     <!-- *********** -->
     <!-- Search Area -->
@@ -66,6 +71,7 @@
                   Click="Refresh_Click">
             <Image Source="/Resources/Images/refresh.png" />
           </Button>
+          {|REMOVE_WHEN:IsView|}
           <Rectangle Style="{StaticResource Separator.Left}" />
           <Button ToolTip="Add New <|CLASS_NAME_SINGULAR|>"
                   Style="{StaticResource Button.WithImage}"
@@ -73,6 +79,7 @@
                   Click="Add_Click">
             <Image Source="/Resources/Images/plus.png" />
           </Button>
+          {|END_REMOVE|}
         </StackPanel>
       </Grid>
     </StackPanel>
@@ -100,12 +107,22 @@
           <DataGridTemplateColumn Header="Actions">
             <DataGridTemplateColumn.CellTemplate>
               <DataTemplate>
+                {|REMOVE_WHEN:IsView|}
                 <Button ToolTip="Edit this <|CLASS_NAME_SINGULAR|>"
                         Click="EditButton_Click"
                         Tag="{Binding}"
                         Style="{StaticResource Button.SmallImage}">
                   <Image Source="/Resources/Images/edit.png" />
                 </Button>
+                {|END_REMOVE|}
+                {|REMOVE_WHEN:IsTable|}
+                <Button ToolTip="Display this <|CLASS_NAME_SINGULAR|>"
+                        Click="DisplayButton_Click"
+                        Tag="{Binding}"
+                        Style="{StaticResource Button.SmallImage}">
+                  <Image Source="/Resources/Images/expand.png" />
+                </Button>
+                {|END_REMOVE|}
               </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
@@ -119,6 +136,7 @@
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
           {|END_LOOP|}
+          {|REMOVE_WHEN:IsView|}
           <DataGridTemplateColumn Header="Delete">
             <DataGridTemplateColumn.CellTemplate>
               <DataTemplate>
@@ -131,6 +149,7 @@
               </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
+          {|END_REMOVE|}
         </DataGrid.Columns>
       </DataGrid>
     </Border>

@@ -1,0 +1,56 @@
+using <|NAMESPACE|>.EntityLayer;
+using <|NAMESPACE|>.ViewModelLayer;
+using PDSC.Common;
+using Microsoft.AspNetCore.Mvc;
+
+namespace <|NAMESPACE|>.Controllers;
+
+public class <|CLASS_NAME|><|OUTPUT_SUFFIX|> : Controller
+{
+  public <|CLASS_NAME|><|OUTPUT_SUFFIX|>(IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search> repo)
+  {
+    _Repo = repo;
+  }
+
+  private readonly IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search> _Repo;
+
+  [HttpGet]
+  public async Task<IActionResult> <|CLASS_NAME|>Index()
+  {
+    // Create view model, passing in repository
+    <|CLASS_NAME|>ViewModel vm = new(_Repo);
+
+    // Call method to load <|CLASS_NAME|> objects
+    await vm.GetAsync();
+
+    return View(vm);
+  }
+
+  [HttpGet]
+  public async Task<IActionResult> <|CLASS_NAME|>Search(<|CLASS_NAME|>ViewModel vm)
+  {
+    vm.Repository = _Repo;
+
+    // Call method to search for <|CLASS_NAME|> objects
+    await vm.SearchAsync();
+
+    return View("<|CLASS_NAME|>Index", vm);
+  }
+
+  [HttpGet]
+  public async Task<IActionResult> <|CLASS_NAME|>Display(<|CLASS_NAME|>Search search)
+  {
+    // Create view model, passing in repository
+    <|CLASS_NAME|>ViewModel vm = new(_Repo) {
+      SearchEntity = search
+    };
+    
+    // Call method to search for <|CLASS_NAME|> objects
+    await vm.SearchAsync(vm.SearchEntity);
+
+    // Call method to load a single <|CLASS_NAME|> object
+    await vm.GetAsync(vm.<|CLASS_NAME_PLURAL|>[search.RowIndex]);
+
+    return View("<|CLASS_NAME|>Index", vm);
+  }
+}

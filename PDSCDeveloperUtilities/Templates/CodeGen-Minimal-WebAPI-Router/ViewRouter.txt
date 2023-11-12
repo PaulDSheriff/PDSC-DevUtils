@@ -1,0 +1,187 @@
+﻿using <|NAMESPACE|>.EntityLayer;
+using <|NAMESPACE|>.MinWebAPI.SearchClasses;
+using PDSC.Common;
+using PDSC.Common.Web;
+using System.Collections.ObjectModel;
+using System.Net;
+
+namespace <|NAMESPACE|>.MinWebAPI.RouterClasses;
+
+public class <|CLASS_NAME|>Router : RouterBase
+{
+  #region Private Variables
+  private readonly <|NAMESPACE|>AppSettings _Settings;
+  #endregion
+
+  #region Constructor
+  public <|CLASS_NAME|>Router(ILogger<<|CLASS_NAME|>Router> logger, <|NAMESPACE|>AppSettings settings) : base(logger)
+  {
+    UrlFragment = "api/<|CLASS_NAME|>";
+    TagName = "<|CLASS_NAME|> Routes";
+    _Settings = settings;
+  }
+  #endregion
+
+  #region AddRoutes Method
+  /// <summary>
+  /// Add asynchronous routes
+  /// </summary>
+  /// <param name="app">A WebApplication object</param>
+  public override void AddRoutes(WebApplication app)
+  {
+    app.MapGet($"/{UrlFragment}", async (IViewViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search> vm) => await GetAsync(vm))
+       .WithTags(TagName)
+       .Produces(200)
+       .Produces<List<<|CLASS_NAME|>>>()
+       .Produces(404)
+       .Produces(500);
+
+    // NOTE: This method will not display the parameters in Swagger, you must type them on the query line
+    // Example: https://www.sample.com/api/CLASS_NAME/Search?SearchProperty=SearchValue
+    app.MapGet($"/{UrlFragment}/Search", async (<|CLASS_NAME|>BindSearch search, IViewViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search> vm) => await SearchAsync(search, vm))
+       .WithTags(TagName)
+       .Produces(200)
+       .Produces<List<<|CLASS_NAME|>>>()
+       .Produces(404);
+
+    // NOTE: This method will not display the parameters in Swagger, you must type them on the query line
+    // Example: https://www.sample.com/api/CLASS_NAME/Search?SearchProperty=SearchValue
+    app.MapGet($"/{UrlFragment}/Count", async (<|CLASS_NAME|>BindSearch search, IViewViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search> vm) => await CountAsync(search, vm))
+       .WithTags(TagName)
+       .Produces(200)
+       .Produces<int>()
+       .Produces(404);
+  }
+  #endregion
+
+  #region GetAsync Method
+  protected virtual async Task<IResult> GetAsync(IViewViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search> vm)
+  {
+    IResult ret;
+    DataResponse<ObservableCollection<<|CLASS_NAME|>>> response = new();
+
+    try {
+      // Attempt to get all rows in the data store
+      response = await vm.GetAsync();
+
+      if (response.StatusCode == HttpStatusCode.OK) {
+        // Success, return a '200 OK'
+        ret = Results.Ok(response);
+      }
+      else if (response.StatusCode == HttpStatusCode.NotFound) {
+        // No data found, return '404 Not Found'
+        ret = Results.NotFound(response);
+      }
+      else {
+        // Return generic message for the user
+        response.LastErrorMessage = _Settings.InfoMessageDefault
+          .Replace("{Verb}", "GET")
+          .Replace("{ClassName}", nameof(<|CLASS_NAME|>Router));
+
+        // Error, return a '500 Internal Server Error'
+        ret = Results.Problem(response.LastErrorMessage);
+      }
+    }
+    catch (Exception ex) {
+      // Error, return a '500 Internal Server Error'
+      response.StatusMessage = "InternalServerError";
+      response.StatusCode = HttpStatusCode.InternalServerError;
+      ret = HandleException(ex);
+    }
+
+    return ret;
+  }
+  #endregion
+
+  #region SearchAsync Method
+  protected virtual async Task<IResult> SearchAsync(<|CLASS_NAME|>BindSearch search, IViewViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search> vm)
+  {
+    IResult ret;
+    DataResponse<ObservableCollection<<|CLASS_NAME|>>> response = new();
+    <|COMMA_SET|>
+    try {
+      // Create a search object from the bound search object
+      <|CLASS_NAME|>Search srch = new() {
+        {|FOR EACH COLUMN:IsSearchField|}
+        <|PROPERTY_NAME|> = search.<|PROPERTY_NAME|><|COMMA|>
+        {|END_LOOP|}
+      };
+
+      // Search for data within the data store
+      response = await vm.SearchAsync(srch);
+
+      if (response.StatusCode == HttpStatusCode.OK) {
+        // Success, return a '200 OK'
+        ret = Results.Ok(response);
+      }
+      else if (response.StatusCode == HttpStatusCode.NotFound) {
+        // No data found, return '404 Not Found'
+        ret = Results.NotFound(response);
+      }
+      else {
+        // Return generic message for the user
+        response.LastErrorMessage = _Settings.InfoMessageDefault
+          .Replace("{Verb}", "GET/Search")
+          .Replace("{ClassName}", nameof(<|CLASS_NAME|>Router));
+
+        // Error, return a '500 Internal Server Error'
+        ret = Results.Problem(response.LastErrorMessage);
+      }
+    }
+    catch (Exception ex) {
+      // Error, return a '500 Internal Server Error'
+      response.StatusMessage = "InternalServerError";
+      response.StatusCode = HttpStatusCode.InternalServerError;
+      ret = HandleException(ex);
+    }
+
+    return ret;
+  }
+  #endregion
+
+  #region CountAsync Method
+  protected virtual async Task<IResult> CountAsync(<|CLASS_NAME|>BindSearch search, IViewViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search> vm)
+  {
+    IResult ret;
+    DataResponse<int> response = new();
+    <|COMMA_SET|>
+    try {
+      // Create a search object from the bound search object
+      <|CLASS_NAME|>Search srch = new() {
+        {|FOR EACH COLUMN:IsSearchField|}
+        <|PROPERTY_NAME|> = search.<|PROPERTY_NAME|><|COMMA|>
+        {|END_LOOP|}
+      };
+
+      // Attempt to count the data within the data store
+      response = await vm.CountAsync(srch);
+
+      if (response.StatusCode == HttpStatusCode.OK) {
+        // Success, return a '200 OK'
+        ret = Results.Ok(response);
+      }
+      else if (response.StatusCode == HttpStatusCode.NotFound) {
+        // No data found, return '404 Not Found'
+        ret = Results.NotFound(response);
+      }
+      else {
+        // Return generic message for the user
+        response.LastErrorMessage = _Settings.InfoMessageDefault
+          .Replace("{Verb}", "GET/Count")
+          .Replace("{ClassName}", nameof(<|CLASS_NAME|>Router));
+
+        // Error, return a '500 Internal Server Error'
+        ret = Results.Problem(response.LastErrorMessage);
+      }
+    }
+    catch (Exception ex) {
+      // Error, return a '500 Internal Server Error'
+      response.StatusMessage = "InternalServerError";
+      response.StatusCode = HttpStatusCode.InternalServerError;
+      ret = HandleException(ex);
+    }
+
+    return ret;
+  }
+  #endregion
+}

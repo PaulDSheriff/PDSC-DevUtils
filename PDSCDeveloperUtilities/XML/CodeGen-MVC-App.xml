@@ -10,6 +10,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
     <Name>MVC - Create Solution Instructions</Name>
@@ -21,6 +23,8 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
 	<Template>
 		<Name>Home Page</Name>
@@ -32,7 +36,9 @@
 		<OutputFileSuffix></OutputFileSuffix>
 		<UseClassNameAsFileName>false</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
-	</Template>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
+  </Template>
 	<Template>
 		<Name>_Layout.cshtml</Name>
 		<TemplateFileName>CodeGen-MVC-App\_Layout.txt</TemplateFileName>
@@ -43,7 +49,9 @@
 		<OutputFileSuffix></OutputFileSuffix>
 		<UseClassNameAsFileName>false</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
-	</Template>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
+  </Template>
 	<Template>
 		<Name>Program.cs</Name>
 		<TemplateFileName>CodeGen-MVC-App\Program.txt</TemplateFileName>
@@ -54,7 +62,9 @@
 		<OutputFileSuffix></OutputFileSuffix>
 		<UseClassNameAsFileName>false</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
-	</Template>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
+  </Template>
   <Template>
     <Name>MVC Web App - appSettings.Development.json</Name>
     <TemplateFileName>CodeGen-MVC-App\appSettings.Development.txt</TemplateFileName>
@@ -65,5 +75,7 @@
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
 </CodeGenTemplates>

@@ -1,0 +1,30 @@
+﻿using <|NAMESPACE|>.EntityLayer;
+using <|NAMESPACE|>.MAUI.CommandClasses;
+
+namespace <|NAMESPACE|>.MAUI.Views;
+
+public partial class <|CLASS_NAME|>DetailView : ContentPage, IQueryAttributable
+{
+  public <|CLASS_NAME|>DetailView(<|CLASS_NAME|>ViewModelCommands viewModel)
+  {
+    InitializeComponent();
+
+    ViewModel = viewModel;
+  }
+
+  private readonly <|CLASS_NAME|>ViewModelCommands ViewModel;
+  public string CurrentEntityAsString { get; set; }  
+  public <|CLASS_NAME|> CurrentEntity { get; set; }
+
+  protected override void OnAppearing()
+  {
+    base.OnAppearing();
+
+    BindingContext = ViewModel;
+  }
+
+  public void ApplyQueryAttributes(IDictionary<string, object> query)
+  {
+    ViewModel.CurrentEntity = query["CurrentEntity"] as <|CLASS_NAME|>;
+  }
+}

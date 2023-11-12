@@ -9,8 +9,9 @@ using System.Net;
 namespace <|NAMESPACE|>.ViewModelLayer;
 
 /// <summary>
-/// This class contains the class definition, inheritance chain, 
-/// constructors and properties.
+/// The view model class is used to wrap up all functionality for
+/// working with pages/screens in your application and for working
+/// with tables in databases.
 /// This class makes async calls to your repository class.
 /// </summary>
 public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|VIEWMODEL_INTERFACE|>

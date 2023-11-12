@@ -4,7 +4,7 @@
   <!-- Templates for the C# Repository Data Generator -->
   <!-- ********************************************** -->
   <Template>
-		<Name>Entity Class</Name>
+		<Name>Hard-Coded Entity Class</Name>
     <TemplateFileName>RepositoryGenerator\Entity.txt</TemplateFileName>
 		<BaseClassName></BaseClassName>
 		<OutputSubFolder>HardCodedRepository</OutputSubFolder>
@@ -13,9 +13,11 @@
 		<OutputFileSuffix></OutputFileSuffix>
 		<UseClassNameAsFileName>true</UseClassNameAsFileName>
 		<AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
   </Template>
   <Template>
-    <Name>Repository Class</Name>
+    <Name>Hard-Coded Repository Class</Name>
     <TemplateFileName>RepositoryGenerator\RepositoryDataClass.txt</TemplateFileName>
     <BaseClassName></BaseClassName>
     <OutputSubFolder>HardCodedRepository</OutputSubFolder>
@@ -24,5 +26,20 @@
     <OutputFileSuffix>Repository</OutputFileSuffix>
     <UseClassNameAsFileName>true</UseClassNameAsFileName>
     <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>false</IsView>
+  </Template>
+  <Template>
+    <Name>Hard-Coded View Repository Class</Name>
+    <TemplateFileName>RepositoryGenerator\ViewRepositoryDataClass.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>HardCodedRepository</OutputSubFolder>
+    <OutputFileExtension>.cs</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix>Repository</OutputFileSuffix>
+    <UseClassNameAsFileName>true</UseClassNameAsFileName>
+    <AppendToFile>false</AppendToFile>
+    <IsTable>false</IsTable>
+    <IsView>true</IsView>
   </Template>
 </CodeGenTemplates>

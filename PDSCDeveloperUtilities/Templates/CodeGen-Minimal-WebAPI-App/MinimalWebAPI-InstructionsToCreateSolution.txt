@@ -19,4 +19,4 @@ Run the MinimalWebAPI-CreateSolution.cmd file.
 
 Step 2: Open the SLN file
 A <|NAMESPACE|>.MinWebAPI.sln file is created in your desired folder.
-Open this .sln file and you can run your Minimal Web API project.
+Open this .sln file and you run your Minimal Web API project.

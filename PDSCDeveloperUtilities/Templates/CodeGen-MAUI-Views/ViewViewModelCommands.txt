@@ -1,0 +1,141 @@
+﻿using System.Collections.ObjectModel;
+using System.Net;
+using System.Windows.Input;
+using <|NAMESPACE|>.EntityLayer;
+using <|NAMESPACE|>.MAUI.Views;
+using <|NAMESPACE|>.ViewModelLayer;
+using Microsoft.Extensions.Logging;
+using PDSC.Common;
+
+namespace <|NAMESPACE|>.MAUI.CommandClasses
+{
+  public class <|CLASS_NAME|>ViewModelCommands : <|CLASS_NAME|>ViewModel
+  {
+    #region Constructors
+    public <|CLASS_NAME|>ViewModelCommands(IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search> repository) : base(repository)
+    {
+    }
+
+    public <|CLASS_NAME|>ViewModelCommands(IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search> repository,
+      ILogger<<|CLASS_NAME|>ViewModel> logger) : base(repository, logger)
+    {
+    }       
+    #endregion
+    
+    #region Private Variables    
+    private bool _IsGetCommandEnabled = true;
+    private bool _IsSearchCommandEnabled = true;
+    private bool _IsDisplayCommandEnabled = true;
+    private bool _IsCancelCommandEnabled = true;
+    #endregion
+
+    #region Public Properties
+    public <|CLASS_NAME|>ListView TheView { get; set; }
+
+    /// <summary>
+    /// Get/Set IsGetCommandEnabled
+    /// </summary>
+    public bool IsGetCommandEnabled
+    {
+      get { return _IsGetCommandEnabled; }
+      set {
+        _IsGetCommandEnabled = value;
+        RaisePropertyChanged(nameof(IsGetCommandEnabled));
+      }
+    }
+
+    /// <summary>
+    /// Get/Set IsSearchCommandEnabled
+    /// </summary>
+    public bool IsSearchCommandEnabled
+    {
+      get { return _IsSearchCommandEnabled; }
+      set {
+        _IsSearchCommandEnabled = value;
+        RaisePropertyChanged(nameof(IsSearchCommandEnabled));
+      }
+    }
+
+    /// <summary>
+    /// Get/Set IsDisplayCommandEnabled
+    /// </summary>
+    public bool IsDisplayCommandEnabled
+    {
+      get { return _IsDisplayCommandEnabled; }
+      set {
+        _IsDisplayCommandEnabled = value;
+        RaisePropertyChanged(nameof(IsDisplayCommandEnabled));
+      }
+    }
+
+    /// <summary>
+    /// Get/Set IsCancelCommandEnabled
+    /// </summary>
+    public bool IsCancelCommandEnabled
+    {
+      get { return _IsCancelCommandEnabled; }
+      set {
+        _IsCancelCommandEnabled = value;
+        RaisePropertyChanged(nameof(IsCancelCommandEnabled));
+      }
+    }
+    #endregion
+
+    #region Commands
+    public ICommand GetCommand { get; private set; }
+    public ICommand SearchCommand { get; private set; }
+    public ICommand DisplayCommand { get; private set; }    
+    public ICommand CancelCommand { get; private set; }
+    #endregion
+
+    #region Init Method
+    public override void Init()
+    {
+      base.Init();
+
+      // Initialize Commands
+      GetCommand = new Command(async () => await GetAllAsync(), () => IsGetCommandEnabled);
+      SearchCommand = new Command(async () => await SearchAsync(), () => IsSearchCommandEnabled);
+      DisplayCommand = new Command<<|CLASS_NAME|>>(async (<|CLASS_NAME|> entity) => await DisplayAsync(entity), (entity) => IsDisplayCommandEnabled);
+      CancelCommand = new Command(async () => await CancelAsync(), () => IsCancelCommandEnabled);
+    }
+    #endregion
+        
+    #region GetAllAsync Method
+    protected async Task GetAllAsync()
+    {
+      base.SearchEntity = new();
+      await base.GetAsync();
+    }
+    #endregion
+
+    #region SearchAsync Method
+    protected new async Task SearchAsync()
+    {
+      DataResponse<ObservableCollection<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>>> response = await base.SearchAsync(base.SearchEntity);
+      if (response != null && response.StatusCode == HttpStatusCode.OK) {
+        base.InfoMessage = $"Searched and Found: {(response.Data ?? new()).Count} {ClassDescriptionPlural}";
+      }
+    }
+    #endregion
+
+    #region CancelAsync Method
+    protected async Task CancelAsync()
+    {      
+      await Shell.Current.GoToAsync("..");
+    }
+    #endregion
+
+    #region DisplayAsync Method
+    protected async Task DisplayAsync(<|CLASS_NAME|> entity)
+    {
+      var param = new Dictionary<string, object>
+      {
+          { "CurrentEntity", entity}
+      };
+
+      await Shell.Current.GoToAsync($"{nameof(Views.<|CLASS_NAME|>DetailView)}", param);
+    }
+    #endregion
+  }
+}

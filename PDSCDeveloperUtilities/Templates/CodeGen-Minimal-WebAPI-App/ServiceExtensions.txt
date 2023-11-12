@@ -17,6 +17,9 @@ public static class ServiceExtension
     {|FOR EACH TABLE|}
     services.AddScoped<<|REPOSITORY_INTERFACE|>, <|CLASS_NAME|>Repository>();
     {|END_LOOP|}
+    {|FOR EACH VIEW|}
+    services.AddScoped<IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>Repository>();
+    {|END_LOOP|}
   }
   
   public static void AddViewModelClasses(this IServiceCollection services)
@@ -24,6 +27,9 @@ public static class ServiceExtension
     // Add View Model Classes
     {|FOR EACH TABLE|}
     services.AddScoped<<|VIEWMODEL_INTERFACE|>, <|CLASS_NAME|>ViewModel>();
+    {|END_LOOP|}
+    {|FOR EACH VIEW|}
+    services.AddScoped<IViewViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>ViewModel>();
     {|END_LOOP|}
   }
   
@@ -33,6 +39,9 @@ public static class ServiceExtension
     services.AddScoped<RouterBase, ErrorRouter>();
 
     {|FOR EACH TABLE|}
+    services.AddScoped<RouterBase, <|CLASS_NAME|>Router>();
+    {|END_LOOP|}
+    {|FOR EACH VIEW|}
     services.AddScoped<RouterBase, <|CLASS_NAME|>Router>();
     {|END_LOOP|}
   }

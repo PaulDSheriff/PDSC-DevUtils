@@ -9,7 +9,12 @@ namespace <|NAMESPACE|>.DataLayer;
 /// constructors and properties.
 /// This class makes async calls to your data store.
 /// </summary>
+{|REMOVE_WHEN:IsView|}
 public partial class <|CLASS_NAME|>Repository : RepositoryBase, <|REPOSITORY_INTERFACE|>
+{|END_REMOVE|}
+{|REMOVE_WHEN:IsTable|}
+public partial class <|CLASS_NAME|>Repository : RepositoryBase, IViewRepository<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>, <|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>Search>
+{|END_REMOVE|}
 {
   #region Constructor
   public <|CLASS_NAME|>Repository(<|DB_CONTEXT|> context)
@@ -29,6 +34,7 @@ public partial class <|CLASS_NAME|>Repository : RepositoryBase, <|REPOSITORY_INT
   }
   #endregion
 
+  {|REMOVE_WHEN:IsView|}
   #region GetAsync(id) Method
   public async Task<<|CLASS_NAME|>?> GetAsync(<|PK_LANGUAGE_DATA_TYPE|> id)
   {
@@ -40,6 +46,35 @@ public partial class <|CLASS_NAME|>Repository : RepositoryBase, <|REPOSITORY_INT
     return entity;
   }
   #endregion
+  {|END_REMOVE|}
+  {|REMOVE_WHEN:IsTable|}
+  #region GetAsync(search) Method
+  public async Task<<|CLASS_NAME|>?> GetAsync(<|CLASS_NAME|> search)
+  {
+    <|CLASS_NAME|>? entity;
+
+    // Get a Query object for this DbSet<T>
+    IQueryable<<|CLASS_NAME|>> query = DbContextObject.<|CLASS_NAME_PLURAL|>;
+    
+    // Get a single value using all columns
+    {|FOR EACH COLUMN|}
+    query = query.Where(row => row.<|PROPERTY_NAME|> == search.<|PROPERTY_NAME|>);
+    {|END_LOOP|}
+    
+    // Query the data
+    List<<|CLASS_NAME|>>? tmp = await query.ToListAsync();
+  
+    // Get the first row located
+    entity = tmp.FirstOrDefault();
+
+    if (entity != null) {
+      RowsAffected = 1;
+    }
+
+    return entity;
+  }
+  #endregion
+  {|END_REMOVE|}
 
   #region SearchAsync Method
   public async Task<List<<|CLASS_NAME|>>> SearchAsync(<|CLASS_NAME|>Search search)
@@ -131,6 +166,7 @@ public partial class <|CLASS_NAME|>Repository : RepositoryBase, <|REPOSITORY_INT
   }
   #endregion
 
+  {|REMOVE_WHEN:IsView|}
   #region InsertAsync Method
   public async Task<<|CLASS_NAME|>?> InsertAsync(<|CLASS_NAME|>? entity)
   {
@@ -179,4 +215,5 @@ public partial class <|CLASS_NAME|>Repository : RepositoryBase, <|REPOSITORY_INT
     return ret;
   }
   #endregion
+  {|END_REMOVE|}
 }

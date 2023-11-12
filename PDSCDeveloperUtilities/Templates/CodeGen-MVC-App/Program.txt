@@ -19,6 +19,9 @@ builder.Services.AddDbContext<<|NAMESPACE|>DbContext>(
 {|FOR EACH TABLE|}
 builder.Services.AddScoped<<|REPOSITORY_INTERFACE|>, <|CLASS_NAME|>Repository>();
 {|END_LOOP|}
+{|FOR EACH VIEW|}
+builder.Services.AddScoped<IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>Repository>();
+{|END_LOOP|}
 
 // Create instance of a WebApplication object
 var app = builder.Build();

@@ -18,7 +18,12 @@
       <!-- *********** -->
       <partialViews:HeaderView Grid.Row="0"
                                ViewTitle="<|CLASS_NAME|> List"
+      {|REMOVE_WHEN:IsView|}
                                ViewDescription="List, Search, Add, and Select <|CLASS_NAME_PLURAL|>." />
+      {|END_REMOVE|}
+      {|REMOVE_WHEN:IsTable|}
+                               ViewDescription="List, Search, and Select <|CLASS_NAME_PLURAL|>." />
+      {|END_REMOVE|}
 
       <|GRID_ROW_RESET|>
       <!-- *********** -->
@@ -51,10 +56,12 @@
                           BackgroundColor="{StaticResource RefreshButton}"
                           Command="{Binding GetCommand}" />
             <BoxView Style="{StaticResource Separator.Left}" />
+            {|REMOVE_WHEN:IsView|}
             <ImageButton Source="plus.png"
                           BackgroundColor="{StaticResource AddButton}"
                           ToolTipProperties.Text="Add New <|CLASS_NAME_SINGULAR|>"
                           Command="{Binding AddCommand}" />
+            {|END_REMOVE|}
           </HorizontalStackLayout>
         </Grid>
       </VerticalStackLayout>
@@ -89,6 +96,14 @@
                 {|END_LOOP|}
                 <HorizontalStackLayout Grid.Row="<|GRID_ROW|>"
                                         Grid.ColumnSpan="2">
+                  {|REMOVE_WHEN:IsTable|}
+                  <ImageButton Source="expand.png"
+                                ToolTipProperties.Text="Display <|CLASS_NAME_SINGULAR|>"
+                                BackgroundColor="{StaticResource EditButton}"
+                                CommandParameter="{Binding}"
+                                Command="{Binding BindingContext.DisplayCommand, Source={x:Reference <|CLASS_NAME|>ListPage}}" />
+                  {|END_REMOVE|}
+                  {|REMOVE_WHEN:IsView|}
                   <ImageButton Source="edit.png"
                                 ToolTipProperties.Text="Edit <|CLASS_NAME_SINGULAR|>"                                 
                                 BackgroundColor="{StaticResource EditButton}"
@@ -99,6 +114,7 @@
                                 BackgroundColor="{StaticResource DeleteButton}"
                                 CommandParameter="{Binding <|PK_PROPERTY_NAME|>}"
                                 Command="{Binding BindingContext.DeleteCommand, Source={x:Reference <|CLASS_NAME|>ListPage}}" />
+                  {|END_REMOVE|}
                 </HorizontalStackLayout>
                 <BoxView Grid.Row="<|GRID_ROW|>"
                          Grid.ColumnSpan="2"                         
