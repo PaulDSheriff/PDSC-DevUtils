@@ -36,6 +36,17 @@
     <TemplatesXmlFileName>CodeGen-DataClasses-API.xml</TemplatesXmlFileName>
     <RequirePropertyChangedEvent>False</RequirePropertyChangedEvent>
   </TemplateGroup>
+  <!-- Stored Procedure Templates -->
+  <TemplateGroup>
+    <GroupId>4</GroupId>
+    <DependentGroupIds></DependentGroupIds>
+    <DisplayOrder>100</DisplayOrder>
+    <GroupName>Stored Procedures</GroupName>
+    <Description>Generate select all, select by PK, search, insert, update, and delete stored procedures</Description>
+    <LanguageCode>SQL</LanguageCode>
+    <TemplatesXmlFileName>CodeGen-StoredProcedures.xml</TemplatesXmlFileName>
+    <RequirePropertyChangedEvent>False</RequirePropertyChangedEvent>
+  </TemplateGroup>
 
   <!-- ************************************-->
   <!-- ** UI Technology Templates        **-->

@@ -7,7 +7,7 @@ If you have not already done so, generate the following templates groups:
    Minimal Web API - Routers
 
 Step 1: Run the MinimalWebAPI-CreateSolution.cmd file
-Copy the MinimalWebAPI-CreateSolution.cmd file to your desired folder.
+Copy the MinimalWebAPI-CreateSolution.cmd file to your desired folder
 This .cmd file creates the following folders/projects under this folder
   <|NAMESPACE|>.DataLayer
   <|NAMESPACE|>.EntityLayer
@@ -15,8 +15,15 @@ This .cmd file creates the following folders/projects under this folder
   <|NAMESPACE|>.MinWebAPI
   PDSC.Common
   PDSC.Common.Web
-Run the MinimalWebAPI-CreateSolution.cmd file.
+Run the MinimalWebAPI-CreateSolution.cmd file
 
 Step 2: Open the SLN file
-A <|NAMESPACE|>.MinWebAPI.sln file is created in your desired folder.
-Open this .sln file and you run your Minimal Web API project.
+A <|NAMESPACE|>.MinWebAPI.sln file is created in your desired folder
+Open this .sln file 
+
+Step 3: If you are using .NET 8
+Double-click on the <|NAMESPACE|>.WebAPI project
+Locate the <InvariantGlobalization>true</InvariantGlobalization> and change the value within the tags to false
+
+Step 4: Run the application
+Run your Minimal Web API project

@@ -1,4 +1,35 @@
-﻿PDSC Developer Utilities v9.0.3 - 11/12/2023
+﻿PDSC Developer Utilities v9.0.4 - 11/??/2023
+-----------------------------------------------------
+Code Generation - Stored Procedure Generation
+  Added ability to generate stored procedures to handle all CRUD logic, plus searching and counting rows
+  Added SpPrefix to PDSCCodeGen.config file and set value to usp_
+  Added <|SP_PREFIX|> token
+  Added <|AND_UPPER|> token
+  Added <|OR_UPPER|> token
+
+Code Generation: MVC
+  Fixed up the CSS class names for Bootstrap V5.1
+
+Code Generation
+  Views were not being read in from their .json file on disk, that is now fixed
+  Disabled Generate? check box if a table can't be generated (such as one that has multiple primary keys)
+  Added a CodeGen-DotNetVersions.xml file with the currently supported versions of .NET
+  Added a ComboBox to the Generate tab to allow you to select a .NET version to target for the generated code
+  Added <|DOT_NET_VERSION|> token
+  Added <|DOT_NET_VERSION:[NuGetPackage]|> token to allow you to get a value for the <Element> that matches the 'NuGetPackage' in the CodeGen-DotNetVersions.xml
+  Modified all generated .cmd files to use the <|DOT_NET_VERSION|> and <|DOT_NET_VERSION:[XmlElementName]|> tokens
+
+SQL Compare
+  Added a Grid to display the changed data
+  Both connection strings are stored for future use
+  Connection strings are stored in the configuration file
+  Fixed a couple of issues with detection of changes
+
+XML File Editing
+  Added an XML editing screen to maintain .NET Versions
+
+
+PDSC Developer Utilities v9.0.3 - 11/12/2023
 -----------------------------------------------------
 Added the following XML Editing Screens to the XML List Tool
   Language Data Types

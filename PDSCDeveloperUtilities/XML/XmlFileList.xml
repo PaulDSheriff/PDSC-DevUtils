@@ -20,6 +20,11 @@
     <Description>Template file names used when generating Data Repository classes that use the Entity Framework</Description>
     <IsEditable>False</IsEditable>
   </XmlFile>
+    <XmlFile>
+    <FileName>CodeGen-DotNetVersions.xml</FileName>
+    <Description>List of .NET versions supported by the code generator</Description>
+    <IsEditable>true</IsEditable>
+  </XmlFile>
   <XmlFile>
     <FileName>CodeGen-EntityViewModel.xml</FileName>
     <Description>Template file names used when generating Entity, Search, and View Model classes</Description>

@@ -18,12 +18,14 @@
   <|EDIT_CONTROL|>
   {|END_LOOP|}
 
-  <div class="form-group">
-    {|REMOVE_WHEN:IsView|}
-    <button class="btn btn-primary">Save</button>
-    {|END_REMOVE|}
-    <a class="btn btn-secondary" formnovalidate="formnovalidate" asp-action="<|CLASS_NAME|>Index">
-      Cancel
-    </a>
+  <div class="row mt-2">
+    <div class="col">
+      {|REMOVE_WHEN:IsView|}
+        <button class="btn btn-primary">Save</button>
+      {|END_REMOVE|}
+      <a class="btn btn-secondary" formnovalidate="formnovalidate" asp-action="<|CLASS_NAME|>Index">
+        Cancel
+      </a>
+    </div>
   </div>
 </form>

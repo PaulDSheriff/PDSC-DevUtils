@@ -23,6 +23,7 @@ Run the MAUI-CreateSolution.cmd file.
 
 Step 2: Open the SLN
 Open the <|NAMESPACE|>.MAUI.sln file using Visual Studio.
+Wait a few moments to allow all packages to be restored.
 Right mouse-click on the Solution and choose Properties from the menu.
 Under Common Properties | Startup Project...
   Select the Multiple Startup Projects radio button.
@@ -49,7 +50,11 @@ Step 4: Paste the URL into your MAUI application
 Open the <|NAMESPACE|>.MAUI\ConfigurationClasses\<|NAMESPACE|>AppSettings.cs file.
 Paste the URL you copied into the BaseWebAPIAddress property in the constructor.
 
-Step 5: Run the project
+Step 5: If you are using .NET 8
+Double-click on the <|NAMESPACE|>.WebAPI project
+Locate the <InvariantGlobalization>true</InvariantGlobalization> and change the value within the tags to false or completely remove it.
+
+Step 6: Run the project
 Click on the Start button 
 After compiling you should see the Swagger for the Web API project.
 You should also see your .NET MAUI main page appear.
