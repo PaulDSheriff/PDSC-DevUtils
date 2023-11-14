@@ -1,5 +1,5 @@
 # PDSC Developer Utilities V9
-PDS Consulting has created a set of tools to help you develop applications for .NET 7+ quickly and easily. The following tools are included within this utility.
+PDS Consulting has created a set of tools to help you develop applications for .NET 7 and .NET 8 quickly and easily. The following tools are included within this utility.
 
 - Computer Cleaner
 - Project Cleaner
@@ -13,6 +13,7 @@ PDS Consulting has created a set of tools to help you develop applications for .
 	- Web API CRUD applications using MVC
 	- Minimal Web API CRUD applications
 	- Mock Entity and Repository classes
+	- CRUD Stored Procedures
 - SQL Compare
 
 This utility is written in .NET 7.
