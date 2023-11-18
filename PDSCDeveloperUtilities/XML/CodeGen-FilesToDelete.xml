@@ -1,11 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CodeGenFilesToDelete>
+  <!-- MAUI Using MVC Web API -->
+  <File>
+    <GroupId>201</GroupId>
+    <FileName>MAUI-Minimal-CreateSolution.cmd</FileName>
+  </File>
+  <File>
+    <GroupId>201</GroupId>
+    <FileName>MAUI-Minimal-InstructionsToCreateSolution.txt</FileName>
+  </File>
   <File>
     <GroupId>201</GroupId>
     <FileName>WebAPI-CreateSolution.cmd</FileName>
   </File>
   <File>
     <GroupId>201</GroupId>
+    <FileName>WebAPI-InstructionsToCreateSolution.txt</FileName>
+  </File>
+  <File>
+    <GroupId>201</GroupId>
+    <FileName>MinimalWebAPI-CreateSolution.cmd</FileName>
+  </File>
+  <File>
+    <GroupId>201</GroupId>
+    <FileName>MinimalWebAPI-InstructionsToCreateSolution.txt</FileName>
+  </File>
+  <!-- MAUI Using Minimal Web API -->
+  <File>
+    <GroupId>203</GroupId>
+    <FileName>MAUI-CreateSolution.cmd</FileName>
+  </File>
+  <File>
+    <GroupId>203</GroupId>
+    <FileName>MAUI-InstructionsToCreateSolution.txt</FileName>
+  </File>
+  <File>
+    <GroupId>203</GroupId>
+    <FileName>MinimalWebAPI-CreateSolution.cmd</FileName>
+  </File>
+  <File>
+    <GroupId>203</GroupId>
+    <FileName>MinimalWebAPI-InstructionsToCreateSolution.txt</FileName>
+  </File>
+  <File>
+    <GroupId>203</GroupId>
+    <FileName>WebAPI-CreateSolution.cmd</FileName>
+  </File>
+  <File>
+    <GroupId>203</GroupId>
     <FileName>WebAPI-InstructionsToCreateSolution.txt</FileName>
   </File>
 </CodeGenFilesToDelete>

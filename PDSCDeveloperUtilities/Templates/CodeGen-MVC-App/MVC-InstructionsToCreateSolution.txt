@@ -6,7 +6,7 @@ If you have not already done so, generate the following templates groups:
    MVC Website - Application
    MVC Website - Views
 
-Step 1: Run the MVC-CreateSolution.cmd file
+Step 1
 Copy the MVC-CreateSolution.cmd file to your desired folder.
 This .cmd file creates the following folders/projects under this folder
   <|NAMESPACE|>.DataLayer
@@ -16,9 +16,8 @@ This .cmd file creates the following folders/projects under this folder
   PDSC.Common
 Run the MVC-CreateSolution.cmd file
 
-Step 2: Open the SLN file
-A <|NAMESPACE|>.sln file is created in your desired folder
-Open this .sln file 
+Step 2
+Open the <|NAMESPACE|>.sln file
 
-Step 3: Run the application
+Step 3
 Run your MVC Website project

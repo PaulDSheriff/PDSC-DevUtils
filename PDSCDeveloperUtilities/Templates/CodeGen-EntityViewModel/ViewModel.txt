@@ -160,6 +160,11 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
         var list = await Repository.GetAsync();
         <|CLASS_NAME_PLURAL|> = new ObservableCollection<<|CLASS_NAME|>>(list);
 
+        {|REMOVE_WHEN:IsAutoIncrementOrIsPrimaryKeyNotInteger|}
+        // Set the NextId for adding a new row
+        NextId = <|CLASS_NAME_PLURAL|>.Max(row => row.<|PK_PROPERTY_NAME|>) + 1;
+        {|END_REMOVE|}
+
         if (<|CLASS_NAME_PLURAL|>.Count > 0) {
           RowsAffected = <|CLASS_NAME_PLURAL|>.Count;
           ret.StatusMessage = "Success";
@@ -174,10 +179,6 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
         }
         ret.Data = <|CLASS_NAME_PLURAL|>;
         ret.RowsAffected = RowsAffected;
-        {|REMOVE_WHEN:IsAutoIncrementOrIsPrimaryKeyNotInteger|}
-        // Get Next id to assign
-        NextId = <|CLASS_NAME_PLURAL|>.Max(row => row.<|PK_PROPERTY_NAME|>) + 1;
-        {|END_REMOVE|}
       }
       catch (Exception ex) {
         // Publish the exception here
@@ -398,20 +399,20 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
             {|END_LOOP|}
             {|END_REMOVE|}
 
-            {|REMOVE_WHEN:IsAutoIncrementOrIsPrimaryKeyNotInteger|}
-            // Set the next id
-            entity.<|PK_PROPERTY_NAME|> = NextId;
-            {|END_REMOVE|}
-
             // Insert the new <|CLASS_NAME|> into data store
             CurrentEntity = await Repository.InsertAsync(entity);
             if (CurrentEntity != null) {
               IsAdding = false;
               RowsAffected = 1;
               {|REMOVE_WHEN:IsAutoIncrementOrIsPrimaryKeyNotInteger|}
-              // Increment the next id
+              // Increment the NextId for adding a new row
               NextId++;
               {|END_REMOVE|}
+
+              // Insert new entity at the beginning of the collection
+              if (<|CLASS_NAME_PLURAL|>.Count > 0) {
+                <|CLASS_NAME_PLURAL|>.Insert(0, CurrentEntity);
+              }
 
               // Success, return a '201 Created'
               ret.Data = CurrentEntity;
@@ -507,6 +508,9 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
               if (CurrentEntity != null) {
                 RowsAffected = 1;
 
+                // Reset SearchEntity
+                SearchEntity = new();
+
                 // Success, return a '200 Success'
                 ret.Data = CurrentEntity;
                 ret.StatusMessage = "Success";
@@ -584,6 +588,15 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
           var tmp = await Repository.DeleteAsync(entity);
           if (tmp.HasValue && tmp.Value) {
             RowsAffected = 1;
+
+            // Remove entity from collection
+            if (<|CLASS_NAME_PLURAL|>.Count > 0) {
+              <|CLASS_NAME_PLURAL|>.Remove(entity);
+            }
+            
+            // Reset SearchEntity
+            SearchEntity = new();
+
             ret.StatusMessage = "Deleted";
             ret.ResultMessage = $"{ClassDescriptionSingular} was successfully deleted.";
             ret.StatusCode = HttpStatusCode.NoContent;
@@ -649,10 +662,6 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
       {|END_REMOVE|}
     };
     
-    {|REMOVE_WHEN:IsAutoIncrementOrIsPrimaryKeyNotInteger|}
-    ret.<|PK_PROPERTY_NAME|> = NextId;
-    {|END_REMOVE|}
-
     return ret;
   }
   #endregion
@@ -669,6 +678,9 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
       <|CLASS_NAME_PLURAL|> = new ObservableCollection<<|CLASS_NAME_SINGULAR|>>(list);
       if (<|CLASS_NAME_PLURAL|>.Count > 0) {
         Selected<|CLASS_NAME_SINGULAR|> = <|CLASS_NAME_PLURAL|>.FirstOrDefault(row => row.<|PK_PROPERTY_NAME|> == CurrentEntity?.<|PK_TABLE_PK_PROPERTY_NAME|>);
+        if (Selected<|CLASS_NAME_SINGULAR|> == null) {
+          Selected<|CLASS_NAME_SINGULAR|> = <|CLASS_NAME_PLURAL|>[0];
+        }
       }
     }
   }

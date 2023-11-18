@@ -1,0 +1,5 @@
+  <div class="form-group">
+    <label asp-for="CurrentEntity.<|PROPERTY_NAME|>" class="form-label"></label>
+    <select asp-for="CurrentEntity.<|PROPERTY_NAME|>" asp-items="@(new SelectList(Model.<|PK_TABLE_CLASS_NAME_PLURAL|>, "<|FK_TABLE_PK_FIELD_PROPERTY_NAME|>", "<|FK_TABLE_DESC_FIELD_PROPERTY_NAME|>"))" class="form-control">
+    </select>
+  </div>

@@ -80,11 +80,11 @@ public class HttpClientRepositoryBase : RepositoryBase
   protected virtual void FixUrlParts()
   {
     // Make sure the BaseAddress does not end with a forward slash
-    BaseAddress = BaseAddress.EndsWith("/") ? BaseAddress[..^1] : BaseAddress;
+    BaseAddress = BaseAddress.EndsWith('/') ? BaseAddress[..^1] : BaseAddress;
     // Make sure the UrlPath starts with a forward slash
-    UrlPath = UrlPath.StartsWith("/") ? UrlPath : UrlPath[1..];
+    UrlPath = UrlPath.StartsWith('/') ? UrlPath : UrlPath[1..];
     // Make sure the UrlPath does not end with a forward slash
-    UrlPath = UrlPath.EndsWith("/") ? UrlPath[..^1] : UrlPath;
+    UrlPath = UrlPath.EndsWith('/') ? UrlPath[..^1] : UrlPath;
   }
   #endregion
 
@@ -328,9 +328,9 @@ public class HttpClientRepositoryBase : RepositoryBase
           };
         }
       }
-      catch (ValidationException ex) {
+      catch (ValidationException) {
         // Rethrow the Validation Exception
-        throw ex;
+        throw;
       }
       catch (Exception ex) {
         // Store the last exception

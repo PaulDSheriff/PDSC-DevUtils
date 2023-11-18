@@ -13,7 +13,6 @@ public partial class <|CLASS_NAME|>DetailView : ContentPage, IQueryAttributable
   }
 
   private readonly <|CLASS_NAME|>ViewModelCommands ViewModel;
-  public string CurrentEntityAsString { get; set; }  
   public <|CLASS_NAME|> CurrentEntity { get; set; }
 
   protected override void OnAppearing()

@@ -14,13 +14,38 @@
     <CopyTo>PDSC.Common</CopyTo>
   </Folder>
   
-  <!-- .NET 8 MAUI Generation-->
+  <!-- .NET MAUI Generation-->
   <Folder>
     <GroupId>201</GroupId>
     <CopyFrom>CodeGen-FilesToCopy-MAUI</CopyFrom>
     <CopyTo>{|NAMESPACE|}.MAUI\Resources</CopyTo>
   </Folder>
-
+  <Folder>
+    <GroupId>201</GroupId>
+    <CopyFrom>CodeGen-Utility</CopyFrom>
+    <CopyTo>CodeGenUtility</CopyTo>
+  </Folder>
+  <Folder>
+    <GroupId>201</GroupId>
+    <CopyFrom>CodeGen-PDSC.Common.MAUI</CopyFrom>
+    <CopyTo>PDSC.Common.MAUI</CopyTo>
+  </Folder>
+  <Folder>
+    <GroupId>203</GroupId>
+    <CopyFrom>CodeGen-FilesToCopy-MAUI</CopyFrom>
+    <CopyTo>{|NAMESPACE|}.MAUI\Resources</CopyTo>
+  </Folder>
+  <Folder>
+    <GroupId>203</GroupId>
+    <CopyFrom>CodeGen-Utility</CopyFrom>
+    <CopyTo>CodeGenUtility</CopyTo>
+  </Folder>
+  <Folder>
+    <GroupId>203</GroupId>
+    <CopyFrom>CodeGen-PDSC.Common.MAUI</CopyFrom>
+    <CopyTo>PDSC.Common.MAUI</CopyTo>
+  </Folder>
+  
   <!-- WPF Generation-->
   <Folder>
     <GroupId>401</GroupId>
@@ -32,11 +57,28 @@
     <CopyFrom>CodeGen-FilesToCopy-WPF</CopyFrom>
     <CopyTo>{|NAMESPACE|}.WPF\Resources</CopyTo>
   </Folder>
+  <Folder>
+    <GroupId>401</GroupId>
+    <CopyFrom>CodeGen-Utility</CopyFrom>
+    <CopyTo>CodeGenUtility</CopyTo>
+  </Folder>
 
+  <!-- MVC Web API Generation-->
+  <Folder>
+    <GroupId>101</GroupId>    
+    <CopyFrom>CodeGen-Utility</CopyFrom>
+    <CopyTo>CodeGenUtility</CopyTo>
+  </Folder>
+  
   <!-- Minimal Web API Generation-->
   <Folder>
     <GroupId>701</GroupId>
     <CopyFrom>CodeGen-PDSC.Common.Web</CopyFrom>
     <CopyTo>PDSC.Common.Web</CopyTo>
+  </Folder>
+  <Folder>
+    <GroupId>701</GroupId>
+    <CopyFrom>CodeGen-Utility</CopyFrom>
+    <CopyTo>CodeGenUtility</CopyTo>
   </Folder>
 </CodeGenFoldersToCopy>

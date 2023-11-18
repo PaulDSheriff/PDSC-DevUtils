@@ -176,7 +176,7 @@
   <Style TargetType="Label"
          x:Key="InfoMessageArea">
     <Setter Property="FontSize"
-            Value="14" />
+            Value="18" />
     <Setter Property="Margin"
             Value="4,-10" />
   </Style>

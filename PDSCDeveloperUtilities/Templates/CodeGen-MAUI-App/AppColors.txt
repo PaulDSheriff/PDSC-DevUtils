@@ -15,4 +15,7 @@
   <Color x:Key="EditButton">#512BD4</Color>
   <Color x:Key="DeleteButton">Red</Color>
   
+  <Color x:Key="Success">Blue</Color>
+  <Color x:Key="Danger">Red</Color>
+  <Color x:Key="Info">Yellow</Color>    
 </ResourceDictionary>

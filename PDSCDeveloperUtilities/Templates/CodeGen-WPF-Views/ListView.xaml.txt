@@ -13,8 +13,8 @@
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
       <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
 
     <!-- *********** -->
@@ -60,12 +60,14 @@
                     Grid.Column="1"
                     Orientation="Horizontal">
           <Button ToolTip="Search for <|CLASS_NAME_PLURAL|>"
+                  IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource invertBool}}"                  
                   Style="{StaticResource Button.WithImage}"
                   Background="{StaticResource SearchButton}"
                   Click="Search_Click">
             <Image Source="/Resources/Images/magnifyingglass.png" />
           </Button>
           <Button ToolTip="Reset Search/Get All"
+                  IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource invertBool}}"                  
                   Style="{StaticResource Button.WithImage}"
                   Background="{StaticResource RefreshButton}"
                   Click="Refresh_Click">
@@ -74,27 +76,27 @@
           {|REMOVE_WHEN:IsView|}
           <Rectangle Style="{StaticResource Separator.Left}" />
           <Button ToolTip="Add New <|CLASS_NAME_SINGULAR|>"
+                  IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource invertBool}}"                  
                   Style="{StaticResource Button.WithImage}"
                   Background="{StaticResource AddButton}"
                   Click="Add_Click">
             <Image Source="/Resources/Images/plus.png" />
           </Button>
-          {|END_REMOVE|}
+          {|END_REMOVE|}          
+          <!-- ************************** -->
+          <!-- Informational Message Area -->
+          <!-- ************************** -->
+          <Label Margin="20,4" />
+          <Label Content="{Binding Path=InfoMessage}"
+                 Style="{StaticResource InfoMessageArea}" />
         </StackPanel>
       </Grid>
     </StackPanel>
 
-    <!-- ************************** -->
-    <!-- Informational Message Area -->
-    <!-- ************************** -->
-    <Label Grid.Row="2"
-           Content="{Binding Path=InfoMessage}"
-           Style="{StaticResource InfoMessageArea}" />
-
     <!-- ********* -->
     <!-- List Area -->
     <!-- ********* -->
-    <Border Grid.Row="3"
+    <Border Grid.Row="2"
             Style="{StaticResource Border.List}">
       <DataGrid SelectedIndex="0"
                 IsSynchronizedWithCurrentItem="True"
@@ -143,6 +145,7 @@
                 <Button ToolTip="Delete this <|CLASS_NAME_SINGULAR|>"
                         Click="DeleteButton_Click"
                         Tag="{Binding}"
+                        Background="{StaticResource DangerBrush}"
                         Style="{StaticResource Button.SmallImage}">
                   <Image Source="/Resources/Images/trash.png" />
                 </Button>
@@ -153,5 +156,12 @@
         </DataGrid.Columns>
       </DataGrid>
     </Border>
+          
+    <!-- ****************** -->
+    <!-- Error Message Area -->
+    <!-- ****************** -->
+    <Label Grid.Row="3"
+            Content="{Binding Path=LastErrorMessage}"
+            Style="{StaticResource ErrorMessage}" />
   </Grid>
 </wpfBase:UserControlBase>

@@ -1,4 +1,43 @@
-﻿PDSC Developer Utilities v9.0.4 - 11/14/2023
+﻿PDSC Developer Utilities v9.0.5 - 11/18/2023
+-----------------------------------------------------
+Code Generation
+  Added button to clear all stored table/view data
+  Added more error handling, changed some messages, added more data validation
+  Added tokens {|REMOVE_WHEN:net8.0|} and {|REMOVE_WHEN:net7.0|}
+  Added {|FOR EACH COLUMN:IsForeignKey|} and {|FOR EACH COLUMN:IsNotForeignKey|} tokens
+  Clear the table/view grid when the connection string changes
+  Fixed bug when generating Entity class and the property name is changed, but the lower case version of the property name was not changing to the new value
+  Fixed bug when generating Minimal Web API router class and the property name for the primary key was different from the field name.
+  Created a console app utility that runs as part of the .cmd file for projects to fix up URLs and make the generation process more automated
+  Updated all Instructions that appear after generation to reflect the new process
+  The .cmd file is now deleted after it runs
+
+.NET MAUI Generated Applications
+  Added the ability to generate .NET MAUI using the Minimal Web API for data access
+  Fixed the warnings in the *ViewModelCommands classes for the ICommand objects
+  Fixed a bug in MAUI generation where FK drop-downs were not set when adding a new record
+  Added code to the .NET MAUI Detail View code-behind for those tables have an integer PK, but not using auto-increment.
+  Added a PDSC.Common.MAUI class library with a inverted boolean converter class
+  For .NET MAUI list views, disabled buttons until all data has been loaded
+  Added an area where exceptions are displayed on list and detail pages
+  Buttons are disabled until all the data loads
+
+Minimal Web API Generated Applications
+  Fixed a bug in the minimal web api router InsertAsync() method where the 'entity' variable was being returned instead of the 'response' variable
+
+MVC Generated Applications
+  Added code to the MVC controllers for those tables have an integer PK, but not using auto-increment.
+  Can now generate foreign key editing fields for MVC applications
+
+WPF Generated Applications
+  Fixed a bug in WPF generation where FK drop-downs were not set when adding a new record 
+  Added code to the WPF Detail View code-behind for those tables have an integer PK, but not using auto-increment.
+  Added AppStyles.xaml and AppColors.xaml to the generated WPF project
+  Added an area where exceptions are displayed on list and detail pages
+  Buttons are disabled until all the data loads
+
+
+PDSC Developer Utilities v9.0.4 - 11/14/2023
 -----------------------------------------------------
 Code Generation - Stored Procedure Generation
   Added ability to generate stored procedures to handle all CRUD logic, plus searching and counting rows

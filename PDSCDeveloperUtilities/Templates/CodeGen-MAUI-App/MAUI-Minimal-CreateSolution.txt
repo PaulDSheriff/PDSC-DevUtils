@@ -1,6 +1,6 @@
 @ECHO OFF
 
-ECHO ****************************************************
+ECHO *************************************
 ECHO ** Creating PDSC.Common Class Library
 dotnet new classlib --name PDSC.Common --output PDSC.Common --framework <|DOT_NET_VERSION|>
 xcopy <|GEN_PATH|>PDSC.Common PDSC.Common /s /q
@@ -14,14 +14,14 @@ ECHO ** Copying PDSC.Common.Web Class Library
 MD PDSC.Common.Web
 xcopy <|GEN_PATH|>PDSC.Common.Web PDSC.Common.Web /s /q
 
-ECHO ****************************************************
+ECHO *************************************
 ECHO ** Creating <|NAMESPACE|>.EntityLayer Class Library
 dotnet new classlib --name <|NAMESPACE|>.EntityLayer --output <|NAMESPACE|>.EntityLayer --framework <|DOT_NET_VERSION|>
 del <|NAMESPACE|>.EntityLayer\Class1.cs
 xcopy <|GEN_PATH|><|NAMESPACE|>.EntityLayer <|NAMESPACE|>.EntityLayer /s /q
 dotnet add <|NAMESPACE|>.EntityLayer/<|NAMESPACE|>.EntityLayer.csproj reference PDSC.Common/PDSC.Common.csproj
 
-ECHO ****************************************************
+ECHO *************************************
 ECHO ** Creating <|NAMESPACE|>.DataLayer Class Library
 dotnet new classlib --name <|NAMESPACE|>.DataLayer --output <|NAMESPACE|>.DataLayer --framework <|DOT_NET_VERSION|>
 del <|NAMESPACE|>.DataLayer\Class1.cs
@@ -32,7 +32,15 @@ cd <|NAMESPACE|>.DataLayer
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version <|DOT_NET_VERSION:Microsoft.EntityFrameworkCore.SqlServer|>
 cd..
 
-ECHO ****************************************************
+ECHO *************************************
+ECHO ** Creating <|NAMESPACE|>.DataLayer.API Class Library
+dotnet new classlib --name <|NAMESPACE|>.DataLayer.API --output <|NAMESPACE|>.DataLayer.API --framework <|DOT_NET_VERSION|>
+del <|NAMESPACE|>.DataLayer.API\Class1.cs
+xcopy <|GEN_PATH|><|NAMESPACE|>.DataLayer.API <|NAMESPACE|>.DataLayer.API /s /q
+dotnet add <|NAMESPACE|>.DataLayer.API/<|NAMESPACE|>.DataLayer.API.csproj reference PDSC.Common/PDSC.Common.csproj
+dotnet add <|NAMESPACE|>.DataLayer.API/<|NAMESPACE|>.DataLayer.API.csproj reference <|NAMESPACE|>.EntityLayer/<|NAMESPACE|>.EntityLayer.csproj
+
+ECHO *************************************
 ECHO ** Creating <|NAMESPACE|>.ViewModelLayer Class Library
 dotnet new classlib --name <|NAMESPACE|>.ViewModelLayer --output <|NAMESPACE|>.ViewModelLayer --framework <|DOT_NET_VERSION|>
 del <|NAMESPACE|>.ViewModelLayer\Class1.cs
@@ -56,15 +64,31 @@ dotnet add package Serilog.Sinks.File --version <|DOT_NET_VERSION:Serilog.Sinks.
 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version <|DOT_NET_VERSION:Microsoft.AspNetCore.Authentication.JwtBearer|>
 cd..
 
-ECHO ****************************************************
-ECHO ** Creating <|NAMESPACE|>.MinWebAPI Solution
-dotnet new sln --name <|NAMESPACE|>.MinWebAPI
-dotnet sln add <|NAMESPACE|>.MinWebAPI\<|NAMESPACE|>.MinWebAPI.csproj PDSC.Common/PDSC.Common.csproj PDSC.Common.Web/PDSC.Common.Web.csproj <|NAMESPACE|>.EntityLayer/<|NAMESPACE|>.EntityLayer.csproj <|NAMESPACE|>.DataLayer/<|NAMESPACE|>.DataLayer.csproj <|NAMESPACE|>.ViewModelLayer/<|NAMESPACE|>.ViewModelLayer.csproj
+ECHO *************************************
+ECHO ** Creating <|NAMESPACE|>.MAUI Application
+dotnet new maui --name <|NAMESPACE|>.MAUI --output <|NAMESPACE|>.MAUI --framework <|DOT_NET_VERSION|>
+xcopy <|GEN_PATH|><|NAMESPACE|>.MAUI <|NAMESPACE|>.MAUI /s /q /y
+dotnet add <|NAMESPACE|>.MAUI/<|NAMESPACE|>.MAUI.csproj reference PDSC.Common/PDSC.Common.csproj
+dotnet add <|NAMESPACE|>.MAUI/<|NAMESPACE|>.MAUI.csproj reference <|NAMESPACE|>.EntityLayer/<|NAMESPACE|>.EntityLayer.csproj
+dotnet add <|NAMESPACE|>.MAUI/<|NAMESPACE|>.MAUI.csproj reference <|NAMESPACE|>.DataLayer.API/<|NAMESPACE|>.DataLayer.API.csproj
+dotnet add <|NAMESPACE|>.MAUI/<|NAMESPACE|>.MAUI.csproj reference <|NAMESPACE|>.ViewModelLayer/<|NAMESPACE|>.ViewModelLayer.csproj
+
+ECHO ************************************
+ECHO ** Creating <|NAMESPACE|>.MAUI Solution
+dotnet new sln --name <|NAMESPACE|>.MAUI
+dotnet sln <|NAMESPACE|>.MAUI.sln add <|NAMESPACE|>.MAUI/<|NAMESPACE|>.MAUI.csproj
+dotnet sln <|NAMESPACE|>.MAUI.sln add <|NAMESPACE|>.MinWebAPI/<|NAMESPACE|>.MinWebAPI.csproj
+dotnet sln <|NAMESPACE|>.MAUI.sln add PDSC.Common/PDSC.Common.csproj
+dotnet sln <|NAMESPACE|>.MAUI.sln add PDSC.Common.Web/PDSC.Common.Web.csproj
+dotnet sln <|NAMESPACE|>.MAUI.sln add <|NAMESPACE|>.EntityLayer/<|NAMESPACE|>.EntityLayer.csproj
+dotnet sln <|NAMESPACE|>.MAUI.sln add <|NAMESPACE|>.DataLayer/<|NAMESPACE|>.DataLayer.csproj
+dotnet sln <|NAMESPACE|>.MAUI.sln add <|NAMESPACE|>.DataLayer.API/<|NAMESPACE|>.DataLayer.API.csproj
+dotnet sln <|NAMESPACE|>.MAUI.sln add <|NAMESPACE|>.ViewModelLayer/<|NAMESPACE|>.ViewModelLayer.csproj
 
 ECHO ************************************
 ECHO ** Fixing Up Generated Code
 xcopy <|GEN_PATH|>CodeGenUtility *.* /s /q /y
-.\FixUpGeneratedCode.exe WEBAPI <|NAMESPACE|>.WebAPI <|NAMESPACE|>AppSettings.cs
+.\FixUpGeneratedCode.exe MAUI <|NAMESPACE|>.MinWebAPI <|NAMESPACE|>.MAUI <|NAMESPACE|>AppSettings.cs
 del FixUpGeneratedCode*.*
 
 REM Delete the cmd file

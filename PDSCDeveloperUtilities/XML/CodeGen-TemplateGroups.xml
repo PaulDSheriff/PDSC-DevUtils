@@ -83,7 +83,17 @@
     <GroupId>201</GroupId>
     <DependentGroupIds>1,2,3,101,102,202</DependentGroupIds>
     <DisplayOrder>20</DisplayOrder>
-    <GroupName>.NET MAUI - Application</GroupName>
+    <GroupName>.NET MAUI - Application Using Web API MVC</GroupName>
+    <Description>Generate a complete .NET MAUI application</Description>
+    <LanguageCode>CSharp</LanguageCode>
+    <TemplatesXmlFileName>CodeGen-MAUI-App.xml</TemplatesXmlFileName>
+    <RequirePropertyChangedEvent>True</RequirePropertyChangedEvent>
+  </TemplateGroup>
+  <TemplateGroup>
+    <GroupId>203</GroupId>
+    <DependentGroupIds>1,2,3,202,701,702</DependentGroupIds>
+    <DisplayOrder>20</DisplayOrder>
+    <GroupName>.NET MAUI - Application Using Minimal Web API</GroupName>
     <Description>Generate a complete .NET MAUI application</Description>
     <LanguageCode>CSharp</LanguageCode>
     <TemplatesXmlFileName>CodeGen-MAUI-App.xml</TemplatesXmlFileName>

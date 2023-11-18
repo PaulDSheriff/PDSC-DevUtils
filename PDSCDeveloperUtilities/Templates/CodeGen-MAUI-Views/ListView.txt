@@ -10,7 +10,7 @@
              Title="<|CLASS_NAME|> List">
 
   <Border Style="{StaticResource Border.Page}">
-    <Grid RowDefinitions="Auto,Auto,*"
+    <Grid RowDefinitions="Auto,Auto,*,Auto"
           Style="{StaticResource Grid.Page}">
 
       <!-- *********** -->
@@ -48,32 +48,40 @@
           <HorizontalStackLayout Grid.Row="<|GRID_ROW_FIRST|>"
                                   Grid.Column="1">
             <ImageButton Source="magnifyingglass.png"
-                          ToolTipProperties.Text="Search for <|CLASS_NAME_PLURAL|>"
-                          BackgroundColor="{StaticResource SearchButton}"
-                          Command="{Binding SearchCommand}" />
+                         IsEnabled="{Binding IsDataProcessing, Converter={StaticResource invertBool}}"
+                         ToolTipProperties.Text="Search for <|CLASS_NAME_PLURAL|>"
+                         BackgroundColor="{StaticResource SearchButton}"
+                         Command="{Binding SearchCommand}" />
             <ImageButton Source="refresh.png"
-                          ToolTipProperties.Text="Reset Search/Get All"
-                          BackgroundColor="{StaticResource RefreshButton}"
-                          Command="{Binding GetCommand}" />
+                         IsEnabled="{Binding IsDataProcessing, Converter={StaticResource invertBool}}"
+                         ToolTipProperties.Text="Reset Search/Get All"
+                         BackgroundColor="{StaticResource RefreshButton}"
+                         Command="{Binding GetCommand}" />
             <BoxView Style="{StaticResource Separator.Left}" />
             {|REMOVE_WHEN:IsView|}
             <ImageButton Source="plus.png"
-                          BackgroundColor="{StaticResource AddButton}"
-                          ToolTipProperties.Text="Add New <|CLASS_NAME_SINGULAR|>"
-                          Command="{Binding AddCommand}" />
+                         IsEnabled="{Binding IsDataProcessing, Converter={StaticResource invertBool}}"
+                         BackgroundColor="{StaticResource AddButton}"
+                         ToolTipProperties.Text="Add New <|CLASS_NAME_SINGULAR|>"
+                         Command="{Binding AddCommand}" />
             {|END_REMOVE|}
+            <!-- ************************** -->
+            <!-- Informational Message Area -->
+            <!-- ************************** -->
+            <Label Margin="20,4" />
+            <Label Text="{Binding Path=InfoMessage}"
+                   Style="{StaticResource InfoMessageArea}" />
           </HorizontalStackLayout>
         </Grid>
       </VerticalStackLayout>
       <|GRID_ROW_RESET|>
-
+      
       <!-- ********* -->
       <!-- List Area -->
       <!-- ********* -->
       <Border Grid.Row="2"
               Style="{StaticResource Border.List}">
-        <CollectionView Grid.Row="2"
-                        VerticalScrollBarVisibility="Always"
+        <CollectionView VerticalScrollBarVisibility="Always"
                         ItemsSource="{Binding <|CLASS_NAME_PLURAL|>}">
           <CollectionView.EmptyView>
             <Label Style="{StaticResource EmptyView.Message}"
@@ -124,6 +132,13 @@
           </CollectionView.ItemTemplate>
         </CollectionView>
       </Border>
+      
+      <!-- ****************** -->
+      <!-- Error Message Area -->
+      <!-- ****************** -->
+      <Label Grid.Row="3"
+             Text="{Binding Path=LastErrorMessage}"
+             Style="{StaticResource ErrorMessage}" />
     </Grid>
   </Border>
 </ContentPage>

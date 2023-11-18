@@ -37,8 +37,10 @@ dotnet add <|NAMESPACE|>.ViewModelLayer/<|NAMESPACE|>.ViewModelLayer.csproj refe
 ECHO ****************************************************
 ECHO ** Creating <|NAMESPACE|>.WebAPI Web API
 dotnet new webapi --name <|NAMESPACE|>.WebAPI --output <|NAMESPACE|>.WebAPI <|NO_HTTPS|> --framework <|DOT_NET_VERSION|>
+{|REMOVE_WHEN:net8.0|}
 del <|NAMESPACE|>.WebAPI\Controllers\WeatherForecastController.cs
 del <|NAMESPACE|>.WebAPI\WeatherForecast.cs
+{|END_REMOVE|}
 xcopy <|GEN_PATH|><|NAMESPACE|>.WebAPI <|NAMESPACE|>.WebAPI /s /q /y
 dotnet add <|NAMESPACE|>.WebAPI/<|NAMESPACE|>.WebAPI.csproj reference PDSC.Common/PDSC.Common.csproj
 dotnet add <|NAMESPACE|>.WebAPI/<|NAMESPACE|>.WebAPI.csproj reference <|NAMESPACE|>.EntityLayer/<|NAMESPACE|>.EntityLayer.csproj
@@ -55,4 +57,11 @@ ECHO ** Creating <|NAMESPACE|>.WebAPI Solution
 dotnet new sln --name <|NAMESPACE|>.WebAPI
 dotnet sln add <|NAMESPACE|>.WebAPI\<|NAMESPACE|>.WebAPI.csproj PDSC.Common/PDSC.Common.csproj <|NAMESPACE|>.EntityLayer/<|NAMESPACE|>.EntityLayer.csproj <|NAMESPACE|>.DataLayer/<|NAMESPACE|>.DataLayer.csproj <|NAMESPACE|>.ViewModelLayer/<|NAMESPACE|>.ViewModelLayer.csproj
 
-pause
+ECHO ************************************
+ECHO ** Fixing Up Generated Code
+xcopy <|GEN_PATH|>CodeGenUtility *.* /s /q /y
+.\FixUpGeneratedCode.exe WEBAPI <|NAMESPACE|>.WebAPI <|NAMESPACE|>AppSettings.cs
+del FixUpGeneratedCode*.*
+
+REM Delete the cmd file
+(goto) 2>nul & del "%~f0"

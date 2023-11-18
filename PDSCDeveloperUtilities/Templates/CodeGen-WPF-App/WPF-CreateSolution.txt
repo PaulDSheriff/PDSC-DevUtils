@@ -62,4 +62,12 @@ dotnet sln <|NAMESPACE|>.WPF.sln add PDSC.Common.WPF/PDSC.Common.WPF.csproj
 dotnet sln <|NAMESPACE|>.WPF.sln add <|NAMESPACE|>.EntityLayer/<|NAMESPACE|>.EntityLayer.csproj
 dotnet sln <|NAMESPACE|>.WPF.sln add <|NAMESPACE|>.DataLayer/<|NAMESPACE|>.DataLayer.csproj
 dotnet sln <|NAMESPACE|>.WPF.sln add <|NAMESPACE|>.ViewModelLayer/<|NAMESPACE|>.ViewModelLayer.csproj
-pause
+
+ECHO ************************************
+ECHO ** Fixing Up Generated Code
+xcopy <|GEN_PATH|>CodeGenUtility *.* /s /q /y
+.\FixUpGeneratedCode.exe WPF <|NAMESPACE|>.WPF
+del FixUpGeneratedCode*.*
+
+REM Delete the cmd file
+(goto) 2>nul & del "%~f0"

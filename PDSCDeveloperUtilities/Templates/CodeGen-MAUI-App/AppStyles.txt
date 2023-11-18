@@ -131,6 +131,13 @@
             Value="Subtitle" />
   </Style>
   <Style TargetType="Label"
+         x:Key="InfoMessageArea">
+    <Setter Property="FontSize"
+            Value="18" />
+    <Setter Property="Margin"
+            Value="4,4" />
+  </Style>
+  <Style TargetType="Label"
          x:Key="SearchAreaHeader">
     <Setter Property="FontAttributes"
             Value="Bold" />

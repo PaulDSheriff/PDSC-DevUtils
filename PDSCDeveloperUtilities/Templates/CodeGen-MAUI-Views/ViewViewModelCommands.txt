@@ -30,7 +30,12 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
     #endregion
 
     #region Public Properties
+    {|REMOVE_WHEN:net7.0|}
+    public <|CLASS_NAME|>ListView? TheView { get; set; }
+    {|END_REMOVE|}
+    {|REMOVE_WHEN:net8.0|}
     public <|CLASS_NAME|>ListView TheView { get; set; }
+    {|END_REMOVE|}
 
     /// <summary>
     /// Get/Set IsGetCommandEnabled
@@ -82,10 +87,18 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
     #endregion
 
     #region Commands
+    {|REMOVE_WHEN:net7.0|}
+    public ICommand? GetCommand { get; private set; }
+    public ICommand? SearchCommand { get; private set; }
+    public ICommand? DisplayCommand { get; private set; }    
+    public ICommand? CancelCommand { get; private set; }
+    {|END_REMOVE|}
+    {|REMOVE_WHEN:net8.0|}
     public ICommand GetCommand { get; private set; }
     public ICommand SearchCommand { get; private set; }
     public ICommand DisplayCommand { get; private set; }    
     public ICommand CancelCommand { get; private set; }
+    {|END_REMOVE|}
     #endregion
 
     #region Init Method
@@ -104,7 +117,7 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
     #region GetAllAsync Method
     protected async Task GetAllAsync()
     {
-      base.SearchEntity = new();
+      SearchEntity = new();
       await base.GetAsync();
     }
     #endregion
@@ -112,9 +125,9 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
     #region SearchAsync Method
     protected new async Task SearchAsync()
     {
-      DataResponse<ObservableCollection<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>>> response = await base.SearchAsync(base.SearchEntity);
+      DataResponse<ObservableCollection<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>>> response = await base.SearchAsync(SearchEntity);
       if (response != null && response.StatusCode == HttpStatusCode.OK) {
-        base.InfoMessage = $"Searched and Found: {(response.Data ?? new()).Count} {ClassDescriptionPlural}";
+        InfoMessage = $"Searched and Found: {(response.Data ?? new()).Count} {ClassDescriptionPlural}";
       }
     }
     #endregion

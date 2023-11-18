@@ -10,6 +10,14 @@ del Class1.cs
 cd ..
 
 ECHO *************************************
+ECHO ** Creating PDSC.Common.MAUI Class Library
+dotnet new mauilib --name PDSC.Common.MAUI --output PDSC.Common.MAUI --framework <|DOT_NET_VERSION|>
+xcopy <|GEN_PATH|>PDSC.Common.MAUI PDSC.Common.MAUI /s /q
+cd PDSC.Common.MAUI
+del Class1.cs
+cd ..
+
+ECHO *************************************
 ECHO ** Creating <|NAMESPACE|>.EntityLayer Class Library
 dotnet new classlib --name <|NAMESPACE|>.EntityLayer --output <|NAMESPACE|>.EntityLayer --framework <|DOT_NET_VERSION|>
 del <|NAMESPACE|>.EntityLayer\Class1.cs
@@ -46,8 +54,10 @@ dotnet add <|NAMESPACE|>.ViewModelLayer/<|NAMESPACE|>.ViewModelLayer.csproj refe
 ECHO *************************************
 ECHO ** Creating <|NAMESPACE|>.WebAPI Web API
 dotnet new webapi --name <|NAMESPACE|>.WebAPI --output <|NAMESPACE|>.WebAPI <|NO_HTTPS|> --framework <|DOT_NET_VERSION|>
+{|REMOVE_WHEN:net8.0|}
 del <|NAMESPACE|>.WebAPI\Controllers\WeatherForecastController.cs
 del <|NAMESPACE|>.WebAPI\WeatherForecast.cs
+{|END_REMOVE|}
 xcopy <|GEN_PATH|><|NAMESPACE|>.WebAPI <|NAMESPACE|>.WebAPI /s /q /y
 dotnet add <|NAMESPACE|>.WebAPI/<|NAMESPACE|>.WebAPI.csproj reference PDSC.Common/PDSC.Common.csproj
 dotnet add <|NAMESPACE|>.WebAPI/<|NAMESPACE|>.WebAPI.csproj reference <|NAMESPACE|>.EntityLayer/<|NAMESPACE|>.EntityLayer.csproj
@@ -64,8 +74,8 @@ ECHO ** Creating <|NAMESPACE|>.MAUI Application
 dotnet new maui --name <|NAMESPACE|>.MAUI --output <|NAMESPACE|>.MAUI --framework <|DOT_NET_VERSION|>
 xcopy <|GEN_PATH|><|NAMESPACE|>.MAUI <|NAMESPACE|>.MAUI /s /q /y
 dotnet add <|NAMESPACE|>.MAUI/<|NAMESPACE|>.MAUI.csproj reference PDSC.Common/PDSC.Common.csproj
+dotnet add <|NAMESPACE|>.MAUI/<|NAMESPACE|>.MAUI.csproj reference PDSC.Common.MAUI/PDSC.Common.MAUI.csproj
 dotnet add <|NAMESPACE|>.MAUI/<|NAMESPACE|>.MAUI.csproj reference <|NAMESPACE|>.EntityLayer/<|NAMESPACE|>.EntityLayer.csproj
-dotnet add <|NAMESPACE|>.MAUI/<|NAMESPACE|>.MAUI.csproj reference <|NAMESPACE|>.DataLayer/<|NAMESPACE|>.DataLayer.csproj
 dotnet add <|NAMESPACE|>.MAUI/<|NAMESPACE|>.MAUI.csproj reference <|NAMESPACE|>.DataLayer.API/<|NAMESPACE|>.DataLayer.API.csproj
 dotnet add <|NAMESPACE|>.MAUI/<|NAMESPACE|>.MAUI.csproj reference <|NAMESPACE|>.ViewModelLayer/<|NAMESPACE|>.ViewModelLayer.csproj
 
@@ -75,8 +85,17 @@ dotnet new sln --name <|NAMESPACE|>.MAUI
 dotnet sln <|NAMESPACE|>.MAUI.sln add <|NAMESPACE|>.MAUI/<|NAMESPACE|>.MAUI.csproj
 dotnet sln <|NAMESPACE|>.MAUI.sln add <|NAMESPACE|>.WebAPI/<|NAMESPACE|>.WebAPI.csproj
 dotnet sln <|NAMESPACE|>.MAUI.sln add PDSC.Common/PDSC.Common.csproj
+dotnet sln <|NAMESPACE|>.MAUI.sln add PDSC.Common.MAUI/PDSC.Common.MAUI.csproj
 dotnet sln <|NAMESPACE|>.MAUI.sln add <|NAMESPACE|>.EntityLayer/<|NAMESPACE|>.EntityLayer.csproj
 dotnet sln <|NAMESPACE|>.MAUI.sln add <|NAMESPACE|>.DataLayer/<|NAMESPACE|>.DataLayer.csproj
 dotnet sln <|NAMESPACE|>.MAUI.sln add <|NAMESPACE|>.DataLayer.API/<|NAMESPACE|>.DataLayer.API.csproj
 dotnet sln <|NAMESPACE|>.MAUI.sln add <|NAMESPACE|>.ViewModelLayer/<|NAMESPACE|>.ViewModelLayer.csproj
-pause
+
+ECHO ************************************
+ECHO ** Fixing Up Generated Code
+xcopy <|GEN_PATH|>CodeGenUtility *.* /s /q /y
+.\FixUpGeneratedCode.exe MAUI <|NAMESPACE|>.WebAPI <|NAMESPACE|>.MAUI <|NAMESPACE|>AppSettings.cs
+del FixUpGeneratedCode*.*
+
+REM Delete the cmd file
+(goto) 2>nul & del "%~f0"

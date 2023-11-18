@@ -6,7 +6,7 @@ If you have not already done so, generate the following templates groups:
    Web API MVC - Application
    Web API MVC - Controllers
 
-Step 1: Run the WebAPI-CreateSolution.cmd file
+Step 1
 Copy the WebAPI-CreateSolution.cmd file to your desired folder
 This .cmd file creates the following folders/projects under this folder
   <|NAMESPACE|>.DataLayer
@@ -16,13 +16,8 @@ This .cmd file creates the following folders/projects under this folder
   PDSC.Common
 Run the WebAPI-CreateSolution.cmd file
 
-Step 2: Open the SLN file
-A <|NAMESPACE|>.WebAPI.sln file is created in your desired folder
-Open this .sln file 
+Step 2
+Open the <|NAMESPACE|>.WebAPI.sln file
 
-Step 3: If you are using .NET 8
-Double-click on the <|NAMESPACE|>.WebAPI project
-Locate the <InvariantGlobalization>true</InvariantGlobalization> and change the value within the tags to false
-
-Step 4: Run the application
+Step 3
 Run your Web API project

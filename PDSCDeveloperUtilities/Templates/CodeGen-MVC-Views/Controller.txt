@@ -1,4 +1,7 @@
 using <|NAMESPACE|>.EntityLayer;
+{|REMOVE_WHEN:IsAutoIncrement|}
+using <|NAMESPACE|>.DataLayer;
+{|END_REMOVE|}
 using <|NAMESPACE|>.ViewModelLayer;
 using PDSC.Common;
 using Microsoft.AspNetCore.Mvc;
@@ -7,18 +10,56 @@ namespace <|NAMESPACE|>.Controllers;
 
 public class <|CLASS_NAME|><|OUTPUT_SUFFIX|> : Controller
 {
-  public <|CLASS_NAME|><|OUTPUT_SUFFIX|>(<|REPOSITORY_INTERFACE|> repo)
+  {|REMOVE_WHEN:IsAutoIncrement|}
+  public <|CLASS_NAME|><|OUTPUT_SUFFIX|>(<|REPOSITORY_INTERFACE|> repo, 
+    {|FOR EACH FK_TABLE|}
+    <|REPOSITORY_INTERFACE|> <|CLASS_NAME_SINGULAR_ALL_LOWER|>Repo,
+    {|END_LOOP|}
+    <|DB_CONTEXT|> dbContext)
   {
     _Repo = repo;
+    _DbContext = dbContext;
+    {|FOR EACH FK_TABLE|}
+    <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_SINGULAR|>Repo = <|CLASS_NAME_SINGULAR_ALL_LOWER|>Repo;
+    {|END_LOOP|}
   }
+  {|END_REMOVE|}
+  {|REMOVE_WHEN:IsNotAutoIncrement|}
+  public <|CLASS_NAME|><|OUTPUT_SUFFIX|>(<|REPOSITORY_INTERFACE|> repo
+    {|FOR EACH FK_TABLE|}
+    ,<|REPOSITORY_INTERFACE|> <|CLASS_NAME_SINGULAR_ALL_LOWER|>Repo
+    {|END_LOOP|}
+  )
+  {
+    _Repo = repo;
+    {|FOR EACH FK_TABLE|}
+    <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_SINGULAR|>Repo = <|CLASS_NAME_SINGULAR_ALL_LOWER|>Repo;
+    {|END_LOOP|}
+  }
+  {|END_REMOVE|}
 
   private readonly <|REPOSITORY_INTERFACE|> _Repo;
+  {|REMOVE_WHEN:IsAutoIncrement|}
+  private readonly DevUtilsTestingDbContext _DbContext;
+  {|END_REMOVE|}
+  {|REMOVE_WHEN:NoForeignKeys|}
+  // Foreign Key Variables
+  {|END_REMOVE|}  
+  {|FOR EACH FK_TABLE|}
+  private <|REPOSITORY_INTERFACE|>? <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_SINGULAR|>Repo;
+  {|END_LOOP|}
 
   [HttpGet]
   public async Task<IActionResult> <|CLASS_NAME|>Index()
   {
     // Create view model, passing in repository
     <|CLASS_NAME|>ViewModel vm = new(_Repo);
+    {|REMOVE_WHEN:NoForeignKeys|}
+    // Set Foreign Key Repositories
+    {|END_REMOVE|} 
+    {|FOR EACH FK_TABLE|}
+    vm.<|CLASS_NAME_SINGULAR|>Repository = <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_SINGULAR|>Repo;
+    {|END_LOOP|}
 
     // Call method to load <|CLASS_NAME|> objects
     await vm.GetAsync();
@@ -30,7 +71,13 @@ public class <|CLASS_NAME|><|OUTPUT_SUFFIX|> : Controller
   public async Task<IActionResult> <|CLASS_NAME|>Index(<|CLASS_NAME|>ViewModel vm)
   {
     vm.Repository = _Repo;
-      
+    {|REMOVE_WHEN:NoForeignKeys|}
+    // Set Foreign Key Repositories
+    {|END_REMOVE|} 
+    {|FOR EACH FK_TABLE|}
+    vm.<|CLASS_NAME_SINGULAR|>Repository = <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_SINGULAR|>Repo;
+    {|END_LOOP|}
+
     if (ModelState.IsValid)
     {
       // Save the <|CLASS_NAME|>
@@ -51,6 +98,12 @@ public class <|CLASS_NAME|><|OUTPUT_SUFFIX|> : Controller
   public async Task<IActionResult> <|CLASS_NAME|>Search(<|CLASS_NAME|>ViewModel vm)
   {
     vm.Repository = _Repo;
+    {|REMOVE_WHEN:NoForeignKeys|}
+    // Set Foreign Key Repositories
+    {|END_REMOVE|} 
+    {|FOR EACH FK_TABLE|}
+    vm.<|CLASS_NAME_SINGULAR|>Repository = <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_SINGULAR|>Repo;
+    {|END_LOOP|}
 
     // Call method to search for <|CLASS_NAME|> objects
     await vm.SearchAsync();
@@ -63,24 +116,28 @@ public class <|CLASS_NAME|><|OUTPUT_SUFFIX|> : Controller
   {
     // Create view model, passing in repository
     <|CLASS_NAME|>ViewModel vm = new(_Repo);
+    {|REMOVE_WHEN:NoForeignKeys|}
+    // Set Foreign Key Repositories
+    {|END_REMOVE|} 
+    {|FOR EACH FK_TABLE|}
+    vm.<|CLASS_NAME_SINGULAR|>Repository = <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_SINGULAR|>Repo;
+    {|END_LOOP|}
 
     // Call method to load a single <|CLASS_NAME|> object
     await vm.GetAsync(id);
+    
+    {|REMOVE_WHEN:NoForeignKeys|}
+    // Load Foreign Keys
+    {|END_REMOVE|}
+    {|FOR EACH FK_TABLE|}
+    await vm.Load<|CLASS_NAME_PLURAL|>Async();
+    {|END_LOOP|}
 
     return View("<|CLASS_NAME|>Index", vm);
   }
 
   [HttpGet]
-  {|REMOVE_WHEN:IsAutoIncrementOrIsPrimaryKeyNotInteger|}
-  [Route("/{Controller}/Add", Name = "nextId")]
-  public IActionResult <|CLASS_NAME|>Add(int nextId)
-  {|END_REMOVE|}
-  {|REMOVE_WHEN:IsNotAutoIncrement|}
-  public IActionResult <|CLASS_NAME|>Add()
-  {|END_REMOVE|}
-  {|REMOVE_WHEN:IsPrimaryKeyNotGuid|}
-  public IActionResult <|CLASS_NAME|>Add()
-  {|END_REMOVE|}
+  public async Task<IActionResult> <|CLASS_NAME|>Add()
   {
     // Create view model, passing in repository
     <|CLASS_NAME|>ViewModel vm = new(_Repo)
@@ -88,22 +145,48 @@ public class <|CLASS_NAME|><|OUTPUT_SUFFIX|> : Controller
       IsDetailVisible = true,
       IsAdding = true
     };
-    {|REMOVE_WHEN:IsAutoIncrementOrIsPrimaryKeyNotInteger|}
-    // Assign next id to generate
-    vm.NextId = nextId;
-    {|END_REMOVE|}
+    {|REMOVE_WHEN:NoForeignKeys|}
+    // Set Foreign Key Repositories
+    {|END_REMOVE|} 
+    {|FOR EACH FK_TABLE|}
+    vm.<|CLASS_NAME_SINGULAR|>Repository = <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_SINGULAR|>Repo;
+    {|END_LOOP|}
 
     // Call method to create an empty <|CLASS_NAME|> object
     vm.CurrentEntity = vm.CreateEmpty();
+    {|REMOVE_WHEN:IsAutoIncrementOrIsPrimaryKeyNotInteger|}
+    // Assign next id to generate
+    vm.CurrentEntity.<|PK_PROPERTY_NAME|> = GetNextId();
+    {|END_REMOVE|}
+    
+    {|REMOVE_WHEN:NoForeignKeys|}
+    // Load Foreign Keys
+    {|END_REMOVE|}
+    {|FOR EACH FK_TABLE|}
+    await vm.Load<|CLASS_NAME_PLURAL|>Async();
+    {|END_LOOP|}
 
     return View("<|CLASS_NAME|>Index", vm);
   }
+
+  {|REMOVE_WHEN:IsAutoIncrementOrIsPrimaryKeyNotInteger|}
+  private int GetNextId()
+  {  
+    return _DbContext.<|CLASS_NAME_PLURAL|>.Max(row => row.<|PK_PROPERTY_NAME|>) + 1;
+  }
+  {|END_REMOVE|}
 
   [HttpGet]
   public async Task<IActionResult> <|CLASS_NAME|>Delete(<|PK_LANGUAGE_DATA_TYPE_NEVER_NULLABLE|> id)
   {
     // Create view model, passing in repository
     <|CLASS_NAME|>ViewModel vm = new(_Repo);
+    {|REMOVE_WHEN:NoForeignKeys|}
+    // Set Foreign Key Repositories
+    {|END_REMOVE|} 
+    {|FOR EACH FK_TABLE|}
+    vm.<|CLASS_NAME_SINGULAR|>Repository = <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_SINGULAR|>Repo;
+    {|END_LOOP|}
 
     // Call method to delete a single <|CLASS_NAME|> object
     await vm.DeleteAsync(id);

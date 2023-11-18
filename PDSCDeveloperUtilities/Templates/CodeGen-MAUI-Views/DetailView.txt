@@ -10,7 +10,12 @@
 
   <ScrollView>
     <Border Style="{StaticResource Border.Page}">
+      {|REMOVE_WHEN:IsView|}
+      <Grid RowDefinitions="Auto,<|GRID_ROW_AUTO|>,Auto,*,Auto"
+      {|END_REMOVE|}
+      {|REMOVE_WHEN:IsTable|}
       <Grid RowDefinitions="Auto,<|GRID_ROW_AUTO|>,Auto,Auto"
+      {|END_REMOVE|}
             ColumnDefinitions="Auto,*"
             Style="{StaticResource Grid.Page}">
 
@@ -41,16 +46,16 @@
                                Grid.ColumnSpan="2">
           {|REMOVE_WHEN:IsView|}
           <ImageButton Source="save.png"
+                       IsEnabled="{Binding IsDataProcessing, Converter={StaticResource invertBool}}"
                        ToolTipProperties.Text="Save <|CLASS_NAME_SINGULAR|>"
                        BackgroundColor="{StaticResource SaveButton}"
                        Command="{Binding SaveCommand}" />
           {|END_REMOVE|}
           <ImageButton Source="cancel.png"
+                       IsEnabled="{Binding IsDataProcessing, Converter={StaticResource invertBool}}"
                        BackgroundColor="{StaticResource CancelButton}"
                        ToolTipProperties.Text="Cancel Edit/Return to List"
                        Command="{Binding CancelCommand}" />
-          <Label Style="{StaticResource ErrorMessage}"
-                 Text="{Binding LastErrorMessage}"/>
         </HorizontalStackLayout>
 
         {|REMOVE_WHEN:IsView|}
@@ -79,6 +84,13 @@
           </VerticalStackLayout>
         </Border>
         {|END_REMOVE|}
+        <!-- ****************** -->
+        <!-- Error Message Area -->
+        <!-- ****************** -->
+        <Label Grid.Row="<|GRID_ROW|>"
+               Grid.ColumnSpan="2"
+               Text="{Binding Path=LastErrorMessage}"
+               Style="{StaticResource ErrorMessage}" />
       </Grid>
     </Border>
   </ScrollView>

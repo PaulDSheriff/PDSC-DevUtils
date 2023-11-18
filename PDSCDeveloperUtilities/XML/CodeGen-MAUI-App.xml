@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CodeGenTemplates>
   <Template>
-    <Name>.NET MAUI - Create Solution CMD File</Name>
+    <Name>.NET MAUI - Create Solution CMD File - MVC Web API</Name>
     <TemplateFileName>CodeGen-MAUI-App\MAUI-CreateSolution.txt</TemplateFileName>
     <BaseClassName></BaseClassName>
     <OutputSubFolder></OutputSubFolder>
@@ -14,8 +14,34 @@
     <IsView>true</IsView>
   </Template>
   <Template>
-    <Name>.NET MAUI - Create Solution Instructions</Name>
+    <Name>.NET MAUI - Create Solution Instructions - MVC Web API</Name>
     <TemplateFileName>CodeGen-MAUI-App\MAUI-InstructionsToCreateSolution.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder></OutputSubFolder>
+    <OutputFileExtension>.txt</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix></OutputFileSuffix>
+    <UseClassNameAsFileName>false</UseClassNameAsFileName>
+    <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
+  </Template>
+  <Template>
+    <Name>.NET MAUI - Create Solution CMD File - Minimal Web API</Name>
+    <TemplateFileName>CodeGen-MAUI-App\MAUI-Minimal-CreateSolution.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder></OutputSubFolder>
+    <OutputFileExtension>.cmd</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix></OutputFileSuffix>
+    <UseClassNameAsFileName>false</UseClassNameAsFileName>
+    <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
+  </Template>
+  <Template>
+    <Name>.NET MAUI - Create Solution Instructions - Minimal Web API</Name>
+    <TemplateFileName>CodeGen-MAUI-App\MAUI-Minimal-InstructionsToCreateSolution.txt</TemplateFileName>
     <BaseClassName></BaseClassName>
     <OutputSubFolder></OutputSubFolder>
     <OutputFileExtension>.txt</OutputFileExtension>

@@ -4,9 +4,9 @@ If you have not already done so, generate the following templates groups:
    Entity/ViewModel Classes
    Data Classes - Entity Framework
    Minimal Web API - Application
-   Minimal Web API - Routers
+   Minimal Web API - Routers and Search Classes
 
-Step 1: Run the MinimalWebAPI-CreateSolution.cmd file
+Step 1
 Copy the MinimalWebAPI-CreateSolution.cmd file to your desired folder
 This .cmd file creates the following folders/projects under this folder
   <|NAMESPACE|>.DataLayer
@@ -17,13 +17,8 @@ This .cmd file creates the following folders/projects under this folder
   PDSC.Common.Web
 Run the MinimalWebAPI-CreateSolution.cmd file
 
-Step 2: Open the SLN file
-A <|NAMESPACE|>.MinWebAPI.sln file is created in your desired folder
-Open this .sln file 
+Step 2
+Open the <|NAMESPACE|>.MinWebAPI.sln file
 
-Step 3: If you are using .NET 8
-Double-click on the <|NAMESPACE|>.WebAPI project
-Locate the <InvariantGlobalization>true</InvariantGlobalization> and change the value within the tags to false
-
-Step 4: Run the application
+Step 3
 Run your Minimal Web API project

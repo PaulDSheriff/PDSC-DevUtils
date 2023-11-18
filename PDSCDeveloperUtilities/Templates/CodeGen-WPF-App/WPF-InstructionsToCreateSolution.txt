@@ -6,8 +6,8 @@ If you have not already done so, generate the following templates groups:
    WPF - Application
    WPF - Views
 
-Step 1:
-Copy the WPF-CreateSolution.cmd file to your desired folder.
+Step 1
+Copy the WPF-CreateSolution.cmd file to your desired folder
 This .cmd file creates the following folders/projects under this folder
   <|NAMESPACE|>.DataLayer
   <|NAMESPACE|>.EntityLayer
@@ -15,19 +15,12 @@ This .cmd file creates the following folders/projects under this folder
   <|NAMESPACE|>.WPF
   PDSC.Common
   PDSC.Common.WPF
-Run the WPF-CreateSolution.cmd file.
+Run the WPF-CreateSolution.cmd file
 
-Step 2: Open the SLN
-Open the <|NAMESPACE|>.WPF.sln file using Visual Studio.
+Step 2
+Open the <|NAMESPACE|>.WPF.sln file using Visual Studio
 
-Step 3: Set Images to Resource
-Expand the \Resources\Images folder
-Highlight all the image files in this folder
-Bring up the Properties Window
-Set the Build Action on all files to 'Resource'
-Select Build | Rebuild Solution from the Visual Studio menu
-
-Step 4: Run the project
+Step 3
 Click on the Start button 
-You should see your WPF main window appear.
-Click on the different menu items to see the data appear.
+You should see your WPF main window appear
+Click on the different menu items to see the data appear

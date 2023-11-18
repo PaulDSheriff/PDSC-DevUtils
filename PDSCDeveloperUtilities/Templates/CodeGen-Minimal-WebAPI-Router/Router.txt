@@ -267,7 +267,7 @@ public class <|CLASS_NAME|>Router : RouterBase
       if (response.StatusCode == HttpStatusCode.OK ||
           response.StatusCode == HttpStatusCode.Created) {
         // Success, return a '201 Created'
-        ret = Results.Created($"/{UrlFragment}/{entity?.<|PRIMARY_KEY_FIELD|>}", entity);
+        ret = Results.Created($"/{UrlFragment}/{entity?.<|PK_PROPERTY_NAME|>}", response);
       }
       else if (response.StatusCode == HttpStatusCode.BadRequest) {
         // Bad data passed in, return a '400 Bad Request'

@@ -62,9 +62,6 @@ public partial class <|CLASS_NAME|>ListView : UserControlBase
   private void Add_Click(object sender, RoutedEventArgs e)
   {
     <|CLASS_NAME|>DetailView uc = new() {
-      {|REMOVE_WHEN:IsAutoIncrementOrIsPrimaryKeyNotInteger|}
-      ID = ViewModel.NextId,
-      {|END_REMOVE|}
       IsAdding = true
     };    
     _MainWindow?.RouteToUserControl(uc);

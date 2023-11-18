@@ -16,7 +16,7 @@ public abstract class ViewModelBase<TEntity, TSearch> : CommonBase where TEntity
   #region Private Variables
   private int _RowsAffected;
   private int _NextId;
-  private bool _IsDataProcessing = true;
+  private bool _IsDataProcessing;
   private bool _IsDetailVisible;
   private bool _HasValidationErrors;
   private bool _ExceptionHappened;
@@ -182,6 +182,8 @@ public abstract class ViewModelBase<TEntity, TSearch> : CommonBase where TEntity
     base.ResetMessages();
     RowsAffected = 0;
     IsDataProcessing = true;
+    ExceptionHappened = false;
+    HasValidationErrors = false;
   }
   #endregion
 
@@ -191,6 +193,7 @@ public abstract class ViewModelBase<TEntity, TSearch> : CommonBase where TEntity
     response.StatusMessage = "InternalServerError";
     response.ResultMessage = RepositoryNotSetMessage;
     response.StatusCode = HttpStatusCode.InternalServerError;
+    ExceptionHappened = true;
   }
   #endregion
 
@@ -203,6 +206,7 @@ public abstract class ViewModelBase<TEntity, TSearch> : CommonBase where TEntity
     response.ResultMessage = msg;
     response.LastException = null;
     response.StatusCode = HttpStatusCode.InternalServerError;
+    ExceptionHappened = true;
 
     return response;
   }
@@ -219,6 +223,7 @@ public abstract class ViewModelBase<TEntity, TSearch> : CommonBase where TEntity
     ret.StatusMessage = "ValidationError";
     ret.ResultMessage = JsonHelper.SerializeEntity<ObservableCollection<ValidationMessage>>(messages);
     ret.StatusCode = HttpStatusCode.UnprocessableEntity;
+    HasValidationErrors = true;
   }
   #endregion
 
@@ -237,6 +242,7 @@ public abstract class ViewModelBase<TEntity, TSearch> : CommonBase where TEntity
   protected virtual void PublishException(Exception ex)
   {
     LastException = ex;
+    ExceptionHappened = true;
 
     LogException(ex);
   }
@@ -244,6 +250,7 @@ public abstract class ViewModelBase<TEntity, TSearch> : CommonBase where TEntity
   protected virtual void PublishException<T>(Exception ex, DataResponse<T> dr)
   {
     LastException = ex;
+    ExceptionHappened = true;
 
     // TODO: Gather information from the DataResponse object
 

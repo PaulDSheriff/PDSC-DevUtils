@@ -19,7 +19,10 @@
         <RowDefinition Height="Auto" />
         {|END_LOOP|}
         <RowDefinition Height="Auto" />
+        {|REMOVE_WHEN:IsView|}
         <RowDefinition Height="*" />
+        {|END_REMOVE|}
+        <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto" />
@@ -54,6 +57,7 @@
         {|REMOVE_WHEN:IsView|}
         <Button IsDefault="True"
                 Click="SaveButton_Click"
+                IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource invertBool}}"
                 ToolTip="Save this <|CLASS_NAME_SINGULAR|>"
                 Background="{StaticResource SaveButton}"
                 Style="{StaticResource Button.WithImage}">
@@ -62,6 +66,7 @@
         {|END_REMOVE|}
         <Button IsCancel="True"
                 Click="CancelButton_Click"
+                IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource invertBool}}"
                 ToolTip="Cancel and Return to <|CLASS_NAME_SINGULAR|> List"
                 Background="{StaticResource CancelButton}"
                 Style="{StaticResource Button.WithImage}">
@@ -92,6 +97,14 @@
         </StackPanel>
       </Border>
       {|END_REMOVE|}
+
+      <!-- ****************** -->
+      <!-- Error Message Area -->
+      <!-- ****************** -->
+      <Label Grid.Row="<|GRID_ROW|>"
+             Grid.ColumnSpan="2"               
+             Content="{Binding Path=LastErrorMessage}"
+             Style="{StaticResource ErrorMessage}" />
     </Grid>
   </ScrollViewer>
 </wpfBase:UserControlBase>

@@ -52,6 +52,11 @@
   <!-- MVC Controls -->
   <Control>
     <GroupId>302</GroupId>
+    <GenericType>IsForeignKey</GenericType>
+    <TemplateFileName>CodeGen-Controls-MVC\Select.txt</TemplateFileName>
+  </Control>
+  <Control>
+    <GroupId>302</GroupId>
     <GenericType>IsBoolean</GenericType>
     <TemplateFileName>CodeGen-Controls-MVC\CheckBox.txt</TemplateFileName>
   </Control>

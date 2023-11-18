@@ -56,4 +56,6 @@ dotnet sln <|NAMESPACE|>.MVC.sln add PDSC.Common/PDSC.Common.csproj
 dotnet sln <|NAMESPACE|>.MVC.sln add <|NAMESPACE|>.EntityLayer/<|NAMESPACE|>.EntityLayer.csproj
 dotnet sln <|NAMESPACE|>.MVC.sln add <|NAMESPACE|>.DataLayer/<|NAMESPACE|>.DataLayer.csproj
 dotnet sln <|NAMESPACE|>.MVC.sln add <|NAMESPACE|>.ViewModelLayer/<|NAMESPACE|>.ViewModelLayer.csproj
-pause
+
+REM Delete the cmd file
+(goto) 2>nul & del "%~f0"

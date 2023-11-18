@@ -4,6 +4,9 @@
   {|REMOVE_WHEN:IsNotAutoIncrement|}
   <input type="hidden" asp-for="CurrentEntity.<|PK_PROPERTY_NAME|>" />
   {|END_REMOVE|}
+  {|REMOVE_WHEN:IsPrimaryKeyNotGuid|}
+  <input type="hidden" asp-for="CurrentEntity.<|PK_PROPERTY_NAME|>" />
+  {|END_REMOVE|}
   <input type="hidden" asp-for="IsAdding" />
   {|REMOVE_WHEN:NoStandardFields|}
   {|FOR EACH COLUMN:StandardFields|}
