@@ -19,6 +19,7 @@
         <RowDefinition Height="Auto" />
         {|END_LOOP|}
         <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
         {|REMOVE_WHEN:IsView|}
         <RowDefinition Height="*" />
         {|END_REMOVE|}
