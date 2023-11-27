@@ -1,5 +1,4 @@
 ﻿using <|NAMESPACE|>.DataLayer.API;
-using <|NAMESPACE|>.EntityLayer;
 using <|NAMESPACE|>.MAUI.CommandClasses;
 using <|NAMESPACE|>.MAUI.Views;
 using Microsoft.Extensions.Logging;
@@ -29,9 +28,10 @@ public static class MauiProgram
     //* Add DI Services to MAUI App
     //**********************************
     // Register <|NAMESPACE|>AppSettings object
-    builder.Services.AddSingleton<<|NAMESPACE_CLEAN|>AppSettings>(new <|NAMESPACE_CLEAN|>AppSettings());
+    <|NAMESPACE|>AppSettings settings = new();
+    builder.Services.AddSingleton<<|NAMESPACE_CLEAN|>AppSettings>(settings);
     // Add HttpClient with base address for Web API calls
-    RegisterHttpClient(builder, new <|NAMESPACE_CLEAN|>AppSettings().BaseWebAPIAddress);
+    RegisterHttpClient(builder, settings.BaseWebAPIAddress);
     // Add repositories
     builder.RegisterRepositories();
     // Add view models
@@ -129,6 +129,7 @@ public static class MauiProgram
 #if WINDOWS
   public static void SetWindowHandlers()
   {
+    // Turn the On/Off labels on the <Switch> control to be empty strings
     Microsoft.Maui.Handlers.SwitchHandler.Mapper.AppendToMapping("Custom", (h, v) =>
     {
       // Get rid of On/Off label beside switch, to match other platforms
@@ -143,6 +144,11 @@ public static class MauiProgram
 
   #region SetWindowOptions Method
 #if WINDOWS
+  /// <summary>
+  /// This method allows you to get access to the main window (in Windows)
+  /// and maximize it, set it as resizable, maximizable, and minimizable
+  /// </summary>
+  /// <param name="builder">An instance of MauiAppBuilder</param>
   public static void SetWindowOptions(MauiAppBuilder builder)
   {
     builder.ConfigureLifecycleEvents(events =>
@@ -163,7 +169,7 @@ public static class MauiProgram
         });
       });
     });
-}
+  }
 #endif
   #endregion
 }

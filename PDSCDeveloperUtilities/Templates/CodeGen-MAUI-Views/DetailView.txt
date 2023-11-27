@@ -8,8 +8,8 @@
              x:DataType="vm:<|CLASS_NAME|>ViewModelCommands"
              Title="<|CLASS_NAME|> Information">
 
-  <ScrollView>
-    <Border Style="{StaticResource Border.Page}">
+  <Border Style="{StaticResource Border.Page}">
+    <ScrollView>
       {|REMOVE_WHEN:IsView|}
       <Grid RowDefinitions="Auto,<|GRID_ROW_AUTO|>,Auto,*,Auto"
       {|END_REMOVE|}
@@ -89,9 +89,10 @@
         <!-- ****************** -->
         <Label Grid.Row="<|GRID_ROW|>"
                Grid.ColumnSpan="2"
+               IsVisible="{Binding ExceptionHappened}"
                Text="{Binding Path=LastErrorMessage}"
                Style="{StaticResource ErrorMessage}" />
       </Grid>
-    </Border>
-  </ScrollView>
+    </ScrollView>
+  </Border>
 </ContentPage>

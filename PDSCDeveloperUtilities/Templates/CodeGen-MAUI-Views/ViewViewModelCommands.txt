@@ -22,13 +22,6 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
     }       
     #endregion
     
-    #region Private Variables    
-    private bool _IsGetCommandEnabled = true;
-    private bool _IsSearchCommandEnabled = true;
-    private bool _IsDisplayCommandEnabled = true;
-    private bool _IsCancelCommandEnabled = true;
-    #endregion
-
     #region Public Properties
     {|REMOVE_WHEN:net7.0|}
     public <|CLASS_NAME|>ListView? TheView { get; set; }
@@ -36,54 +29,6 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
     {|REMOVE_WHEN:net8.0|}
     public <|CLASS_NAME|>ListView TheView { get; set; }
     {|END_REMOVE|}
-
-    /// <summary>
-    /// Get/Set IsGetCommandEnabled
-    /// </summary>
-    public bool IsGetCommandEnabled
-    {
-      get { return _IsGetCommandEnabled; }
-      set {
-        _IsGetCommandEnabled = value;
-        RaisePropertyChanged(nameof(IsGetCommandEnabled));
-      }
-    }
-
-    /// <summary>
-    /// Get/Set IsSearchCommandEnabled
-    /// </summary>
-    public bool IsSearchCommandEnabled
-    {
-      get { return _IsSearchCommandEnabled; }
-      set {
-        _IsSearchCommandEnabled = value;
-        RaisePropertyChanged(nameof(IsSearchCommandEnabled));
-      }
-    }
-
-    /// <summary>
-    /// Get/Set IsDisplayCommandEnabled
-    /// </summary>
-    public bool IsDisplayCommandEnabled
-    {
-      get { return _IsDisplayCommandEnabled; }
-      set {
-        _IsDisplayCommandEnabled = value;
-        RaisePropertyChanged(nameof(IsDisplayCommandEnabled));
-      }
-    }
-
-    /// <summary>
-    /// Get/Set IsCancelCommandEnabled
-    /// </summary>
-    public bool IsCancelCommandEnabled
-    {
-      get { return _IsCancelCommandEnabled; }
-      set {
-        _IsCancelCommandEnabled = value;
-        RaisePropertyChanged(nameof(IsCancelCommandEnabled));
-      }
-    }
     #endregion
 
     #region Commands
@@ -107,10 +52,10 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
       base.Init();
 
       // Initialize Commands
-      GetCommand = new Command(async () => await GetAllAsync(), () => IsGetCommandEnabled);
-      SearchCommand = new Command(async () => await SearchAsync(), () => IsSearchCommandEnabled);
-      DisplayCommand = new Command<<|CLASS_NAME|>>(async (<|CLASS_NAME|> entity) => await DisplayAsync(entity), (entity) => IsDisplayCommandEnabled);
-      CancelCommand = new Command(async () => await CancelAsync(), () => IsCancelCommandEnabled);
+      GetCommand = new Command(async () => await GetAllAsync(), () => true);
+      SearchCommand = new Command(async () => await SearchAsync(), () => true);
+      DisplayCommand = new Command<<|CLASS_NAME|>>(async (<|CLASS_NAME|> entity) => await DisplayAsync(entity), (entity) => true);
+      CancelCommand = new Command(async () => await CancelAsync(), () => true);
     }
     #endregion
         

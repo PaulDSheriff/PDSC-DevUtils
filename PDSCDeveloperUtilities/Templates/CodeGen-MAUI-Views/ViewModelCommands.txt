@@ -25,16 +25,6 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
     }       
     #endregion
     
-    #region Private Variables    
-    private bool _IsGetCommandEnabled = true;
-    private bool _IsSearchCommandEnabled = true;
-    private bool _IsAddCommandEnabled = true;
-    private bool _IsEditCommandEnabled = true;
-    private bool _IsDeleteCommandEnabled = true;
-    private bool _IsSaveCommandEnabled = true;
-    private bool _IsCancelCommandEnabled = true;
-    #endregion
-
     #region Public Properties
     {|REMOVE_WHEN:net7.0|}
     public <|CLASS_NAME|>ListView? TheView { get; set; }
@@ -42,90 +32,6 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
     {|REMOVE_WHEN:net8.0|}
     public <|CLASS_NAME|>ListView TheView { get; set; }
     {|END_REMOVE|}
-
-    /// <summary>
-    /// Get/Set IsGetCommandEnabled
-    /// </summary>
-    public bool IsGetCommandEnabled
-    {
-      get { return _IsGetCommandEnabled; }
-      set {
-        _IsGetCommandEnabled = value;
-        RaisePropertyChanged(nameof(IsGetCommandEnabled));
-      }
-    }
-
-    /// <summary>
-    /// Get/Set IsSearchCommandEnabled
-    /// </summary>
-    public bool IsSearchCommandEnabled
-    {
-      get { return _IsSearchCommandEnabled; }
-      set {
-        _IsSearchCommandEnabled = value;
-        RaisePropertyChanged(nameof(IsSearchCommandEnabled));
-      }
-    }
-
-    /// <summary>
-    /// Get/Set IsAddCommandEnabled
-    /// </summary>
-    public bool IsAddCommandEnabled
-    {
-      get { return _IsAddCommandEnabled; }
-      set {
-        _IsAddCommandEnabled = value;
-        RaisePropertyChanged(nameof(IsAddCommandEnabled));
-      }
-    }
-
-    /// <summary>
-    /// Get/Set IsEditCommandEnabled
-    /// </summary>
-    public bool IsEditCommandEnabled
-    {
-      get { return _IsEditCommandEnabled; }
-      set {
-        _IsEditCommandEnabled = value;
-        RaisePropertyChanged(nameof(IsEditCommandEnabled));
-      }
-    }
-
-    /// <summary>
-    /// Get/Set IsDeleteCommandEnabled
-    /// </summary>
-    public bool IsDeleteCommandEnabled
-    {
-      get { return _IsDeleteCommandEnabled; }
-      set {
-        _IsDeleteCommandEnabled = value;
-        RaisePropertyChanged(nameof(IsDeleteCommandEnabled));
-      }
-    }
-
-    /// <summary>
-    /// Get/Set IsSaveCommandEnabled
-    /// </summary>
-    public bool IsSaveCommandEnabled
-    {
-      get { return _IsSaveCommandEnabled; }
-      set {
-        _IsSaveCommandEnabled = value;
-        RaisePropertyChanged(nameof(IsSaveCommandEnabled));
-      }
-    }
-
-    /// <summary>
-    /// Get/Set IsCancelCommandEnabled
-    /// </summary>
-    public bool IsCancelCommandEnabled
-    {
-      get { return _IsCancelCommandEnabled; }
-      set {
-        _IsCancelCommandEnabled = value;
-        RaisePropertyChanged(nameof(IsCancelCommandEnabled));
-      }
-    }
     #endregion
 
     #region Commands
@@ -155,13 +61,13 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
       base.Init();
 
       // Initialize Commands
-      GetCommand = new Command(async () => await GetAllAsync(), () => IsGetCommandEnabled);
-      SearchCommand = new Command(async () => await SearchAsync(), () => IsSearchCommandEnabled);
-      AddCommand = new Command(async () => await AddAsync(), () => IsAddCommandEnabled);
-      EditCommand = new Command<<|PK_LANGUAGE_DATA_TYPE|>>(async (<|PK_LANGUAGE_DATA_TYPE|> id) => await EditAsync(id), (id) => IsEditCommandEnabled);
-      DeleteCommand = new Command<<|PK_LANGUAGE_DATA_TYPE|>>(async (<|PK_LANGUAGE_DATA_TYPE|> id) => await DeleteAsync(id), (id) => IsDeleteCommandEnabled);
-      SaveCommand = new Command(async () => await SaveAsync(), () => IsSaveCommandEnabled);
-      CancelCommand = new Command(async () => await CancelAsync(), () => IsCancelCommandEnabled);
+      GetCommand = new Command(async () => await GetAllAsync(), () => true);
+      SearchCommand = new Command(async () => await SearchAsync(), () => true);
+      AddCommand = new Command(async () => await AddAsync(), () => true);
+      EditCommand = new Command<<|PK_LANGUAGE_DATA_TYPE|>>(async (<|PK_LANGUAGE_DATA_TYPE|> id) => await EditAsync(id), (id) => true);
+      DeleteCommand = new Command<<|PK_LANGUAGE_DATA_TYPE|>>(async (<|PK_LANGUAGE_DATA_TYPE|> id) => await DeleteAsync(id), (id) => true);
+      SaveCommand = new Command(async () => await SaveAsync(), () => true);
+      CancelCommand = new Command(async () => await CancelAsync(), () => true);
     }
     #endregion
         

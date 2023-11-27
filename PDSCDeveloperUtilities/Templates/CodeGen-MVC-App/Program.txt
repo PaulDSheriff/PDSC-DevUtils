@@ -11,7 +11,7 @@ builder.Services.AddControllersWithViews();
 // Read in the connection string from the appSettings.json file
 string? connString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Setup the AdvWorks DB Context
+// Setup the Database Context
 builder.Services.AddDbContext<<|NAMESPACE|>DbContext>(
   options => options.UseSqlServer(connString));
 

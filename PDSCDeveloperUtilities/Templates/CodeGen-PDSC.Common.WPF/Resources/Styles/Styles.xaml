@@ -6,7 +6,7 @@
   <!-- Other Resources -->
   <!-- *************** -->
   <sys:String x:Key="ApplicationTitle">
-    Film Collection
+    <|APPLICATION_NAME|>
   </sys:String>
   <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
   <converters:InvertedBoolConverter x:Key="InvertBoolToVisibility" />
@@ -221,6 +221,8 @@
     <Setter Property="BorderBrush"
             Value="Gray" />
     <Setter Property="Margin"
+            Value="10" />
+    <Setter Property="Padding"
             Value="10" />
   </Style>
   <Style TargetType="Button"

@@ -88,6 +88,7 @@
           <!-- ************************** -->
           <Label Margin="20,4" />
           <Label Content="{Binding Path=InfoMessage}"
+                 Margin="4,4"
                  Style="{StaticResource InfoMessageArea}" />
         </StackPanel>
       </Grid>
@@ -161,7 +162,8 @@
     <!-- Error Message Area -->
     <!-- ****************** -->
     <Label Grid.Row="3"
-            Content="{Binding Path=LastErrorMessage}"
-            Style="{StaticResource ErrorMessage}" />
+           IsVisible="{Binding ExceptionHappened}"
+           Content="{Binding Path=LastErrorMessage}"
+           Style="{StaticResource ErrorMessage}" />
   </Grid>
 </wpfBase:UserControlBase>

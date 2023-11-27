@@ -162,7 +162,11 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
 
         {|REMOVE_WHEN:IsAutoIncrementOrIsPrimaryKeyNotInteger|}
         // Set the NextId for adding a new row
-        NextId = <|CLASS_NAME_PLURAL|>.Max(row => row.<|PK_PROPERTY_NAME|>) + 1;
+        if (<|CLASS_NAME_PLURAL|>.Count == 0) {
+          NextId = 1;
+        }
+          NextId = <|CLASS_NAME_PLURAL|>.Max(row => row.<|PK_PROPERTY_NAME|>) + 1;
+        }
         {|END_REMOVE|}
 
         if (<|CLASS_NAME_PLURAL|>.Count > 0) {
@@ -351,7 +355,7 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
   }
   #endregion
   
-  #region Save Method
+  #region SaveAsync Method
   public async virtual Task<DataResponse<<|CLASS_NAME|>>> SaveAsync()
   {
     if (IsAdding) {
@@ -633,7 +637,7 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
   #endregion
 
   #region SetValues Method
-  public override <|CLASS_NAME|> SetValues(<|CLASS_NAME|> current, <|CLASS_NAME|> changes)
+  protected override <|CLASS_NAME|> SetValues(<|CLASS_NAME|> current, <|CLASS_NAME|> changes)
   {
     // Overwrite the changed properties in the entity
     // read from the database with the entity submitted by the user

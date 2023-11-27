@@ -6,7 +6,7 @@ public class <|NAMESPACE|>AppSettings
 {
   public <|NAMESPACE|>AppSettings()
   {
-    ApplicationName = "Film Collection";
+    ApplicationName = "<|APPLICATION_NAME|>";
     BaseWebAPIService = "https://your.webapiurl.com/api";
     InfoMessageDefault = "Problem Attempting to {Verb} using the {ClassName} API. Please Contact Your System Administrator.";
     LoginDateTime = DateTime.Now;

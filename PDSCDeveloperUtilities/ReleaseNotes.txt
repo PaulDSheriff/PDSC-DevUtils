@@ -1,4 +1,19 @@
-﻿PDSC Developer Utilities v9.0.5 - 11/18/2023
+﻿PDSC Developer Utilities v9.0.6 - 11/27/2023
+-----------------------------------------------------
+Code Generation
+  Fixed bug where if a table is a reserved word in SQL Server, it can't generate
+  Fixed bug in the Minimal Web API solution creation .cmd file where it was using the wrong solution name
+  Fixed bug in the GetAsync() method where a table is empty, and does not have auto-incrementing PK, it would cause an exception
+  Fixed bug in creating label names for columns
+  Changed the SetValues() method to be protected scope
+  Changed setting the IsTelephone property to true only when the property name is Phone, PhoneNumber, Telephone, or TelephoneNumber
+  Fixed up various styles in .NET MAUI and WPF generated code
+  Eliminated all "Enabled" properties in the View Model Commands classes as they are not being used
+  Replaced some hard-coded names with <|NAMESPACE|> and <|APPLICATION_NAME|>
+
+
+
+PDSC Developer Utilities v9.0.5 - 11/18/2023
 -----------------------------------------------------
 Code Generation
   Added button to clear all stored table/view data

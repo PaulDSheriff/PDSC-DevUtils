@@ -103,7 +103,8 @@
       <!-- Error Message Area -->
       <!-- ****************** -->
       <Label Grid.Row="<|GRID_ROW|>"
-             Grid.ColumnSpan="2"               
+             Grid.ColumnSpan="2"
+             IsVisible="{Binding ExceptionHappened}"
              Content="{Binding Path=LastErrorMessage}"
              Style="{StaticResource ErrorMessage}" />
     </Grid>

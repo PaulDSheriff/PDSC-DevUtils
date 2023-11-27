@@ -64,7 +64,7 @@ dotnet sln add <|NAMESPACE|>.MinWebAPI\<|NAMESPACE|>.MinWebAPI.csproj PDSC.Commo
 ECHO ************************************
 ECHO ** Fixing Up Generated Code
 xcopy <|GEN_PATH|>CodeGenUtility *.* /s /q /y
-.\FixUpGeneratedCode.exe WEBAPI <|NAMESPACE|>.WebAPI <|NAMESPACE|>AppSettings.cs
+.\FixUpGeneratedCode.exe WEBAPI <|NAMESPACE|>.MinWebAPI <|NAMESPACE|>AppSettings.cs
 del FixUpGeneratedCode*.*
 
 REM Delete the cmd file

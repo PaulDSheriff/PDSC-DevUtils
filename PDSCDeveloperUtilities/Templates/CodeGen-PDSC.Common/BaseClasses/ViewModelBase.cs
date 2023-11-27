@@ -136,7 +136,7 @@ public abstract class ViewModelBase<TEntity, TSearch> : CommonBase where TEntity
   #endregion
 
   #region Abstract Methods
-  public virtual TEntity SetValues(TEntity current, TEntity changes) { return new(); }
+  protected virtual TEntity SetValues(TEntity current, TEntity changes) { return new(); }
   public virtual TEntity CreateEmpty() { return new(); }
   #endregion
 

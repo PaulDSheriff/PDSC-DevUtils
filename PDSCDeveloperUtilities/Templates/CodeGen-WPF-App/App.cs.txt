@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace FilmCollection.WPF;
+namespace <|APPLICATION_NAME|>.WPF;
 
 public partial class App : Application
 {

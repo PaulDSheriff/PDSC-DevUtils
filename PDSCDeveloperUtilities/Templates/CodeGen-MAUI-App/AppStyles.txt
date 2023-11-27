@@ -9,7 +9,7 @@
   <x:Double x:Key="DefaultSpacingForGrid">10</x:Double>
   <x:Single x:Key="DefaultCornerRadius">5</x:Single>
   <x:String x:Key="ApplicationTitle">
-    Film Collection
+    <|APPLICATION_NAME|>
   </x:String>
 
   <!-- ***************** -->
@@ -63,6 +63,8 @@
     <Setter Property="Stroke"
             Value="Gray" />
     <Setter Property="Margin"
+            Value="10" />
+    <Setter Property="Padding"
             Value="10" />
   </Style>
 

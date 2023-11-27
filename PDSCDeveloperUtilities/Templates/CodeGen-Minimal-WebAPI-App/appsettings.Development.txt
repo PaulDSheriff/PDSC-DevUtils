@@ -7,11 +7,11 @@
     "BaseWebAPIService": "http://localhost:5000/api",
         "UserName": "ApiUser", // This should be overridden in your application
     "InfoMessageDefault": "Problem Attempting to {Verb} using the {ClassName} API. Please Contact Your System Administrator.",
-    "CORSPolicyName": "FilmCollectionCors",
+    "CORSPolicyName": "<|NAMESPACE|>Cors",
     "JwtSettings": {
       "key": "This!Is&A*Long(Key)For#Creating(A)Symmetric*Key",
       "issuer": "https://localhost:7083",
-      "audience": "AdvWorksAPI",
+      "audience": "<|NAMESPACE|>WebApi",
       "minutesToExpiration": "10",
       "AllowedIPAddresses": [ "https://www.ipaddr1.com", "https://www.ipaddr2.com" ]
     }
