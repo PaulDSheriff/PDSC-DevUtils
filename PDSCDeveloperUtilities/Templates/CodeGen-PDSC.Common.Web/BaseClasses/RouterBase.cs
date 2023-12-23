@@ -6,6 +6,9 @@ using System.Text.Json;
 
 namespace PDSC.Common.Web;
 
+/// <summary>
+/// All Minimal Web API router classes should inherit from this class.
+/// </summary>
 public abstract class RouterBase
 {
   #region Constructor

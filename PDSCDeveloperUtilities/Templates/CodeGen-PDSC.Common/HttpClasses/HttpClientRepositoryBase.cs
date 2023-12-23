@@ -2,9 +2,9 @@
 using System.Net.Http.Json;
 
 namespace PDSC.Common.HttpClasses;
+
 /// <summary>
-/// All repository classes that make calls to Web API endpoints 
-/// using the HttpClient class should inherit from this class
+/// This class is a wrapper around the HttpClient class and is used to make Web API calls easier. All your RepositoryAPI classes should inherit from this class.
 /// </summary>
 public class HttpClientRepositoryBase : RepositoryBase
 {

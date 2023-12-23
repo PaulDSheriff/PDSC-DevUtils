@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace PDSC.Common;
 
 /// <summary>
-/// Almost all classes that need common properties such as LastException and LastErrorMessage should inherit from this class.
+/// Almost all classes in your application will eventually inherit from this class. It contains properties that are very useful such as LastException, LastErrorMessage, UserName and many others.
 /// </summary>
 public class CommonBase : INotifyPropertyChanged
 {

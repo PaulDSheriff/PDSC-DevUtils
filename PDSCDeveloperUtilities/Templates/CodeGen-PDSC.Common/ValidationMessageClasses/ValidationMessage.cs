@@ -2,6 +2,9 @@
 
 namespace PDSC.Common;
 
+/// <summary>
+/// A class to hold the property name and validation message for why the property value fails its validation.
+/// </summary>
 public class ValidationMessage : INotifyPropertyChanged
 {
   private string _PropertyName = string.Empty;

@@ -1,5 +1,8 @@
 ﻿namespace PDSC.Common.JWT;
 
+/// <summary>
+/// This class holds the settings necessary for working with JSON Web Tokens (JWT).
+/// </summary>
 public class JwtSettings
 {
   public JwtSettings()

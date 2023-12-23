@@ -3,7 +3,7 @@
 namespace PDSC.Common;
 
 /// <summary>
-/// All search classes should inherit from this class
+/// All search classes should inherit from this class.
 /// </summary>
 public class SearchBase : CommonBase
 {

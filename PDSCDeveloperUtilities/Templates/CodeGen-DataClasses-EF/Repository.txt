@@ -5,9 +5,7 @@ using PDSC.Common;
 namespace <|NAMESPACE|>.DataLayer;
 
 /// <summary>
-/// This partial class contains the class definition, inheritance chain, 
-/// constructors and properties.
-/// This class makes async calls to your data store.
+/// This class contains methods to get all records, get a single record, and search for records. It also contains methods to count all records, or count records based on search criteria. This class also has methods for inserting, updating and deleting records. All methods in this class use the Entity Framework to access a data store.
 /// </summary>
 {|REMOVE_WHEN:IsView|}
 public partial class <|CLASS_NAME|>Repository : RepositoryBase, IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>

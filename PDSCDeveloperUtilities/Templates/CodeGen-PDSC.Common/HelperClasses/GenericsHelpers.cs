@@ -1,5 +1,8 @@
 ﻿namespace PDSC.Common;
 
+/// <summary>
+/// Contains a static method to generically change one type into another.
+/// </summary>
 public static class GenericsHelpers
 {
   public static T ChangeType<T>(object? o)

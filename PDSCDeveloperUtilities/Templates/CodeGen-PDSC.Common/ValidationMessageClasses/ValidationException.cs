@@ -1,5 +1,8 @@
 ﻿namespace PDSC.Common;
 
+/// <summary>
+/// Class that inherits from the Exception class and it used in a catch block when a validation exception is thrown.
+/// </summary>
 public class ValidationException : Exception
 {
   public ValidationException() : base()

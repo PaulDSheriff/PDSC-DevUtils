@@ -10,7 +10,7 @@ namespace <|NAMESPACE|>.ViewModelLayer.AppClasses;
 /// <typeparam name="TPK">Primary Key Data Type (int, string, guid, etc.)</typeparam>
 /// <typeparam name="TEntity">An entity data type</typeparam>
 /// <typeparam name="TSearch">A search entity data type</typeparam>
-public abstract class AppViewModel<TPK, TEntity, TSearch> : ViewModelEFBase<TPK, TEntity, TSearch>  where TEntity : class, new() where TSearch : class {
+public abstract class AppViewModel<TPK, TEntity, TSearch> : ViewModelBase<TPK, TEntity, TSearch>  where TEntity : class, new() where TSearch : class {
   #region Constructors
   public AppViewModel()
   {

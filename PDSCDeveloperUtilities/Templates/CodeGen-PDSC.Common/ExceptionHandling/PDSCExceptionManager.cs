@@ -4,6 +4,9 @@ using System.Text;
 
 namespace PDSC.Common;
 
+/// <summary>
+/// This class helps populate the PDSCException object with data around an exception. This is useful for logging exceptions.
+/// </summary>
 public class PDSCExceptionManager : CommonBase {
   #region Constructors
   public PDSCExceptionManager(Exception ex) : base() {

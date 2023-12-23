@@ -5,6 +5,9 @@ using System.Net;
 
 namespace <|NAMESPACE|>.DataLayer.API;
 
+/// <summary>
+/// This class contains methods to get all records, get a single record, and search for records. It also contains methods to count all records, or count records based on search criteria. This class also has methods for inserting, updating and deleting records. All methods in this class use the HttpClient class to call a Web API to perform all the functionality required to work with the data
+/// </summary>
 public class <|CLASS_NAME|>RepositoryAPI : HttpClientRepositoryBase, IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>
 {
   #region Constructors

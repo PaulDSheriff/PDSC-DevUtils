@@ -3,7 +3,7 @@
 namespace PDSC.Common.HelperClasses;
 
 /// <summary>
-/// Helper methods for working with JSON
+/// Contains a static method to serialize any object into a string.
 /// </summary>
 public class JsonHelper
 {

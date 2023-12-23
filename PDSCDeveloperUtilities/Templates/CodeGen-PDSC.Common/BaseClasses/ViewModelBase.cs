@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PDSC.Common.HelperClasses;
 using System.Collections.ObjectModel;
@@ -14,6 +15,18 @@ namespace PDSC.Common;
 /// </summary>
 public abstract class ViewModelBase<TPK, TEntity, TSearch> : CommonBase where TEntity : class, new() where TSearch : class
 {
+  #region Constructors
+  public ViewModelBase() : base()
+  {
+    DbContextObject = default;
+  }
+
+  public ViewModelBase(DbContext db)
+  {
+    DbContextObject = db;
+  }
+  #endregion
+
   #region Private Variables
   private int _RowsAffected;
   private int _NextId;
@@ -26,6 +39,12 @@ public abstract class ViewModelBase<TPK, TEntity, TSearch> : CommonBase where TE
   #endregion
 
   #region Public Properties
+  /// <summary>
+  /// Get/Set DbContext object for the view model
+  /// This is mainly used for gathering information for exception logging
+  /// </summary>
+  public DbContext? DbContextObject { get; set; }
+
   /// <summary>
   /// Get/Set the total number of rows returned from the last query
   /// </summary>
@@ -268,6 +287,30 @@ public abstract class ViewModelBase<TPK, TEntity, TSearch> : CommonBase where TE
 
     // Log Exception
     LogException(ex);
+  }
+
+  public virtual void PublishException(Exception ex, DbContext? db)
+  {
+    LastException = ex;
+    PDSCExceptionManager mgr = new(LastException, db);
+
+    // Log Exception
+    LogException(mgr.ExceptionObject);
+
+    throw mgr.ExceptionObject;
+  }
+
+  public virtual void PublishException<T>(Exception ex, DataResponse<T> dr, DbContext? db)
+  {
+    LastException = ex;
+    PDSCExceptionManager mgr = new(LastException, db);
+
+    // TODO: Gather information from the DataResponse object
+
+    // Log Exception
+    LogException(mgr.ExceptionObject);
+
+    throw mgr.ExceptionObject;
   }
   #endregion
 

@@ -1,7 +1,7 @@
 namespace PDSC.Common;
 
 /// <summary>
-/// Interface for all table repository classes
+/// All repository classes that target Tables in a database should inherit from this class.
 /// </summary>
 /// <typeparam name="TPK">Primary Key Data Type (int, string, guid, etc.)</typeparam>
 /// <typeparam name="TEntity">An entity class</typeparam>

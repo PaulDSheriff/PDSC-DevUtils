@@ -5,6 +5,7 @@ namespace PDSC.Common;
 /// <summary>
 /// This class holds the common properties that are normally 
 /// read in from the appsettings.json file of your application.
+/// Each of your application should have a settings class that inherits from this class. You can then add on additional properties as needed for your application.
 /// </summary>
 public class SettingsBase : CommonBase
 {

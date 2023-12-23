@@ -1,7 +1,7 @@
 ﻿namespace PDSC.Common;
 
 /// <summary>
-/// All repository classes should inherit from this class
+/// Contains a RowsAffected (int) and ResponseObject (DataResponseBase). All your Repository classes should inherit from this class.
 /// </summary>
 public class RepositoryBase : CommonBase
 {

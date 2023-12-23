@@ -2,6 +2,9 @@
 
 namespace PDSC.Common;
 
+/// <summary>
+/// This class holds properties related to any type of exception that can happen. If the exception is a database exception, there are many additional properties just related to the database exception.
+/// </summary>
 public class PDSCException : Exception {
   #region Constructors
   public PDSCException() : base() {

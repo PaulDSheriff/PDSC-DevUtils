@@ -1,7 +1,7 @@
 namespace PDSC.Common;
 
 /// <summary>
-/// Interface for all view repository classes
+/// All repository classes that target Views in a database should inherit from this class.
 /// </summary>
 /// <typeparam name="TEntity">An entity class</typeparam>
 /// <typeparam name="TSearch">A search entity class</typeparam>

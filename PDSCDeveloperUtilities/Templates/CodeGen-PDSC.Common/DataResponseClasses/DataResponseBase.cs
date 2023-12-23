@@ -3,7 +3,7 @@
 namespace PDSC.Common;
 
 /// <summary>
-/// Use this class when you need to return multiple values from a call
+/// A base class for the DataResponse class. Contains properties such as StatusCode, StatusMessage, RowsAffected, ResultMessage, LastException, and LastErrorMessage.
 /// </summary>
 public class DataResponseBase
 {

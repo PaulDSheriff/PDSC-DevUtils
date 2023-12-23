@@ -9,10 +9,7 @@ using System.Net;
 namespace <|NAMESPACE|>.ViewModelLayer;
 
 /// <summary>
-/// The view model class is used to wrap up all functionality for
-/// working with pages/screens in your application and for working
-/// with tables in databases.
-/// This class makes async calls to your repository class.
+/// The view model class is used to wrap up all functionality for working with pages/screens in your application. The data supplied to the view model comes from whichever Repository class is injected into this class.
 /// </summary>
 public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>, IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>
 {

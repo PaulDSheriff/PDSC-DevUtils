@@ -2,6 +2,9 @@
 
 namespace PDSC.Common;
 
+/// <summary>
+/// Class used to convert a Dictionary<string, string[]> that comes from an MVC validation into a collection of ValidationMessage objects.
+/// </summary>
 public class ValidationError
 {
   public string Type { get; set; } = string.Empty;
