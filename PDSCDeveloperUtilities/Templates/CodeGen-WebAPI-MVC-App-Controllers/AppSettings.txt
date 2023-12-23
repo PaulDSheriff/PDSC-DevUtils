@@ -1,19 +1,13 @@
-﻿namespace <|NAMESPACE|>;
+﻿using PDSC.Common;
 
-public class <|NAMESPACE_CLEAN|>AppSettings
+namespace <|NAMESPACE|>;
+
+public class <|NAMESPACE|>AppSettings : SettingsBase
 {
-  public <|NAMESPACE_CLEAN|>AppSettings()
+  public <|NAMESPACE|>AppSettings()
   {
     ApplicationName = "<|APPLICATION_NAME|>";
     BaseWebAPIService = "https://your.webapiurl.com/api";
-    InfoMessageDefault = "Problem Attempting to {Verb} using the {ClassName} API. Please Contact Your System Administrator.";
-    LoginDateTime = DateTime.Now;
-    UserName = "Unknown";
+    CORSPolicyName = "<|NAMESPACE|>Cors";
   }
-
-  public string ApplicationName { get; set; }
-  public string BaseWebAPIService { get; set; }
-  public string InfoMessageDefault { get; set; }
-  public DateTime LoginDateTime { get; set; }
-  public string UserName { get; set; }
 }

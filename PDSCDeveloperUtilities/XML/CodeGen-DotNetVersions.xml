@@ -4,7 +4,7 @@
     <Name>.NET 7</Name>
 		<Moniker>net7.0</Moniker>
     <Microsoft.EntityFrameworkCore.SqlServer>7.0.14</Microsoft.EntityFrameworkCore.SqlServer>
-    <Serilog.AspNetCore>7.0.0</Serilog.AspNetCore>
+    <Serilog.AspNetCore>8.0.0</Serilog.AspNetCore>
     <Serilog.Sinks.File>5.0.0</Serilog.Sinks.File>
     <Microsoft.AspNetCore.Authentication.JwtBearer>7.0.14</Microsoft.AspNetCore.Authentication.JwtBearer>
   </DotNetVersion>
@@ -12,7 +12,7 @@
     <Name>.NET 8</Name>
     <Moniker>net8.0</Moniker>
     <Microsoft.EntityFrameworkCore.SqlServer>8.0.0</Microsoft.EntityFrameworkCore.SqlServer>
-    <Serilog.AspNetCore>7.0.0</Serilog.AspNetCore>
+    <Serilog.AspNetCore>8.0.0</Serilog.AspNetCore>
     <Serilog.Sinks.File>5.0.0</Serilog.Sinks.File>
     <Microsoft.AspNetCore.Authentication.JwtBearer>8.0.0</Microsoft.AspNetCore.Authentication.JwtBearer>
   </DotNetVersion>
