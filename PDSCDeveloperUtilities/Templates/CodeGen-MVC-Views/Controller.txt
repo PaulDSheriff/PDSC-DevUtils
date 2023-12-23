@@ -11,9 +11,9 @@ namespace <|NAMESPACE|>.Controllers;
 public class <|CLASS_NAME|><|OUTPUT_SUFFIX|> : Controller
 {
   {|REMOVE_WHEN:IsAutoIncrement|}
-  public <|CLASS_NAME|><|OUTPUT_SUFFIX|>(<|REPOSITORY_INTERFACE|> repo, 
+  public <|CLASS_NAME|><|OUTPUT_SUFFIX|>(IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> repo, 
     {|FOR EACH FK_TABLE|}
-    <|REPOSITORY_INTERFACE|> <|CLASS_NAME_SINGULAR_ALL_LOWER|>Repo,
+    IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> <|CLASS_NAME_SINGULAR_ALL_LOWER|>Repo,
     {|END_LOOP|}
     <|DB_CONTEXT|> dbContext)
   {
@@ -25,9 +25,9 @@ public class <|CLASS_NAME|><|OUTPUT_SUFFIX|> : Controller
   }
   {|END_REMOVE|}
   {|REMOVE_WHEN:IsNotAutoIncrement|}
-  public <|CLASS_NAME|><|OUTPUT_SUFFIX|>(<|REPOSITORY_INTERFACE|> repo
+  public <|CLASS_NAME|><|OUTPUT_SUFFIX|>(IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> repo
     {|FOR EACH FK_TABLE|}
-    ,<|REPOSITORY_INTERFACE|> <|CLASS_NAME_SINGULAR_ALL_LOWER|>Repo
+    ,IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> <|CLASS_NAME_SINGULAR_ALL_LOWER|>Repo
     {|END_LOOP|}
   )
   {
@@ -38,15 +38,15 @@ public class <|CLASS_NAME|><|OUTPUT_SUFFIX|> : Controller
   }
   {|END_REMOVE|}
 
-  private readonly <|REPOSITORY_INTERFACE|> _Repo;
+  private readonly IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> _Repo;
   {|REMOVE_WHEN:IsAutoIncrement|}
-  private readonly DevUtilsTestingDbContext _DbContext;
+  private readonly <|DB_CONTEXT|> _DbContext;
   {|END_REMOVE|}
   {|REMOVE_WHEN:NoForeignKeys|}
   // Foreign Key Variables
   {|END_REMOVE|}  
   {|FOR EACH FK_TABLE|}
-  private <|REPOSITORY_INTERFACE|>? <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_SINGULAR|>Repo;
+  private IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>? <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_SINGULAR|>Repo;
   {|END_LOOP|}
 
   [HttpGet]

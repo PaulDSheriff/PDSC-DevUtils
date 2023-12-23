@@ -70,7 +70,7 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
     #region SearchAsync Method
     protected new async Task SearchAsync()
     {
-      DataResponse<ObservableCollection<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>>> response = await base.SearchAsync(SearchEntity);
+      DataResponse<ObservableCollection<<|CLASS_NAME|>>> response = await base.SearchAsync(SearchEntity);
       if (response != null && response.StatusCode == HttpStatusCode.OK) {
         InfoMessage = $"Searched and Found: {(response.Data ?? new()).Count} {ClassDescriptionPlural}";
       }

@@ -14,8 +14,6 @@
 		<ConversionMethod>ToBoolean</ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|} == search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} == search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
 	</DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -28,8 +26,6 @@
     <ConversionMethod></ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -37,13 +33,11 @@
 		<LanguageType>Guid</LanguageType>
 		<Nullable>Guid?</Nullable>
 		<Initializer>new()</Initializer>
-    <InitializerStatement>= new()</InitializerStatement>
+    <InitializerStatement>= new();</InitializerStatement>
     <SetValueStatement>current.{|PROPERTY_NAME|} = changes.{|PROPERTY_NAME|} == Guid.NewGuid() ? current.{|PROPERTY_NAME|} : Guid.NewGuid()</SetValueStatement>
     <ConversionMethod></ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|} == search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} == search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface>IRepositoryOtherPK&lt;Guid, {|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}, {|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}Search&gt;</RepositoryInterface>
-    <ViewModelInterface>IViewModelOtherPK&lt;Guid, {|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}, {|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}Search&gt;</ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -51,13 +45,11 @@
 		<LanguageType>char</LanguageType>
 		<Nullable>char?</Nullable>
 		<Initializer></Initializer>
-    <InitializerStatement>current.{|PROPERTY_NAME|} = changes.{|PROPERTY_NAME|}</InitializerStatement>
-    <SetValueStatement></SetValueStatement>
+    <InitializerStatement></InitializerStatement>
+    <SetValueStatement>current.{|PROPERTY_NAME|} = changes.{|PROPERTY_NAME|}</SetValueStatement>
     <ConversionMethod>ToChar</ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|} == search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} == search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -65,13 +57,11 @@
 		<LanguageType>DateTime</LanguageType>
 		<Nullable>DateTime?</Nullable>
 		<Initializer>System.DateTime.Now</Initializer>
-    <InitializerStatement>= System.DateTime.Now</InitializerStatement>
+    <InitializerStatement>= System.DateTime.Now;</InitializerStatement>
     <SetValueStatement>current.{|PROPERTY_NAME|} = changes.{|PROPERTY_NAME|} == DateTime.MinValue ? current.{|PROPERTY_NAME|} : changes.{|PROPERTY_NAME|}</SetValueStatement>
     <ConversionMethod>ToDateTime</ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -84,8 +74,6 @@
     <ConversionMethod>ToDecimal</ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -98,8 +86,6 @@
     <ConversionMethod>ToDouble</ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -112,8 +98,6 @@
     <ConversionMethod>ToInt32</ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface>IRepository&lt;{|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}, {|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}Search&gt;</RepositoryInterface>
-    <ViewModelInterface>IViewModel&lt;{|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}, {|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}Search&gt;</ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -126,8 +110,6 @@
     <ConversionMethod>ToInt64</ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface>IRepositoryOtherPK&lt;long, {|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}, {|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}Search&gt;</RepositoryInterface>
-    <ViewModelInterface>IViewModelOtherPK&lt;long, {|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}, {|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}Search&gt;</ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -135,13 +117,11 @@
 		<LanguageType>byte[]</LanguageType>
 		<Nullable>byte[]?</Nullable>
 		<Initializer>Array.Empty&lt;byte&gt;()</Initializer>
-    <InitializerStatement>= Array.Empty&lt;byte&gt;()</InitializerStatement>
+    <InitializerStatement>= Array.Empty&lt;byte&gt;();</InitializerStatement>
     <SetValueStatement>current.{|PROPERTY_NAME|} = changes.{|PROPERTY_NAME|}</SetValueStatement>
     <ConversionMethod>ToByteArray</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -154,8 +134,6 @@
     <ConversionMethod>ToObject</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -168,8 +146,6 @@
     <ConversionMethod>ToByte</ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|} == search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} == search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -182,8 +158,6 @@
     <ConversionMethod>ToInt16</ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -196,8 +170,6 @@
     <ConversionMethod>ToSingle</ConversionMethod>
     <SearchPattern>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -205,13 +177,11 @@
 		<LanguageType>string</LanguageType>
 		<Nullable>string?</Nullable>
 		<Initializer>string.Empty</Initializer>
-    <InitializerStatement>= string.Empty</InitializerStatement>
+    <InitializerStatement>= string.Empty;</InitializerStatement>
     <SetValueStatement>current.{|PROPERTY_NAME|} = string.IsNullOrWhiteSpace(changes.{|PROPERTY_NAME|}) ? current.{|PROPERTY_NAME|} : changes.{|PROPERTY_NAME|}</SetValueStatement>
     <ConversionMethod>ToString</ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|}.StartsWith(search.{|PROPERTY_NAME|})</SearchPattern>
-    <SearchPatternNullable>row.{|PROPERTY_NAME|}.StartsWith(search.{|PROPERTY_NAME|})</SearchPatternNullable>
-    <RepositoryInterface>IRepositoryOtherPK&lt;string, {|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}, {|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}Search&gt;</RepositoryInterface>
-    <ViewModelInterface>IViewModelOtherPK&lt;string, {|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}, {|NAMESPACE|}.EntityLayer.{|CLASS_NAME|}Search&gt;</ViewModelInterface>
+    <SearchPatternNullable>row.{|PROPERTY_NAME|} == null ? false : row.{|PROPERTY_NAME|}.StartsWith(search.{|PROPERTY_NAME|})</SearchPatternNullable>
   </DataType>
   <DataType>
     <LanguageCode>CSharp</LanguageCode>
@@ -219,13 +189,11 @@
     <LanguageType>TimeSpan</LanguageType>
     <Nullable>TimeSpan?</Nullable>
     <Initializer>new TimeSpan()</Initializer>
-    <InitializerStatement>= new TimeSpan()</InitializerStatement>
+    <InitializerStatement>= new TimeSpan();</InitializerStatement>
     <SetValueStatement>current.{|PROPERTY_NAME|} = changes.{|PROPERTY_NAME|} == new TimeSpan() ? current.{|PROPERTY_NAME|} : changes.{|PROPERTY_NAME|}</SetValueStatement>
     <ConversionMethod>ToString</ConversionMethod>
     <SearchPattern>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
   <DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -238,8 +206,6 @@
     <ConversionMethod>ToUInt32</ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -252,8 +218,6 @@
     <ConversionMethod>ToUInt64</ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>CSharp</LanguageCode>
@@ -266,8 +230,6 @@
     <ConversionMethod>ToUInt16</ConversionMethod>
 		<SearchPattern>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}</SearchPattern>
     <SearchPatternNullable>row.{|PROPERTY_NAME|} >= search.{|PROPERTY_NAME|}.Value</SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
   <!-- *************************** -->
   <!-- *** VB.NET Data Types   *** -->
@@ -283,8 +245,6 @@
     <ConversionMethod>ToBoolean</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>VBNET</LanguageCode>
@@ -297,8 +257,6 @@
     <ConversionMethod>ToByte</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>VBNET</LanguageCode>
@@ -311,8 +269,6 @@
     <ConversionMethod>ToChar</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>VBNET</LanguageCode>
@@ -325,8 +281,6 @@
     <ConversionMethod>ToDateTime</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>VBNET</LanguageCode>
@@ -339,8 +293,6 @@
     <ConversionMethod>ToDecimal</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>VBNET</LanguageCode>
@@ -353,8 +305,6 @@
     <ConversionMethod>ToDouble</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>VBNET</LanguageCode>
@@ -367,8 +317,6 @@
     <ConversionMethod>ToInt32</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>VBNET</LanguageCode>
@@ -381,8 +329,6 @@
     <ConversionMethod>ToInt64</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>VBNET</LanguageCode>
@@ -395,8 +341,6 @@
     <ConversionMethod>ToByteArray</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>VBNET</LanguageCode>
@@ -409,8 +353,6 @@
     <ConversionMethod>ToObject</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>VBNET</LanguageCode>
@@ -423,8 +365,6 @@
     <ConversionMethod>ToInt16</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>VBNET</LanguageCode>
@@ -437,8 +377,6 @@
     <ConversionMethod>ToSingle</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 	<DataType>
 		<LanguageCode>VBNET</LanguageCode>
@@ -451,7 +389,5 @@
     <ConversionMethod>ToString</ConversionMethod>
 		<SearchPattern></SearchPattern>
     <SearchPatternNullable></SearchPatternNullable>
-    <RepositoryInterface></RepositoryInterface>
-    <ViewModelInterface></ViewModelInterface>
   </DataType>
 </DataTypes>

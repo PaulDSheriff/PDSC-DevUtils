@@ -1,4 +1,40 @@
-﻿PDSC Developer Utilities v9.0.6 - 11/27/2023
+﻿PDSC Developer Utilities v9.1.0 - 12/??/2023
+-----------------------------------------------------
+BREAKING CHANGES!
+  Modified the IRepository interface so it now includes the primary key data type
+  Remove the IRepositoryOtherPK interface
+  Modified all templates to reflect the above change
+
+Misc. Changes
+  Added code to delete the *.http file created in Web API projects
+  Changed the Hard-Coded generator to emit dates as new DateTime(year, month, day) instead of using Convert.ToDateTime()
+  Changed tab on Computer Cleaner from "After Generation =>" to "After Cleaning =>"
+  Changed the LanguageDataTypes.xml to better handle null strings in the AddWhereClause() method of the Repository class
+  Removed the <RepositoryInterace> and <ViewModelInterface> elements from the LanguageDataTypes.xml file
+
+WPF generation
+  Changed the IsVisible to Visibility in the List & Detail Views
+
+MVC Website Generation
+  Fixed bug where the wrong DbContext name was used
+
+Minimal Web API Generation
+  Modified the Program.cs to put ConfigureCors before calling Authentication and Authorization
+  Added AppRouterBase.cs file
+  All Router classes now inherit from AppRouterBase
+  Added IRepositoryBase.cs file
+  All IRepository*.cs interfaces inherit from an IRepositoryBase interface
+  Added some additional properties to support JWT Bearer Tokens in the CommonBase class
+  Added some additional properties to support JWT Bearer Tokens in the RepositoryBase class
+  Added some additional properties to support JWT Bearer Tokens in the ViewModelBase class
+  Added code to RouterBase class to support in-memory caching
+  Made many changes to the HttpClientRepositoryBase class to support JWT authentication and ability to pass in extra information on the URL line
+  Modified the ConfigureCors() in SecurityExtensions.cs file - .AllowAnyMethod().AllowAnyHeader();
+  Modified the View Model Template to call the SetRepositoryData() method in the ViewModelBase to help support JWT tokens
+  Modified Program.cs to add memory caching
+
+
+PDSC Developer Utilities v9.0.6 - 11/27/2023
 -----------------------------------------------------
 Code Generation
   Fixed bug where if a table is a reserved word in SQL Server, it can't generate

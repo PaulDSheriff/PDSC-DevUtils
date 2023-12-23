@@ -46,13 +46,13 @@
                                Grid.ColumnSpan="2">
           {|REMOVE_WHEN:IsView|}
           <ImageButton Source="save.png"
-                       IsEnabled="{Binding IsDataProcessing, Converter={StaticResource invertBool}}"
+                       IsEnabled="{Binding IsDataProcessing, Converter={StaticResource InvertBool}}"
                        ToolTipProperties.Text="Save <|CLASS_NAME_SINGULAR|>"
                        BackgroundColor="{StaticResource SaveButton}"
                        Command="{Binding SaveCommand}" />
           {|END_REMOVE|}
           <ImageButton Source="cancel.png"
-                       IsEnabled="{Binding IsDataProcessing, Converter={StaticResource invertBool}}"
+                       IsEnabled="{Binding IsDataProcessing, Converter={StaticResource InvertBool}}"
                        BackgroundColor="{StaticResource CancelButton}"
                        ToolTipProperties.Text="Cancel Edit/Return to List"
                        Command="{Binding CancelCommand}" />

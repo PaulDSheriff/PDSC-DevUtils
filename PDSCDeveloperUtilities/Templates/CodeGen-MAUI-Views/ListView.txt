@@ -48,19 +48,19 @@
           <HorizontalStackLayout Grid.Row="<|GRID_ROW_FIRST|>"
                                   Grid.Column="1">
             <ImageButton Source="magnifyingglass.png"
-                         IsEnabled="{Binding IsDataProcessing, Converter={StaticResource invertBool}}"
+                         IsEnabled="{Binding IsDataProcessing, Converter={StaticResource InvertBool}}"
                          ToolTipProperties.Text="Search for <|CLASS_NAME_PLURAL|>"
                          BackgroundColor="{StaticResource SearchButton}"
                          Command="{Binding SearchCommand}" />
             <ImageButton Source="refresh.png"
-                         IsEnabled="{Binding IsDataProcessing, Converter={StaticResource invertBool}}"
+                         IsEnabled="{Binding IsDataProcessing, Converter={StaticResource InvertBool}}"
                          ToolTipProperties.Text="Reset Search/Get All"
                          BackgroundColor="{StaticResource RefreshButton}"
                          Command="{Binding GetCommand}" />
             <BoxView Style="{StaticResource Separator.Left}" />
             {|REMOVE_WHEN:IsView|}
             <ImageButton Source="plus.png"
-                         IsEnabled="{Binding IsDataProcessing, Converter={StaticResource invertBool}}"
+                         IsEnabled="{Binding IsDataProcessing, Converter={StaticResource InvertBool}}"
                          BackgroundColor="{StaticResource AddButton}"
                          ToolTipProperties.Text="Add New <|CLASS_NAME_SINGULAR|>"
                          Command="{Binding AddCommand}" />

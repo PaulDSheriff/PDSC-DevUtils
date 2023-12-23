@@ -15,7 +15,7 @@ public static class ServiceExtension
   {
     // Add Repository Classes
     {|FOR EACH TABLE|}
-    services.AddScoped<<|REPOSITORY_INTERFACE|>, <|CLASS_NAME|>Repository>();
+    services.AddScoped<IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>Repository>();
     {|END_LOOP|}
     {|FOR EACH VIEW|}
     services.AddScoped<IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>Repository>();
@@ -26,7 +26,7 @@ public static class ServiceExtension
   {
     // Add View Model Classes
     {|FOR EACH TABLE|}
-    services.AddScoped<<|VIEWMODEL_INTERFACE|>, <|CLASS_NAME|>ViewModel>();
+    services.AddScoped<IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>ViewModel>();
     {|END_LOOP|}
     {|FOR EACH VIEW|}
     services.AddScoped<IViewViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>ViewModel>();

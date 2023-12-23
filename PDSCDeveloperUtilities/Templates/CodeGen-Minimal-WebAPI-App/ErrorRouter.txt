@@ -3,7 +3,7 @@ using PDSC.Common.Web;
 
 namespace <|NAMESPACE|>.MinWebAPI.RouterClasses;
 
-public class ErrorRouter : RouterBase
+public class ErrorRouter : AppRouterBase
 {
   public ErrorRouter(ILogger<ErrorRouter> logger) : base(logger)
   {

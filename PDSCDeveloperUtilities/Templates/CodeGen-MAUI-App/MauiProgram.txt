@@ -1,4 +1,5 @@
 ﻿using <|NAMESPACE|>.DataLayer.API;
+using <|NAMESPACE|>.EntityLayer;
 using <|NAMESPACE|>.MAUI.CommandClasses;
 using <|NAMESPACE|>.MAUI.Views;
 using Microsoft.Extensions.Logging;
@@ -79,7 +80,7 @@ public static class MauiProgram
   public static MauiAppBuilder RegisterRepositories(this MauiAppBuilder mauiAppBuilder)
   {
   {|FOR EACH TABLE|}
-    mauiAppBuilder.Services.AddScoped<<|REPOSITORY_INTERFACE|>, <|CLASS_NAME|>RepositoryAPI>();
+    mauiAppBuilder.Services.AddScoped<IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>RepositoryAPI>();
   {|END_LOOP|}
   {|FOR EACH VIEW|}
     mauiAppBuilder.Services.AddScoped<IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>RepositoryAPI>();

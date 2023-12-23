@@ -10,10 +10,10 @@ namespace <|NAMESPACE|>.DataLayer;
 /// This class makes async calls to your data store.
 /// </summary>
 {|REMOVE_WHEN:IsView|}
-public partial class <|CLASS_NAME|>Repository : RepositoryBase, <|REPOSITORY_INTERFACE|>
+public partial class <|CLASS_NAME|>Repository : RepositoryBase, IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>
 {|END_REMOVE|}
 {|REMOVE_WHEN:IsTable|}
-public partial class <|CLASS_NAME|>Repository : RepositoryBase, IViewRepository<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>, <|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>Search>
+public partial class <|CLASS_NAME|>Repository : RepositoryBase, IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search>
 {|END_REMOVE|}
 {
   #region Constructor

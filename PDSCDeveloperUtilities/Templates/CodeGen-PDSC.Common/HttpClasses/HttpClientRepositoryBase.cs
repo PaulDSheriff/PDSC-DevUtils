@@ -26,11 +26,6 @@ public class HttpClientRepositoryBase : RepositoryBase
   /// Get/Set the instance of the HttpClient to use
   /// </summary>
   public HttpClient? HClient { get; set; }
-
-  /// <summary>
-  /// Get/Set the base address such as www.pdsa.com
-  /// </summary>
-  public string BaseAddress { get; set; } = string.Empty;
   /// <summary>
   /// Get/Set the UrlPath such as /api/Customer
   /// </summary>
@@ -66,12 +61,13 @@ public class HttpClientRepositoryBase : RepositoryBase
   {
     base.Init();
 
-    BaseAddress = string.Empty;
+    BaseWebAddress = string.Empty;
     UrlPath = string.Empty;
     UrlQuery = string.Empty;
     UrlSearchRoute = "/Search";
     UrlCountRoute = "/Count";
     UserAgent = string.Empty;
+    BearerToken = string.Empty;
     Headers = new();
   }
   #endregion
@@ -79,22 +75,24 @@ public class HttpClientRepositoryBase : RepositoryBase
   #region FixUrlParts Method
   protected virtual void FixUrlParts()
   {
-    // Make sure the BaseAddress does not end with a forward slash
-    BaseAddress = BaseAddress.EndsWith('/') ? BaseAddress[..^1] : BaseAddress;
-    // Make sure the UrlPath starts with a forward slash
-    UrlPath = UrlPath.StartsWith('/') ? UrlPath : UrlPath[1..];
+    // Should the UrlPath starts with a forward slash?
+    string addr = HClient?.BaseAddress?.AbsoluteUri ?? string.Empty;
+    if (UrlPath.StartsWith('/') && addr.EndsWith("/")) {
+      // Remove starting forward slash
+      UrlPath = UrlPath[1..];
+    }
     // Make sure the UrlPath does not end with a forward slash
     UrlPath = UrlPath.EndsWith('/') ? UrlPath[..^1] : UrlPath;
   }
   #endregion
 
   #region BuildUrlQueryParameters Method
-  public string BuildUrlQueryParameters(object search)
+  public string BuildUrlQueryParameters(object? search)
   {
     return BuildUrlQueryParameters(search, new());
   }
 
-  public string BuildUrlQueryParameters(object search, List<string> excludeProperties)
+  public string BuildUrlQueryParameters(object? search, List<string> excludeProperties)
   {
     List<string> queryParams = new();
     // Ensure all properties to exclude are lower case
@@ -104,22 +102,32 @@ public class HttpClientRepositoryBase : RepositoryBase
       }
     }
 
-    // Do NOT add properties decorated with [JsonIgnore]
-    // to the URI Query
-    var props = search.GetType().GetProperties().ToList();
-    foreach (var item in props) {
-      if (!excludeProperties.Contains(item.Name.ToLower())) {
-        // Only get those properties with no [JsonIgnore] attribute
-        if (!item.GetCustomAttributes(true).ToList().Where(a => a.ToString() == "System.Text.Json.Serialization.JsonIgnoreAttribute").Any()) {
-          string? value = (string?)item.GetValue(search);
-          if (!string.IsNullOrWhiteSpace(value)) {
-            queryParams.Add($"{item.Name}={Uri.EscapeDataString(value)}");
+    string separator = "?";
+    if (!string.IsNullOrEmpty(AdditionalUrlData)) {
+      queryParams.Add($"{separator}{AdditionalUrlData}");
+      separator = "&";
+    }
+
+    if (search != null) {
+      // Do NOT add properties decorated with [JsonIgnore]
+      // to the URI Query
+      var props = search.GetType().GetProperties().ToList();
+      foreach (var item in props) {
+        if (!excludeProperties.Contains(item.Name.ToLower())) {
+          // Only get those properties with no [JsonIgnore] attribute
+          if (!item.GetCustomAttributes(true).ToList().Where(a => a.ToString() == "System.Text.Json.Serialization.JsonIgnoreAttribute").Any() &&
+              !item.GetCustomAttributes(true).ToList().Where(a => a.ToString() == "System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute").Any()) {
+            string? value = (string?)item.GetValue(search);
+            if (!string.IsNullOrWhiteSpace(value)) {
+              queryParams.Add($"{separator}{item.Name}={Uri.EscapeDataString(value)}");
+              separator = "&";
+            }
           }
         }
       }
     }
 
-    return string.Join('&', queryParams.ToArray());
+    return string.Join(string.Empty, queryParams.ToArray());
   }
   #endregion
 
@@ -130,7 +138,7 @@ public class HttpClientRepositoryBase : RepositoryBase
     // TODO: Use IHttpClientFactory? https://learn.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-7.0
 
     // Set the base address such as https://www.pdsa.com
-    client.BaseAddress = new Uri(BaseAddress);
+    client.BaseAddress = new Uri(BaseWebAddress);
     // Clear Accept Headers
     //client.DefaultRequestHeaders.Accept.Clear();
     // Add Content Type Default="application/json"
@@ -142,11 +150,24 @@ public class HttpClientRepositoryBase : RepositoryBase
     // Add any additional headers
     //foreach (var header in Headers) {
     //  client.DefaultRequestHeaders.Add(header.Key, header.Value);
-    //}
+    //}    
   }
   #endregion
 
-  #region SubmitAsyncQuery Methods
+  #region SetAuthTokenHeader Method
+  protected void SetAuthTokenHeader(HttpClient? client)
+  {
+    if (client != null) {
+      // If authorization is not set, and there is a bearer token
+      if (client.DefaultRequestHeaders.Authorization == null && !string.IsNullOrEmpty(BearerToken)) {
+        // Add bearer token header
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", BearerToken);
+      }
+    }
+  }
+  #endregion
+
+  #region GetAsync Method
   /// <summary>
   /// Get all records from the data store
   /// </summary>
@@ -156,9 +177,14 @@ public class HttpClientRepositoryBase : RepositoryBase
   {
     UrlPath = urlPath;
     UrlQuery = string.Empty;
+    if (!string.IsNullOrEmpty(AdditionalUrlData)) {
+      UrlQuery += $"?{AdditionalUrlData}";
+    }
     return await SubmitAsyncQuery<T>(HttpClientRequestTypeEnum.Get, null);
   }
+  #endregion
 
+  #region GetAsync(id) Method
   /// <summary>
   /// Get a single record from the data store
   /// </summary>
@@ -169,64 +195,76 @@ public class HttpClientRepositoryBase : RepositoryBase
   {
     UrlPath = urlPath;
     UrlQuery = $"/{id}";
+    if (!string.IsNullOrEmpty(AdditionalUrlData)) {
+      UrlQuery += $"?{AdditionalUrlData}";
+    }
     return await SubmitAsyncQuery<T>(HttpClientRequestTypeEnum.Get, null);
   }
+  #endregion
 
+  #region SearchAsync Method
   public async Task<DataResponse<TEntity>> SearchAsync<TEntity, TSearch>(string urlPath, TSearch? search) where TEntity : class
   {
     UrlPath = urlPath;
-    UrlPath += UrlSearchRoute;
-    if (search == null) {
-      UrlQuery = string.Empty;
+    if (!UrlPath.Contains(UrlSearchRoute)) {
+      UrlPath += UrlSearchRoute;
     }
-    else {
-      UrlPath += "?";
-      UrlQuery = BuildUrlQueryParameters(search, new List<string>() { "SortExpression" });
-    }
+    UrlQuery = BuildUrlQueryParameters(search, new List<string>() { "SortExpression" });
 
     return await SubmitAsyncQuery<TEntity>(HttpClientRequestTypeEnum.Get, null);
   }
+  #endregion
 
+  #region CountAsync Method
   public async Task<DataResponse<T>> CountAsync<T, TSearch>(string urlPath, TSearch? search) where TSearch : class
   {
     UrlPath = urlPath;
-    UrlPath += UrlCountRoute;
-    if (search == null) {
-      UrlQuery = string.Empty;
+    if (!UrlPath.Contains(UrlCountRoute)) {
+      UrlPath += UrlCountRoute;
     }
-    else {
-      UrlQuery = BuildUrlQueryParameters(search);
-      if (!string.IsNullOrWhiteSpace(UrlQuery)) {
-        UrlPath += "?";
-      }
-    }
+    UrlQuery = BuildUrlQueryParameters(search, new List<string>() { "SortExpression" });
 
     return await SubmitAsyncQuery<T>(HttpClientRequestTypeEnum.Count, default);
   }
+  #endregion
 
+  #region PostAsync Method
   public async Task<DataResponse<T>> PostAsync<T>(string urlPath, T? entity) where T : class
   {
     UrlPath = urlPath;
     UrlQuery = string.Empty;
+    if (!string.IsNullOrEmpty(AdditionalUrlData)) {
+      UrlQuery += $"?{AdditionalUrlData}";
+    }
     return await SubmitAsyncQuery(HttpClientRequestTypeEnum.Post, entity);
   }
+  #endregion
 
+  #region PutAsync Method
   public async Task<DataResponse<T>> PutAsync<T>(string urlPath, string id, T? entity) where T : class
   {
     UrlPath = urlPath;
     UrlQuery = $"/{id}";
-
+    if (!string.IsNullOrEmpty(AdditionalUrlData)) {
+      UrlQuery += $"?{AdditionalUrlData}";
+    }
     return await SubmitAsyncQuery(HttpClientRequestTypeEnum.Put, entity);
   }
+  #endregion
 
+  #region DeleteAsync Method
   public async Task<DataResponse<T>> DeleteAsync<T>(string urlPath, string id) where T : class
   {
     UrlPath = urlPath;
     UrlQuery = $"/{id}";
-
+    if (!string.IsNullOrEmpty(AdditionalUrlData)) {
+      UrlQuery += $"?{AdditionalUrlData}";
+    }
     return await SubmitAsyncQuery<T>(HttpClientRequestTypeEnum.Delete, null);
   }
+  #endregion
 
+  #region SubmitAsyncQuery Method
   protected async Task<DataResponse<T>> SubmitAsyncQuery<T>(HttpClientRequestTypeEnum requestType, T? payload)
   {
     DataResponse<T>? ret = new();
@@ -238,8 +276,22 @@ public class HttpClientRepositoryBase : RepositoryBase
       ret.StatusCode = HttpStatusCode.BadRequest;
     }
     else {
-      // Set the base address
-      BaseAddress = HClient?.BaseAddress?.AbsoluteUri ?? string.Empty;
+      // Set the base address property, if not already
+      if (string.IsNullOrEmpty(BaseWebAddress)) {
+        BaseWebAddress = HClient?.BaseAddress?.AbsoluteUri ?? string.Empty;
+      }
+      // Make sure the BaseAddress does not end with a forward slash
+      BaseWebAddress = BaseWebAddress.EndsWith('/') ? BaseWebAddress[..^1] : BaseWebAddress;
+
+      if (HClient?.BaseAddress?.AbsoluteUri != BaseWebAddress + "/") {
+        if (HClient != null) {
+          // Put back the fixed up BaseWebAddress
+          HClient.BaseAddress = new Uri(BaseWebAddress);
+        }
+      }
+
+      // Set any Authorization Token
+      SetAuthTokenHeader(HClient);
 
       // Make sure all URL parts are ready to submit
       FixUrlParts();
@@ -258,7 +310,7 @@ public class HttpClientRepositoryBase : RepositoryBase
             break;
           case HttpClientRequestTypeEnum.Post:
             if (HClient != null) {
-              resp = await HClient.PostAsJsonAsync(UrlPath, payload);
+              resp = await HClient.PostAsJsonAsync(UrlPath + UrlQuery, payload);
             }
             break;
           case HttpClientRequestTypeEnum.Put:
@@ -284,16 +336,14 @@ public class HttpClientRepositoryBase : RepositoryBase
               // Convert return value into a DataResponse object
               ret = await resp.Content.ReadFromJsonAsync<DataResponse<T>>();
               // See if a null was returned
-              ret ??= new()
-              {
+              ret ??= new() {
                 StatusCode = HttpStatusCode.InternalServerError,
                 LastException = new("Object returned from Web API call is null"),
                 ResultMessage = "Object returned from Web API call is null"
               };
             }
             catch (Exception ex) {
-              ret = new()
-              {
+              ret = new() {
                 StatusCode = HttpStatusCode.InternalServerError,
                 LastException = ex,
                 ResultMessage = "Error attempting to convert JSON into C# object"
@@ -310,8 +360,7 @@ public class HttpClientRepositoryBase : RepositoryBase
           }
           else {
             // Store exception info into DataResponse object
-            ret = new()
-            {
+            ret = new() {
               StatusCode = resp == null ? HttpStatusCode.BadRequest : resp.StatusCode,
               LastException = new ApplicationException("Response status code is NOT successful"),
               ResultMessage = "Response status code is NOT successful"
@@ -320,8 +369,7 @@ public class HttpClientRepositoryBase : RepositoryBase
         }
         else {
           // Store exception info into DataResponse object
-          ret = new()
-          {
+          ret = new() {
             StatusCode = HttpStatusCode.InternalServerError,
             LastException = new("HttpResponseMessage Object is null"),
             ResultMessage = "HttpResponseMessage object is null"
@@ -336,8 +384,7 @@ public class HttpClientRepositoryBase : RepositoryBase
         // Store the last exception
         LastException = ex;
         // Store exception info into DataResponse object
-        ret = new()
-        {
+        ret = new() {
           StatusCode = HttpStatusCode.InternalServerError,
           LastException = LastException,
           ResultMessage = ex.Message

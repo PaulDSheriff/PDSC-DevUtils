@@ -5,9 +5,10 @@ namespace PDSC.Common;
 /// <summary>
 /// This class should be inherited by any view models that are using the Entity Framework
 /// </summary>
+/// <typeparam name="TPK">Primary Key Data Type (int, string, guid, etc.)</typeparam>
 /// <typeparam name="TEntity">An entity type</typeparam>
 /// <typeparam name="TSearch">An entity search type</typeparam>
-public abstract class ViewModelEFBase<TEntity, TSearch> : ViewModelBase<TEntity, TSearch> where TEntity : class, new() where TSearch : class
+public abstract class ViewModelEFBase<TPK, TEntity, TSearch> : ViewModelBase<TPK, TEntity, TSearch> where TEntity : class, new() where TSearch : class
 {
   #region Constructors
   public ViewModelEFBase() : base()

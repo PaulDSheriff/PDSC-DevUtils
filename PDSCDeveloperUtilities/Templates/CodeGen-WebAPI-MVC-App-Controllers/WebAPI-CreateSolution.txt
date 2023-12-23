@@ -47,6 +47,7 @@ dotnet add <|NAMESPACE|>.WebAPI/<|NAMESPACE|>.WebAPI.csproj reference <|NAMESPAC
 dotnet add <|NAMESPACE|>.WebAPI/<|NAMESPACE|>.WebAPI.csproj reference <|NAMESPACE|>.DataLayer/<|NAMESPACE|>.DataLayer.csproj
 dotnet add <|NAMESPACE|>.WebAPI/<|NAMESPACE|>.WebAPI.csproj reference <|NAMESPACE|>.ViewModelLayer/<|NAMESPACE|>.ViewModelLayer.csproj
 cd <|NAMESPACE|>.WebAPI
+del <|NAMESPACE|>.WebAPI.http
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version <|DOT_NET_VERSION:Microsoft.EntityFrameworkCore.SqlServer|>
 dotnet add package Serilog.AspNetCore --version <|DOT_NET_VERSION:Serilog.AspNetCore|>
 dotnet add package Serilog.Sinks.File --version <|DOT_NET_VERSION:Serilog.Sinks.File|>

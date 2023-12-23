@@ -50,6 +50,7 @@ dotnet add <|NAMESPACE|>.MinWebAPI/<|NAMESPACE|>.MinWebAPI.csproj reference <|NA
 dotnet add <|NAMESPACE|>.MinWebAPI/<|NAMESPACE|>.MinWebAPI.csproj reference <|NAMESPACE|>.DataLayer/<|NAMESPACE|>.DataLayer.csproj
 dotnet add <|NAMESPACE|>.MinWebAPI/<|NAMESPACE|>.MinWebAPI.csproj reference <|NAMESPACE|>.ViewModelLayer/<|NAMESPACE|>.ViewModelLayer.csproj
 cd <|NAMESPACE|>.MinWebAPI
+del <|NAMESPACE|>.MinWebAPI.http
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version <|DOT_NET_VERSION:Microsoft.EntityFrameworkCore.SqlServer|>
 dotnet add package Serilog.AspNetCore --version <|DOT_NET_VERSION:Serilog.AspNetCore|>
 dotnet add package Serilog.Sinks.File --version <|DOT_NET_VERSION:Serilog.Sinks.File|>

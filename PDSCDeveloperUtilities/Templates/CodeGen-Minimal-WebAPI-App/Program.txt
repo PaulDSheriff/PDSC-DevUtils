@@ -33,11 +33,14 @@ builder.Services.ConfigureJsonOptions();
 // Add & Configure Logging using Serilog
 builder.Host.ConfigureSeriLog();
 
-// Add & Configure JWT Authentication
-builder.Services.ConfigureJwtAuthentication(config);
+// Add Memory Caching
+builder.Services.AddMemoryCache();
 
 // Add & Configure CORS
 builder.Services.ConfigureCors(config);
+
+// Add & Configure JWT Authentication
+builder.Services.ConfigureJwtAuthentication(config);
 
 // Add & Configure JWT Authorization
 builder.Services.ConfigureJwtAuthorization();

@@ -14,7 +14,7 @@ namespace <|NAMESPACE|>.ViewModelLayer;
 /// with views in databases.
 /// This class makes async calls to your repository class.
 /// </summary>
-public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, IViewViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search>
+public partial class <|CLASS_NAME|>ViewModel : AppViewModel<string, <|CLASS_NAME|>, <|CLASS_NAME|>Search>, IViewViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search>
 {
   #region Constructors
   /// <summary>
@@ -24,12 +24,12 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
   {
   }
 
-  public <|CLASS_NAME|>ViewModel(IViewRepository<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>, <|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>Search> repository) : base()
+  public <|CLASS_NAME|>ViewModel(IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search> repository) : base()
   {
     Repository = repository;
   }
 
-  public <|CLASS_NAME|>ViewModel(IViewRepository<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>, <|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>Search> repository,
+  public <|CLASS_NAME|>ViewModel(IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search> repository,
     ILogger<<|CLASS_NAME|>ViewModel> logger) : base(logger)
   {
     Repository = repository;
@@ -45,7 +45,7 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
   #endregion
 
   #region Public Properties
-  public IViewRepository<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>, <|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>Search>? Repository { get; set; }
+  public IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search>? Repository { get; set; }
   public ObservableCollection<<|CLASS_NAME|>> <|CLASS_NAME_PLURAL|>
   {
     get { return _<|CLASS_NAME_PLURAL|>; }

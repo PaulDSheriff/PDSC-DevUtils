@@ -7,12 +7,8 @@ using System.Net;
 
 namespace <|NAMESPACE|>.MinWebAPI.RouterClasses;
 
-public class <|CLASS_NAME|>Router : RouterBase
+public class <|CLASS_NAME|>Router : AppRouterBase
 {
-  #region Private Variables
-  private readonly <|NAMESPACE|>AppSettings _Settings;
-  #endregion
-
   #region Constructor
   public <|CLASS_NAME|>Router(ILogger<<|CLASS_NAME|>Router> logger, <|NAMESPACE|>AppSettings settings) : base(logger)
   {
@@ -20,6 +16,10 @@ public class <|CLASS_NAME|>Router : RouterBase
     TagName = "<|CLASS_NAME|> Routes";
     _Settings = settings;
   }
+  #endregion
+
+  #region Private Variables
+  private readonly <|NAMESPACE|>AppSettings _Settings;
   #endregion
 
   #region AddRoutes Method

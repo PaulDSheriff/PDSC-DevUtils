@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
@@ -7,25 +8,38 @@ namespace PDSC.Common.Web;
 
 public abstract class RouterBase
 {
+  #region Constructor
   public RouterBase(ILogger logger)
   {
-    UrlFragment = string.Empty;
-    TagName = string.Empty;
-    InfoMessage = string.Empty;
-    ErrorLogMessage = string.Empty;
-    EntityAsJson = string.Empty;
     _Logger = logger;
+    _Cache = null;
   }
 
-  public string UrlFragment;
-  public string TagName;
-  public string EntityAsJson { get; set; }
-  public string InfoMessage { get; set; }
-  public string ErrorLogMessage { get; set; }
+  public RouterBase(ILogger logger, IMemoryCache cache)
+  {
+    _Logger = logger;
+    _Cache = cache;
+  }
+  #endregion
+
+  #region Public Properties
+  public string UrlFragment { get; set; } = string.Empty;
+  public string TagName { get; set; } = string.Empty;
+  public string EntityAsJson { get; set; } = string.Empty;
+  public string InfoMessage { get; set; } = string.Empty;
+  public string ErrorLogMessage { get; set; } = string.Empty;
+  #endregion
+
+  #region Protected Variables
   protected readonly ILogger _Logger;
+  protected readonly IMemoryCache? _Cache;
+  #endregion
 
+  #region AddRoutes Abstract Method
   public abstract void AddRoutes(WebApplication app);
+  #endregion
 
+  #region SerializeEntity Method
   /// <summary>
   /// Serialize an object into a JSON string
   /// </summary>
@@ -46,7 +60,9 @@ public abstract class RouterBase
 
     return EntityAsJson;
   }
+  #endregion
 
+  #region HandleException Methods
   /// <summary>
   /// Call this method to return a '500 Internal Server Error' and log an exception.
   /// </summary>
@@ -88,4 +104,35 @@ public abstract class RouterBase
 
     return ret;
   }
+  #endregion
+
+  #region AddToCache Method
+  protected T? AddToCache<T>(object key, T value, int minutesToExpiration = 10)
+  {
+    T? ret = default;
+    if (key != null && value != null) {
+      if (_Cache != null) {
+        ret = _Cache.Set(key, value, TimeSpan.FromMinutes(minutesToExpiration));
+      }
+    }
+
+    return ret;
+  }
+  #endregion
+
+  #region GetFromCache Method
+  protected T? GetFromCache<T>(object key)
+  {
+    T? ret = default;
+
+    if (_Cache != null) {
+      var tmp = _Cache.Get(key);
+      if (tmp != null) {
+        ret = (T?)tmp;
+      }
+    }
+
+    return ret;
+  }
+  #endregion
 }

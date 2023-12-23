@@ -14,12 +14,7 @@ public partial class <|CLASS_NAME|>DetailView : ContentPage
   }
 
   private readonly <|CLASS_NAME|>ViewModelCommands ViewModel;
-  {|REMOVE_WHEN:IsPrimaryKeyGuid|}
-  public <|PK_LANGUAGE_DATA_TYPE|> <|PK_PROPERTY_NAME|> { get; set; }
-  {|END_REMOVE|}
-  {|REMOVE_WHEN:IsPrimaryKeyNotGuid|}
-  public string <|PK_PROPERTY_NAME|> { get; set; }
-  {|END_REMOVE|}
+  public <|PK_LANGUAGE_DATA_TYPE|> <|PK_PROPERTY_NAME|> { get; set; } <|PROPERTY_INITIALIZER_STATEMENT|>
   public bool IsAdding { get; set; }
 
   protected async override void OnAppearing()
@@ -36,13 +31,8 @@ public partial class <|CLASS_NAME|>DetailView : ContentPage
       {|END_REMOVE|}
     }
     else {
-      // Load <|CLASS_NAME_PLURAL|> First
-      {|REMOVE_WHEN:IsPrimaryKeyGuid|}
+      // Load a Single Record
       await ViewModel.GetAsync(<|PK_PROPERTY_NAME|>);
-      {|END_REMOVE|}
-      {|REMOVE_WHEN:IsPrimaryKeyNotGuid|}
-      await ViewModel.GetAsync(new Guid(<|PK_PROPERTY_NAME|>));
-      {|END_REMOVE|}
     }
 
     {|REMOVE_WHEN:NoForeignKeys|}

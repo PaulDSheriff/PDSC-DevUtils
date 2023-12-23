@@ -7,9 +7,10 @@ namespace <|NAMESPACE|>.ViewModelLayer.AppClasses;
 /// All View Model classes in your project should inherit from this class.
 /// This allows you to add any properties/methods that are in common to all View Model classes in this project.
 /// </summary>
+/// <typeparam name="TPK">Primary Key Data Type (int, string, guid, etc.)</typeparam>
 /// <typeparam name="TEntity">An entity data type</typeparam>
 /// <typeparam name="TSearch">A search entity data type</typeparam>
-public abstract class AppViewModel<TEntity, TSearch> : ViewModelEFBase<TEntity, TSearch>  where TEntity : class, new() where TSearch : class {
+public abstract class AppViewModel<TPK, TEntity, TSearch> : ViewModelEFBase<TPK, TEntity, TSearch>  where TEntity : class, new() where TSearch : class {
   #region Constructors
   public AppViewModel()
   {

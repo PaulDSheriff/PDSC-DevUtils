@@ -5,7 +5,7 @@ using System.Net;
 
 namespace <|NAMESPACE|>.DataLayer.API;
 
-public class <|CLASS_NAME|>RepositoryAPI : HttpClientRepositoryBase, <|REPOSITORY_INTERFACE|>
+public class <|CLASS_NAME|>RepositoryAPI : HttpClientRepositoryBase, IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>
 {
   #region Constructors
   public <|CLASS_NAME|>RepositoryAPI()

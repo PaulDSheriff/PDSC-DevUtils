@@ -58,7 +58,7 @@
         {|REMOVE_WHEN:IsView|}
         <Button IsDefault="True"
                 Click="SaveButton_Click"
-                IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource invertBool}}"
+                IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource InvertBool}}"
                 ToolTip="Save this <|CLASS_NAME_SINGULAR|>"
                 Background="{StaticResource SaveButton}"
                 Style="{StaticResource Button.WithImage}">
@@ -67,7 +67,7 @@
         {|END_REMOVE|}
         <Button IsCancel="True"
                 Click="CancelButton_Click"
-                IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource invertBool}}"
+                IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource InvertBool}}"
                 ToolTip="Cancel and Return to <|CLASS_NAME_SINGULAR|> List"
                 Background="{StaticResource CancelButton}"
                 Style="{StaticResource Button.WithImage}">
@@ -104,7 +104,7 @@
       <!-- ****************** -->
       <Label Grid.Row="<|GRID_ROW|>"
              Grid.ColumnSpan="2"
-             IsVisible="{Binding ExceptionHappened}"
+             Visibility="{Binding Path=ExceptionHappened, Converter={StaticResource BoolToVisibility}}"
              Content="{Binding Path=LastErrorMessage}"
              Style="{StaticResource ErrorMessage}" />
     </Grid>

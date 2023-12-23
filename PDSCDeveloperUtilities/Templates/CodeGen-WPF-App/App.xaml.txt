@@ -1,17 +1,14 @@
 ﻿<Application x:Class="<|NAMESPACE|>.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converters="clr-namespace:PDSC.Common.WPF.Converters;assembly=PDSC.Common.WPF"
              StartupUri="MainWindow.xaml">
   <Application.Resources>
     <ResourceDictionary>
-      <converters:InvertedBoolConverter x:Key="invertBool" />
-
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/PDSC.Common.WPF;component/Resources/Styles/Colors.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/PDSC.Common.WPF;component/Resources/Styles/Styles.xaml" />
-        
         <ResourceDictionary Source="/Resources/Styles/AppColors.xaml" />
+
+        <ResourceDictionary Source="pack://application:,,,/PDSC.Common.WPF;component/Resources/Styles/Styles.xaml" />
         <ResourceDictionary Source="/Resources/Styles/AppStyles.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>

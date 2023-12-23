@@ -53,6 +53,19 @@
     <IsView>true</IsView>
   </Template>
   <Template>
+    <Name>WPF - AppStyles.xaml</Name>
+    <TemplateFileName>CodeGen-WPF-App\AppStyles.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>{|NAMESPACE|}.WPF\Resources\Styles</OutputSubFolder>
+    <OutputFileExtension>.xaml</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix></OutputFileSuffix>
+    <UseClassNameAsFileName>false</UseClassNameAsFileName>
+    <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
+  </Template>
+  <Template>
     <Name>WPF - App.xaml</Name>
     <TemplateFileName>CodeGen-WPF-App\App.xaml.txt</TemplateFileName>
     <BaseClassName></BaseClassName>

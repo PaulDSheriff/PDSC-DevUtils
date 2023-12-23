@@ -8,6 +8,9 @@ namespace PDSC.Common;
 public interface IViewRepository<TEntity, TSearch>
 {
   DataResponseBase? ResponseObject { get; set; }
+  string BearerToken { get; set; }
+  string BaseWebAddress { get; set; }
+  string AdditionalUrlData { get; set; }
 
   Task<List<TEntity>> GetAsync();
   Task<List<TEntity>> SearchAsync(TSearch search);

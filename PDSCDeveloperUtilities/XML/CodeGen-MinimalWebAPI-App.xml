@@ -66,6 +66,19 @@
     <IsView>true</IsView>
   </Template>
   <Template>
+    <Name>Minimal Web API - AppRouterBase Class</Name>
+    <TemplateFileName>CodeGen-Minimal-WebAPI-App\AppRouterBase.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>{|NAMESPACE|}.MinWebAPI\AppClasses</OutputSubFolder>
+    <OutputFileExtension>.cs</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix></OutputFileSuffix>
+    <UseClassNameAsFileName>false</UseClassNameAsFileName>
+    <AppendToFile>false</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>true</IsView>
+  </Template>
+  <Template>
     <Name>Minimal Web API - Defaults Class</Name>
     <TemplateFileName>CodeGen-Minimal-WebAPI-App\AppSettings.txt</TemplateFileName>
     <BaseClassName></BaseClassName>

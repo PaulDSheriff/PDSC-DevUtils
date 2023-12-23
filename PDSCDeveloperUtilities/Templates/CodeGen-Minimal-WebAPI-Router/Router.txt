@@ -7,12 +7,8 @@ using System.Net;
 
 namespace <|NAMESPACE|>.MinWebAPI.RouterClasses;
 
-public class <|CLASS_NAME|>Router : RouterBase
+public class <|CLASS_NAME|>Router : AppRouterBase
 {
-  #region Private Variables
-  private readonly <|NAMESPACE|>AppSettings _Settings;
-  #endregion
-
   #region Constructor
   public <|CLASS_NAME|>Router(ILogger<<|CLASS_NAME|>Router> logger, <|NAMESPACE|>AppSettings settings) : base(logger)
   {
@@ -22,6 +18,10 @@ public class <|CLASS_NAME|>Router : RouterBase
   }
   #endregion
 
+  #region Private Variables
+  private readonly <|NAMESPACE|>AppSettings _Settings;
+  #endregion
+
   #region AddRoutes Method
   /// <summary>
   /// Add asynchronous routes
@@ -29,14 +29,14 @@ public class <|CLASS_NAME|>Router : RouterBase
   /// <param name="app">A WebApplication object</param>
   public override void AddRoutes(WebApplication app)
   {
-    app.MapGet($"/{UrlFragment}", async (<|VIEWMODEL_INTERFACE|> vm) => await GetAsync(vm))
+    app.MapGet($"/{UrlFragment}", async (IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> vm) => await GetAsync(vm))
        .WithTags(TagName)
        .Produces(200)
        .Produces<List<<|CLASS_NAME|>>>()
        .Produces(404)
        .Produces(500);
 
-    app.MapGet($"/{UrlFragment}/{{id}}", async (<|PK_LANGUAGE_DATA_TYPE|> id, <|VIEWMODEL_INTERFACE|> vm) => await GetAsync(id, vm))
+    app.MapGet($"/{UrlFragment}/{{id}}", async (<|PK_LANGUAGE_DATA_TYPE|> id, IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> vm) => await GetAsync(id, vm))
        .WithTags(TagName)
        .Produces(200)
        .Produces<<|CLASS_NAME|>>()
@@ -44,7 +44,7 @@ public class <|CLASS_NAME|>Router : RouterBase
 
     // NOTE: This method will not display the parameters in Swagger, you must type them on the query line
     // Example: https://www.sample.com/api/CLASS_NAME/Search?SearchProperty=SearchValue
-    app.MapGet($"/{UrlFragment}/Search", async (<|CLASS_NAME|>BindSearch search, <|VIEWMODEL_INTERFACE|> vm) => await SearchAsync(search, vm))
+    app.MapGet($"/{UrlFragment}/Search", async (<|CLASS_NAME|>BindSearch search, IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> vm) => await SearchAsync(search, vm))
        .WithTags(TagName)
        .Produces(200)
        .Produces<List<<|CLASS_NAME|>>>()
@@ -52,27 +52,27 @@ public class <|CLASS_NAME|>Router : RouterBase
 
     // NOTE: This method will not display the parameters in Swagger, you must type them on the query line
     // Example: https://www.sample.com/api/CLASS_NAME/Search?SearchProperty=SearchValue
-    app.MapGet($"/{UrlFragment}/Count", async (<|CLASS_NAME|>BindSearch search, <|VIEWMODEL_INTERFACE|> vm) => await CountAsync(search, vm))
+    app.MapGet($"/{UrlFragment}/Count", async (<|CLASS_NAME|>BindSearch search, IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> vm) => await CountAsync(search, vm))
        .WithTags(TagName)
        .Produces(200)
        .Produces<int>()
        .Produces(404);
 
-    app.MapPost($"/{UrlFragment}", (<|CLASS_NAME|> entity, <|VIEWMODEL_INTERFACE|> vm) => Post(entity, vm))
+    app.MapPost($"/{UrlFragment}", (<|CLASS_NAME|> entity, IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> vm) => Post(entity, vm))
       .WithTags(TagName)
       .Produces(201)
       .Produces<<|CLASS_NAME|>>()
       .Produces(404)
       .Produces(500);
 
-    app.MapPut($"/{UrlFragment}/{{id}}", (<|PK_LANGUAGE_DATA_TYPE|> id, <|CLASS_NAME|> entity, <|VIEWMODEL_INTERFACE|> vm) => Put(id, entity, vm))
+    app.MapPut($"/{UrlFragment}/{{id}}", (<|PK_LANGUAGE_DATA_TYPE|> id, <|CLASS_NAME|> entity, IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> vm) => Put(id, entity, vm))
       .WithTags(TagName)
       .Produces(200)
       .Produces<<|CLASS_NAME|>>()
       .Produces(404)
       .Produces(500);
 
-    app.MapDelete($"/{UrlFragment}/{{id}}", (<|PK_LANGUAGE_DATA_TYPE|> id, <|VIEWMODEL_INTERFACE|> vm) => Delete(id, vm))
+    app.MapDelete($"/{UrlFragment}/{{id}}", (<|PK_LANGUAGE_DATA_TYPE|> id, IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> vm) => Delete(id, vm))
       .WithTags(TagName)
       .Produces(200)
       .Produces<<|CLASS_NAME|>>()
@@ -82,7 +82,7 @@ public class <|CLASS_NAME|>Router : RouterBase
   #endregion
 
   #region GetAsync Method
-  protected virtual async Task<IResult> GetAsync(<|VIEWMODEL_INTERFACE|> vm)
+  protected virtual async Task<IResult> GetAsync(IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> vm)
   {
     IResult ret;
     DataResponse<ObservableCollection<<|CLASS_NAME|>>> response = new();
@@ -121,7 +121,7 @@ public class <|CLASS_NAME|>Router : RouterBase
   #endregion
 
   #region GetAsync(id) Method
-  protected virtual async Task<IResult> GetAsync(<|PK_LANGUAGE_DATA_TYPE|> id, <|VIEWMODEL_INTERFACE|> vm)
+  protected virtual async Task<IResult> GetAsync(<|PK_LANGUAGE_DATA_TYPE|> id, IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> vm)
   {
     IResult ret;
     DataResponse<<|CLASS_NAME|>> response = new();
@@ -160,7 +160,7 @@ public class <|CLASS_NAME|>Router : RouterBase
   #endregion
 
   #region SearchAsync Method
-  protected virtual async Task<IResult> SearchAsync(<|CLASS_NAME|>BindSearch search, <|VIEWMODEL_INTERFACE|> vm)
+  protected virtual async Task<IResult> SearchAsync(<|CLASS_NAME|>BindSearch search, IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> vm)
   {
     IResult ret;
     DataResponse<ObservableCollection<<|CLASS_NAME|>>> response = new();
@@ -206,7 +206,7 @@ public class <|CLASS_NAME|>Router : RouterBase
   #endregion
 
   #region CountAsync Method
-  protected virtual async Task<IResult> CountAsync(<|CLASS_NAME|>BindSearch search, <|VIEWMODEL_INTERFACE|> vm)
+  protected virtual async Task<IResult> CountAsync(<|CLASS_NAME|>BindSearch search, IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> vm)
   {
     IResult ret;
     DataResponse<int> response = new();
@@ -252,7 +252,7 @@ public class <|CLASS_NAME|>Router : RouterBase
   #endregion
 
   #region Post Method
-  protected virtual async Task<IResult> Post(<|CLASS_NAME|>? entity, <|VIEWMODEL_INTERFACE|> vm)
+  protected virtual async Task<IResult> Post(<|CLASS_NAME|>? entity, IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> vm)
   {
     IResult ret;
     DataResponse<<|CLASS_NAME|>> response = new();
@@ -295,7 +295,7 @@ public class <|CLASS_NAME|>Router : RouterBase
   #endregion
 
   #region Put Method
-  protected virtual async Task<IResult> Put(<|PK_LANGUAGE_DATA_TYPE|> id, <|CLASS_NAME|> entity, <|VIEWMODEL_INTERFACE|> vm)
+  protected virtual async Task<IResult> Put(<|PK_LANGUAGE_DATA_TYPE|> id, <|CLASS_NAME|> entity, IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> vm)
   {
     IResult ret;
     DataResponse<<|CLASS_NAME|>> response = new();
@@ -341,7 +341,7 @@ public class <|CLASS_NAME|>Router : RouterBase
   #endregion
 
   #region Delete Method
-  protected virtual async Task<IResult> Delete(<|PK_LANGUAGE_DATA_TYPE|> id, <|VIEWMODEL_INTERFACE|> vm)
+  protected virtual async Task<IResult> Delete(<|PK_LANGUAGE_DATA_TYPE|> id, IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> vm)
   {
     IResult ret;
     DataResponse<<|CLASS_NAME|>> response = new();

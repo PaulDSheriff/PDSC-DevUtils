@@ -6,7 +6,7 @@
              x:Class="<|NAMESPACE|>.MAUI.App">
   <Application.Resources>
     <ResourceDictionary>
-      <converters:InvertedBoolConverter x:Key="invertBool" />
+      <converters:InvertedBoolConverter x:Key="InvertBool" />
 
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Resources/Styles/Colors.xaml" />

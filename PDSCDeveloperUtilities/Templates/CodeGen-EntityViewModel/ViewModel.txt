@@ -14,7 +14,7 @@ namespace <|NAMESPACE|>.ViewModelLayer;
 /// with tables in databases.
 /// This class makes async calls to your repository class.
 /// </summary>
-public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|VIEWMODEL_INTERFACE|>
+public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>, IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>
 {
   #region Constructors
   /// <summary>
@@ -24,14 +24,14 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
   {
   }
 
-  public <|CLASS_NAME|>ViewModel(<|REPOSITORY_INTERFACE|> repository) : base()
+  public <|CLASS_NAME|>ViewModel(IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> repository) : base()
   {
     Repository = repository;
   }
 
-  public <|CLASS_NAME|>ViewModel(<|REPOSITORY_INTERFACE|> repository,
+  public <|CLASS_NAME|>ViewModel(IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> repository,
   {|FOR EACH FK_TABLE|}
-    <|REPOSITORY_INTERFACE|> <|CLASS_NAME_SINGULAR_ALL_LOWER|>Repo,
+    IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> <|CLASS_NAME_SINGULAR_ALL_LOWER|>Repo,
   {|END_LOOP|}
     ILogger<<|CLASS_NAME|>ViewModel> logger) : base(logger)
   {
@@ -52,14 +52,14 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
   // Foreign Key Variables
   {|END_REMOVE|}  
   {|FOR EACH FK_TABLE|}
-  private <|REPOSITORY_INTERFACE|>? <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_SINGULAR|>Repo;
+  private IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>? <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_SINGULAR|>Repo;
   private ObservableCollection<<|CLASS_NAME_SINGULAR|>> <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_PLURAL|> = new();
   private <|CLASS_NAME_SINGULAR|>? <|PRIVATE_FIELD_PREFIX|>Selected<|CLASS_NAME_SINGULAR|>;
   {|END_LOOP|}
   #endregion
 
   #region Public Properties
-  public <|REPOSITORY_INTERFACE|>? Repository { get; set; }
+  public IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>? Repository { get; set; }
   public ObservableCollection<<|CLASS_NAME|>> <|CLASS_NAME_PLURAL|>
   {
     get { return _<|CLASS_NAME_PLURAL|>; }
@@ -94,7 +94,7 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
   // Foreign Key Public Properties
   {|END_REMOVE|}
   {|FOR EACH FK_TABLE|}
-  public <|REPOSITORY_INTERFACE|>? <|CLASS_NAME_SINGULAR|>Repository
+  public IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>? <|CLASS_NAME_SINGULAR|>Repository
   {
     get { return <|PRIVATE_FIELD_PREFIX|><|CLASS_NAME_SINGULAR|>Repo; }
     set
@@ -157,6 +157,10 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
       InfoMessage = $"Loading {ClassDescriptionPlural}...";
 
       try {
+        // Set additional data for repository
+        SetRepositoryData(Repository);
+
+        // Attempt to Get Data
         var list = await Repository.GetAsync();
         <|CLASS_NAME_PLURAL|> = new ObservableCollection<<|CLASS_NAME|>>(list);
 
@@ -165,6 +169,7 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
         if (<|CLASS_NAME_PLURAL|>.Count == 0) {
           NextId = 1;
         }
+        else {
           NextId = <|CLASS_NAME_PLURAL|>.Max(row => row.<|PK_PROPERTY_NAME|>) + 1;
         }
         {|END_REMOVE|}
@@ -217,6 +222,10 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
       InfoMessage = $"Loading a {ClassDescriptionSingular}...";
 
       try {
+        // Set additional data for repository
+        SetRepositoryData(Repository);
+
+        // Attempt to Get Data
         CurrentEntity = await Repository.GetAsync(id);
 
         if (CurrentEntity != null) {
@@ -271,6 +280,10 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
       InfoMessage = $"Searching for {ClassDescriptionPlural}...";
 
       try {
+        // Set additional data for repository
+        SetRepositoryData(Repository);
+
+        // Attempt to Get Data
         var list = await Repository.SearchAsync(search);
         <|CLASS_NAME_PLURAL|> = new ObservableCollection<<|CLASS_NAME|>>(list);
 
@@ -324,6 +337,10 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
       search ??= new();
 
       try {
+        // Set additional data for repository
+        SetRepositoryData(Repository);
+
+        // Attempt to Get Data
         RowsAffected = await Repository.CountAsync(search);
 
         if (RowsAffected > 0) {
@@ -396,6 +413,9 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
           InfoMessage = $"Attempting to Add a {ClassDescriptionSingular}...";
 
           try {
+            // Set additional data for repository
+            SetRepositoryData(Repository);
+
             // Update any common fields
             {|REMOVE_WHEN:NoStandardFields|}
             {|FOR EACH COLUMN:StandardFieldIsInsertable|}
@@ -413,10 +433,8 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
               NextId++;
               {|END_REMOVE|}
 
-              // Insert new entity at the beginning of the collection
-              if (<|CLASS_NAME_PLURAL|>.Count > 0) {
-                <|CLASS_NAME_PLURAL|>.Insert(0, CurrentEntity);
-              }
+              // Add new entity to the collection
+              <|CLASS_NAME_PLURAL|>.Add(CurrentEntity);
 
               // Success, return a '201 Created'
               ret.Data = CurrentEntity;
@@ -495,6 +513,9 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
           InfoMessage = $"Attempting to Update a {ClassDescriptionSingular}...";
 
           try {
+            // Set additional data for repository
+            SetRepositoryData(Repository);
+
             // Attempt to locate the data to update
             <|CLASS_NAME|>? current = await Repository.GetAsync(id);
 
@@ -586,6 +607,9 @@ public partial class <|CLASS_NAME|>ViewModel : AppViewModel<<|CLASS_NAME|>, <|CL
       InfoMessage = $"Attempting to Delete a {ClassDescriptionSingular}...";
 
       try {
+        // Set additional data for repository
+        SetRepositoryData(Repository);
+
         // Attempt to locate the data to delete
         <|CLASS_NAME|>? entity = await Repository.GetAsync(id);
         if (entity != null) {

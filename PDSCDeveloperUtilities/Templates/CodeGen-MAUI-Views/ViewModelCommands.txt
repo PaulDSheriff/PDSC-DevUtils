@@ -12,13 +12,13 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
   public class <|CLASS_NAME|>ViewModelCommands : <|CLASS_NAME|>ViewModel
   {
     #region Constructors
-    public <|CLASS_NAME|>ViewModelCommands(<|REPOSITORY_INTERFACE|> repository) : base(repository)
+    public <|CLASS_NAME|>ViewModelCommands(IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> repository) : base(repository)
     {
     }
 
-    public <|CLASS_NAME|>ViewModelCommands(<|REPOSITORY_INTERFACE|> repository,
+    public <|CLASS_NAME|>ViewModelCommands(IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> repository,
     {|FOR EACH FK_TABLE|}
-      IRepository<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>, <|CLASS_NAME|>Search> <|CLASS_NAME_SINGULAR_ALL_LOWER|>Repo,
+      IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search> <|CLASS_NAME_SINGULAR_ALL_LOWER|>Repo,
     {|END_LOOP|}
       ILogger<<|CLASS_NAME|>ViewModel> logger) : base(repository, <|FK_REPOSITORIES_CONSTRUCTOR|> logger)
     {
@@ -82,7 +82,7 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
     #region SearchAsync Method
     protected new async Task SearchAsync()
     {
-      DataResponse<ObservableCollection<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>>> response = await base.SearchAsync(SearchEntity);
+      DataResponse<ObservableCollection<<|CLASS_NAME|>>> response = await base.SearchAsync(SearchEntity);
       if (response != null && response.StatusCode == HttpStatusCode.OK) {
         InfoMessage = $"Searched and Found: {(response.Data ?? new()).Count} {ClassDescriptionPlural}";
       }
@@ -117,9 +117,9 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
     #endregion
 
     #region SaveAsync Method
-    public async override Task<DataResponse<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>>> SaveAsync()
+    public async override Task<DataResponse<<|CLASS_NAME|>>> SaveAsync()
     {
-      DataResponse<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>> response = await base.SaveAsync();
+      DataResponse<<|CLASS_NAME|>> response = await base.SaveAsync();
 
       if (response.StatusCode == HttpStatusCode.Created ||
           response.StatusCode == HttpStatusCode.OK) {
@@ -139,7 +139,7 @@ namespace <|NAMESPACE|>.MAUI.CommandClasses
         switch (action) {
           case "Delete":
             // Perform delete
-            DataResponse<<|NAMESPACE|>.EntityLayer.<|CLASS_NAME|>> response = await base.DeleteAsync(id);
+            DataResponse<<|CLASS_NAME|>> response = await base.DeleteAsync(id);
             if (response != null && response.StatusCode == HttpStatusCode.NoContent) {
               InfoMessage = "<|CLASS_NAME_SINGULAR|> Deleted";
             }

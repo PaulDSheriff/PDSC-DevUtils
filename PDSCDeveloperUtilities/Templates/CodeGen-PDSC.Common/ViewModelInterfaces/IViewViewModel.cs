@@ -9,6 +9,10 @@ namespace PDSC.Common;
 /// <typeparam name="TSearch">A search entity class</typeparam>
 public interface IViewViewModel<TEntity, TSearch> where TEntity : class
 {
+  string BearerToken { get; set; }
+  string BaseWebAddress { get; set; }
+  string AdditionalUrlData { get; set; }
+
   Task<DataResponse<ObservableCollection<TEntity>>> GetAsync();
   Task<DataResponse<TEntity>> GetAsync(TEntity entity);
 

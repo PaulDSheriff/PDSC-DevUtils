@@ -35,6 +35,9 @@ public class CommonBase : INotifyPropertyChanged
   private string _InfoMessage = string.Empty;
   private string _LastErrorMessage = string.Empty;
   private Exception? _LastException = null;
+  private string _BearerToken = string.Empty;
+  private string _BaseWebAddress = string.Empty;
+  private string _AdditionalUrlData = string.Empty;
   #endregion
 
   #region Public Properties
@@ -137,6 +140,52 @@ public class CommonBase : INotifyPropertyChanged
         }
       }
       RaisePropertyChanged(nameof(LastException));
+    }
+  }
+
+
+  /// <summary>
+  /// Get/Set BearerToken
+  /// </summary>
+  [NotMapped]
+  [JsonIgnore]
+  public string BearerToken
+  {
+    get { return _BearerToken; }
+    set
+    {
+      _BearerToken = value;
+      RaisePropertyChanged(nameof(BearerToken));
+    }
+  }
+
+  /// <summary>
+  /// Get/Set the base address such as https://www.pdsa.com
+  /// </summary>
+  [NotMapped]
+  [JsonIgnore]
+  public string BaseWebAddress
+  {
+    get { return _BaseWebAddress; }
+    set
+    {
+      _BaseWebAddress = value;
+      RaisePropertyChanged(nameof(BaseWebAddress));
+    }
+  }
+
+  /// <summary>
+  /// Get/Set Additional Url Data to pass on the Web API calling line such as authId=12124. Commonly used when you need to search within a table where all customer data is located, and you only need a specific customers information. Set the customer id into this property.
+  /// </summary>
+  [NotMapped]
+  [JsonIgnore]
+  public string AdditionalUrlData
+  {
+    get { return _AdditionalUrlData; }
+    set
+    {
+      _AdditionalUrlData = value;
+      RaisePropertyChanged(nameof(AdditionalUrlData));
     }
   }
   #endregion

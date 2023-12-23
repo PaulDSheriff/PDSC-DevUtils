@@ -50,7 +50,7 @@ public static class SecurityExtensions
         {
           // Add any valid IP's that can call this Web API
           foreach (var ip in settings.JWTSettings.AllowedIPAddresses) {
-            builder.WithOrigins(ip);
+            builder.WithOrigins(ip).AllowAnyMethod().AllowAnyHeader();
           }
         });
     });

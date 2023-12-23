@@ -8,10 +8,11 @@ namespace PDSC.Common;
 
 /// <summary>
 /// All view model classes should inherit from this class
+/// <typeparam name="TPK">Primary Key Data Type (int, string, guid, etc.)</typeparam>
 /// <typeparam name="TEntity">An entity type</typeparam>
 /// <typeparam name="TSearch">An entity search type</typeparam>
 /// </summary>
-public abstract class ViewModelBase<TEntity, TSearch> : CommonBase where TEntity : class, new() where TSearch : class
+public abstract class ViewModelBase<TPK, TEntity, TSearch> : CommonBase where TEntity : class, new() where TSearch : class
 {
   #region Private Variables
   private int _RowsAffected;
@@ -173,6 +174,17 @@ public abstract class ViewModelBase<TEntity, TSearch> : CommonBase where TEntity
     HasValidationErrors = ValidationMessages.Count > 0;
 
     return !HasValidationErrors;
+  }
+  #endregion
+
+  #region SetRepositoryData Method
+  protected void SetRepositoryData(IRepository<TPK, TEntity, TSearch>? repo)
+  {
+    if (repo != null) {
+      repo.BearerToken = base.BearerToken;
+      repo.BaseWebAddress = base.BaseWebAddress;
+      repo.AdditionalUrlData = base.AdditionalUrlData;
+    }
   }
   #endregion
 

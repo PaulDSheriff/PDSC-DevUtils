@@ -60,14 +60,14 @@
                     Grid.Column="1"
                     Orientation="Horizontal">
           <Button ToolTip="Search for <|CLASS_NAME_PLURAL|>"
-                  IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource invertBool}}"                  
+                  IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource InvertBool}}"                  
                   Style="{StaticResource Button.WithImage}"
                   Background="{StaticResource SearchButton}"
                   Click="Search_Click">
             <Image Source="/Resources/Images/magnifyingglass.png" />
           </Button>
           <Button ToolTip="Reset Search/Get All"
-                  IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource invertBool}}"                  
+                  IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource InvertBool}}"                  
                   Style="{StaticResource Button.WithImage}"
                   Background="{StaticResource RefreshButton}"
                   Click="Refresh_Click">
@@ -76,7 +76,7 @@
           {|REMOVE_WHEN:IsView|}
           <Rectangle Style="{StaticResource Separator.Left}" />
           <Button ToolTip="Add New <|CLASS_NAME_SINGULAR|>"
-                  IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource invertBool}}"                  
+                  IsEnabled="{Binding Path=IsDataProcessing, Converter={StaticResource InvertBool}}"                  
                   Style="{StaticResource Button.WithImage}"
                   Background="{StaticResource AddButton}"
                   Click="Add_Click">
@@ -162,7 +162,7 @@
     <!-- Error Message Area -->
     <!-- ****************** -->
     <Label Grid.Row="3"
-           IsVisible="{Binding ExceptionHappened}"
+           Visibility="{Binding Path=ExceptionHappened, Converter={StaticResource BoolToVisibility}}"
            Content="{Binding Path=LastErrorMessage}"
            Style="{StaticResource ErrorMessage}" />
   </Grid>
