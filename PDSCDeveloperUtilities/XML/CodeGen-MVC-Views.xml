@@ -91,4 +91,30 @@
     <IsTable>false</IsTable>
     <IsView>true</IsView>
   </Template>
+  <Template>
+    <Name>MVC - Program.cs Dependency Injections (Tables)</Name>
+    <TemplateFileName>CodeGen-MVC-Views\ProgramDITables.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>_DoNotAddToProject-Includes</OutputSubFolder>
+    <OutputFileExtension>.txt</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix></OutputFileSuffix>
+    <UseClassNameAsFileName>false</UseClassNameAsFileName>
+    <AppendToFile>true</AppendToFile>
+    <IsTable>true</IsTable>
+    <IsView>false</IsView>
+  </Template>
+  <Template>
+    <Name>MVC - MauiProgram.cs Dependency Injections (Views)</Name>
+    <TemplateFileName>CodeGen-MVC-Views\ProgramDIViews.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>_DoNotAddToProject-Includes</OutputSubFolder>
+    <OutputFileExtension>.txt</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix></OutputFileSuffix>
+    <UseClassNameAsFileName>false</UseClassNameAsFileName>
+    <AppendToFile>true</AppendToFile>
+    <IsTable>false</IsTable>
+    <IsView>true</IsView>
+  </Template>
 </CodeGenTemplates>

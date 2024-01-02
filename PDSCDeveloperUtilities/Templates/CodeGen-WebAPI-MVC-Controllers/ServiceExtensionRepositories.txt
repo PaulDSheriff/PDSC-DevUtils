@@ -1,6 +1,0 @@
-﻿{|FOR EACH TABLE|}
-      services.AddScoped<IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>Repository>();
-{|END_LOOP|}
-{|FOR EACH VIEW|}
-      services.AddScoped<IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>Repository>();
-{|END_LOOP|}

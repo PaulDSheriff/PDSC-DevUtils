@@ -27,21 +27,8 @@
     <IsView>true</IsView>
   </Template>
 	<Template>
-		<Name>DbContext DbSets</Name>
-		<TemplateFileName>CodeGen-DataClasses-EF\DbContextDbSets.txt</TemplateFileName>
-		<BaseClassName></BaseClassName>
-		<OutputSubFolder>_DoNotAddToProject-Includes</OutputSubFolder>
-		<OutputFileExtension>.txt</OutputFileExtension>
-		<OutputFilePrefix></OutputFilePrefix>
-		<OutputFileSuffix></OutputFileSuffix>
-		<UseClassNameAsFileName>false</UseClassNameAsFileName>
-		<AppendToFile>true</AppendToFile>
-    <IsTable>true</IsTable>
-    <IsView>true</IsView>
-  </Template>
-	<Template>
-		<Name>DbContext Multiple PKs</Name>
-		<TemplateFileName>CodeGen-DataClasses-EF\DbContextMultiplePKs.txt</TemplateFileName>
+		<Name>DbContext DbSets (Tables)</Name>
+		<TemplateFileName>CodeGen-DataClasses-EF\DbContextDbSetsTables.txt</TemplateFileName>
 		<BaseClassName></BaseClassName>
 		<OutputSubFolder>_DoNotAddToProject-Includes</OutputSubFolder>
 		<OutputFileExtension>.txt</OutputFileExtension>
@@ -51,5 +38,18 @@
 		<AppendToFile>true</AppendToFile>
     <IsTable>true</IsTable>
     <IsView>false</IsView>
+  </Template>
+  <Template>
+    <Name>DbContext DbSets (Views)</Name>
+    <TemplateFileName>CodeGen-DataClasses-EF\DbContextDbSetsViews.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>_DoNotAddToProject-Includes</OutputSubFolder>
+    <OutputFileExtension>.txt</OutputFileExtension>
+    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFileSuffix></OutputFileSuffix>
+    <UseClassNameAsFileName>false</UseClassNameAsFileName>
+    <AppendToFile>true</AppendToFile>
+    <IsTable>false</IsTable>
+    <IsView>true</IsView>
   </Template>
 </CodeGenTemplates>

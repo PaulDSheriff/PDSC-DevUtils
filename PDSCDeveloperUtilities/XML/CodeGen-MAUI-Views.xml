@@ -66,16 +66,29 @@
     <IsView>true</IsView>
   </Template>
   <Template>
-    <Name>.NET MAUI - MauiProgram.cs Dependency Injections</Name>
-    <TemplateFileName>CodeGen-MAUI-Views\ProgramDI.txt</TemplateFileName>
+    <Name>.NET MAUI - MauiProgram.cs Dependency Injections (Tables)</Name>
+    <TemplateFileName>CodeGen-MAUI-Views\ProgramDITables.txt</TemplateFileName>
     <BaseClassName></BaseClassName>
     <OutputSubFolder>_DoNotAddToProject-Includes</OutputSubFolder>
     <OutputFileExtension>.txt</OutputFileExtension>
-    <OutputFilePrefix></OutputFilePrefix>
+    <OutputFilePrefix>Maui</OutputFilePrefix>
     <OutputFileSuffix></OutputFileSuffix>
     <UseClassNameAsFileName>false</UseClassNameAsFileName>
     <AppendToFile>true</AppendToFile>
     <IsTable>true</IsTable>
+    <IsView>false</IsView>
+  </Template>
+  <Template>
+    <Name>.NET MAUI - MauiProgram.cs Dependency Injections (Views)</Name>
+    <TemplateFileName>CodeGen-MAUI-Views\ProgramDIViews.txt</TemplateFileName>
+    <BaseClassName></BaseClassName>
+    <OutputSubFolder>_DoNotAddToProject-Includes</OutputSubFolder>
+    <OutputFileExtension>.txt</OutputFileExtension>
+    <OutputFilePrefix>Maui</OutputFilePrefix>
+    <OutputFileSuffix></OutputFileSuffix>
+    <UseClassNameAsFileName>false</UseClassNameAsFileName>
+    <AppendToFile>true</AppendToFile>
+    <IsTable>false</IsTable>
     <IsView>true</IsView>
   </Template>
   <Template>

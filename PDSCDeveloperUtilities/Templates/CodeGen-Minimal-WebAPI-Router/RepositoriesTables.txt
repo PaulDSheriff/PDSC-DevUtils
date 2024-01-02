@@ -1,0 +1,6 @@
+﻿
+// ADD THE FOLLOWING LINES IN THE AddRepositoryClasses() METHOD
+      services.AddScoped<IRepository<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>Repository>();
+
+// ADD THE FOLLOWING LINES IN THE AddViewModelClasses() METHOD
+      services.AddScoped<IViewModel<<|PK_LANGUAGE_DATA_TYPE|>, <|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>ViewModel>();

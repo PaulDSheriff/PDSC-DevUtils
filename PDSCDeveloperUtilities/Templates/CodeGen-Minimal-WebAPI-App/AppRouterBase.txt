@@ -1,0 +1,29 @@
+using <|NAMESPACE|>.EntityLayer;
+using Microsoft.Extensions.Caching.Memory;
+using PDSC.Common;
+using PDSC.Common.Web;
+
+namespace <|NAMESPACE|>.MinWebAPI;
+
+/// <summary>
+/// All Router classes in your WebAPI project should inherit from this class
+/// Use this class to add common code all (or most) of your routers need
+/// </summary>
+public class AppRouterBase : RouterBase
+{
+  #region Constructors
+  public AppRouterBase(ILogger logger) : base(logger)
+  {
+  }
+
+  public AppRouterBase(ILogger logger, IMemoryCache cache) : base(logger, cache)
+  {
+  }
+  #endregion
+
+  #region AddRoutes Method
+  public override void AddRoutes(WebApplication app)
+  {
+  }
+  #endregion
+}

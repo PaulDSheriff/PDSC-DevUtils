@@ -1,0 +1,1 @@
+    modelBuilder.Entity<<|CLASS_NAME|>>().HasNoKey().ToView("<|VIEW_NAME|>", schema: "<|SCHEMA_NAME|>");

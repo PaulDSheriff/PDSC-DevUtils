@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeGenStandardFields>
+  <StandardField>
+    <FieldName>InsertName</FieldName>
+    <Initializer>System.Environment.UserName</Initializer>
+    <InitializerStatement>= System.Environment.UserName;</InitializerStatement>
+    <Modifier>= System.Environment.UserName;</Modifier>
+    <IsInsertable>true</IsInsertable>
+    <IsEditable>true</IsEditable>
+    <DisplayInTable>false</DisplayInTable>
+    <DisplayInEdit>false</DisplayInEdit>
+    <Annotations></Annotations>
+  </StandardField>
+  <StandardField>
+    <FieldName>InsertDate</FieldName>
+    <Initializer>DateTime.Now</Initializer>
+    <InitializerStatement>= DateTime.Now;</InitializerStatement>
+    <Modifier>= DateTime.Now;</Modifier>
+    <IsInsertable>true</IsInsertable>
+    <IsEditable>true</IsEditable>
+    <DisplayInTable>false</DisplayInTable>
+    <DisplayInEdit>false</DisplayInEdit>
+    <Annotations></Annotations>
+  </StandardField>
+  <StandardField>
+    <FieldName>UpdateName</FieldName>
+    <Initializer>System.Environment.UserName</Initializer>
+    <InitializerStatement>= System.Environment.UserName;</InitializerStatement>
+    <Modifier>= System.Environment.UserName;</Modifier>
+    <IsInsertable>false</IsInsertable>
+    <IsEditable>true</IsEditable>
+    <DisplayInTable>false</DisplayInTable>
+    <DisplayInEdit>false</DisplayInEdit>
+    <Annotations></Annotations>
+  </StandardField>
+  <StandardField>
+    <FieldName>UpdateDate</FieldName>
+    <Initializer>DateTime.Now</Initializer>
+    <InitializerStatement>= DateTime.Now;</InitializerStatement>
+    <Modifier>= DateTime.Now;</Modifier>
+    <IsInsertable>false</IsInsertable>
+    <IsEditable>true</IsEditable>
+    <DisplayInTable>false</DisplayInTable>
+    <DisplayInEdit>false</DisplayInEdit>
+    <Annotations></Annotations>
+  </StandardField>
+</CodeGenStandardFields>

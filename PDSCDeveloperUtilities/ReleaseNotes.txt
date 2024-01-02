@@ -1,4 +1,27 @@
-﻿PDSC Developer Utilities v9.1.0 - 12/??/2023
+﻿PDSC Developer Utilities v9.1.1 - 1/2/2024
+-----------------------------------------------------
+Fixed up all the files generated into the _DoNotAddToProject-Includes folder after generation
+  Made sure the appropriate things to add into exiting projects is updated
+  Updated the documentation with how to add new tables/views after you have already generated a project
+  Deleted the following templates
+    Templates/CodeGen-DataClasses-EF/DbContextMultiplePKs.txt
+    Templates/CodeGen-MAUI-Views/ProgramDI.txt
+    Templates/CodeGen-WebAPI-MVC-Controllers/ServiceExtensionRepositories.txt
+  Added new templates
+    Templates/CodeGen-MAUI-Views/ProgramDITables.txt
+    Templates/CodeGen-MAUI-Views/ProgramDIViews.txt
+    Templates/CodeGen-MVC-Views/ProgramDITables.txt
+    Templates/CodeGen-MVC-Views/ProgramDIViews.txt
+    Templates/CodeGen-Minimal-WebAPI-Router/RepositoriesTables.txt
+    Templates/CodeGen-Minimal-WebAPI-Router/RepositoriesViews.txt
+    Templates/CodeGen-WebAPI-MVC-Controllers/RepositoriesTables.txt
+    Templates/CodeGen-WebAPI-MVC-Controllers/RepositoriesViews.txt
+    Templates/CodeGen-WPF-Views/MainWindowTables.txt
+    Templates/CodeGen-WPF-Views/MainWindowViews.txt
+
+
+
+PDSC Developer Utilities v9.1.0 - 12/??/2023
 -----------------------------------------------------
 BREAKING CHANGES!
   Modified the IRepository interface so it now includes the primary key data type

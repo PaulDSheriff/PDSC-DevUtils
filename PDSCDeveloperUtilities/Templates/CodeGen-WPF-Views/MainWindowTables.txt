@@ -1,0 +1,3 @@
+﻿      case "<|CLASS_NAME_ALL_LOWER|>listview":
+        ContentArea.Children.Add(new <|CLASS_NAME|>ListView());
+        break;

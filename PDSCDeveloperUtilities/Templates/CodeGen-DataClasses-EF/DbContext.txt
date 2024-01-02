@@ -19,10 +19,8 @@ public partial class <|DB_CONTEXT|> : DbContext {
     //   key.AddressID 
     // });
 
-    {|REMOVE_WHEN:IsView|}
-    // Add any tables with more than one primary key field
-    {|INCLUDE:DbContextMultiplePKs.txt|}
-    {|END_REMOVE|}
+    // Add any tables with more than one primary key field here
+
 
     // Add any Views here
     // Example: modelBuilder.Entity<ViewName>().HasNoKey().ToView("ViewName", schema: "dbo");

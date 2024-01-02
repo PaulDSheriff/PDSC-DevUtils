@@ -1,0 +1,10 @@
+﻿
+// ADD THE FOLLOWING TO THE RegisterRepositories() method
+  mauiAppBuilder.Services.AddScoped<IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>RepositoryAPI>();
+
+// ADD THE FOLLOWING TO THE RegisterViewModels() method
+  mauiAppBuilder.Services.AddScoped<<|CLASS_NAME|>ViewModelCommands>();
+
+// ADD THE FOLLOWING TO THE RegisterViews() method
+  mauiAppBuilder.Services.AddScoped<<|CLASS_NAME|>ListView>();
+  mauiAppBuilder.Services.AddScoped<<|CLASS_NAME|>DetailView>();

@@ -1,0 +1,3 @@
+﻿
+// ADD THE FOLLOWING TO THE Program.cs FILE
+  builder.Services.AddScoped<IViewRepository<<|CLASS_NAME|>, <|CLASS_NAME|>Search>, <|CLASS_NAME|>Repository>();
