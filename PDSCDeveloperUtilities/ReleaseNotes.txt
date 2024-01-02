@@ -4,6 +4,7 @@ Fixed up all the files generated into the _DoNotAddToProject-Includes folder aft
   Made sure the appropriate things to add into exiting projects is updated
   Updated the documentation with how to add new tables/views after you have already generated a project
   Deleted the following templates
+    Templates/CodeGen-DataClasses-EF/DbContextDbSets.txt
     Templates/CodeGen-DataClasses-EF/DbContextMultiplePKs.txt
     Templates/CodeGen-MAUI-Views/ProgramDI.txt
     Templates/CodeGen-WebAPI-MVC-Controllers/ServiceExtensionRepositories.txt

@@ -10,7 +10,12 @@ public partial class <|DB_CONTEXT|> : DbContext {
   }
   
   // Add your DbSet Classes for Tables/Views here
-  {|INCLUDE:DbContextDbSets.txt|}
+  {|FOR EACH TABLE|}
+  public virtual DbSet<<|CLASS_NAME|>> <|CLASS_NAME_PLURAL|> { get; set; }
+  {|END_LOOP|}
+  {|FOR EACH VIEW|}
+  public virtual DbSet<<|CLASS_NAME|>> <|CLASS_NAME_PLURAL|> { get; set; }
+  {|END_LOOP|}
 
   protected override void OnModelCreating(ModelBuilder modelBuilder) {
     // The following is an example of adding a table with multiple primary keys
