@@ -1,4 +1,18 @@
-﻿PDSC Developer Utilities v9.1.1 - 1/2/2024
+﻿PDSC Developer Utilities v9.1.2 - 3/18/2024
+-----------------------------------------------------
+Fixed some bugs in the Hard-Coded Repository
+Eliminated the folder [RoamingData]\Code\User\globalStorage from the computer cleaner
+Added the folder [RoamingData]\Code\User\History to the computer cleaner
+Added code to MauiProgram.cs to detect Android and change the local IP address for the Web API server.
+Modified the FixUpGeneratedCode.exe
+  Modify the appsettings.development.json with the correct Web API address.
+  Add android:networkSecurityConfig="@xml/network_security_config" to the <application ...> element in the AndroidManifest.xml file
+Added network_security_config.xml file for Android development
+Should now be able to run the generated .NET MAUI app on the Android simulator on your local machine provided you run the Web API as http and not https.
+
+
+
+PDSC Developer Utilities v9.1.1 - 1/2/2024
 -----------------------------------------------------
 Fixed up all the files generated into the _DoNotAddToProject-Includes folder after generation
   Made sure the appropriate things to add into exiting projects is updated

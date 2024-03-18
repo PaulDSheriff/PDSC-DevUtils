@@ -14,11 +14,16 @@
     <CopyTo>PDSC.Common</CopyTo>
   </Folder>
   
-  <!-- .NET MAUI Generation-->
+  <!-- .NET MAUI Generation Using MVC -->
   <Folder>
     <GroupId>201</GroupId>
-    <CopyFrom>CodeGen-FilesToCopy-MAUI</CopyFrom>
-    <CopyTo>{|NAMESPACE|}.MAUI\Resources</CopyTo>
+    <CopyFrom>CodeGen-FilesToCopy-MAUI\Images</CopyFrom>
+    <CopyTo>{|NAMESPACE|}.MAUI\Resources\Images</CopyTo>
+  </Folder>
+  <Folder>
+    <GroupId>201</GroupId>
+    <CopyFrom>CodeGen-FilesToCopy-MAUI\xml</CopyFrom>
+    <CopyTo>{|NAMESPACE|}.MAUI\Platforms\Android\Resources\xml</CopyTo>
   </Folder>
   <Folder>
     <GroupId>201</GroupId>
@@ -30,10 +35,16 @@
     <CopyFrom>CodeGen-PDSC.Common.MAUI</CopyFrom>
     <CopyTo>PDSC.Common.MAUI</CopyTo>
   </Folder>
+  <!-- .NET MAUI Generation Using Minimal Web API -->
   <Folder>
     <GroupId>203</GroupId>
-    <CopyFrom>CodeGen-FilesToCopy-MAUI</CopyFrom>
-    <CopyTo>{|NAMESPACE|}.MAUI\Resources</CopyTo>
+    <CopyFrom>CodeGen-FilesToCopy-MAUI\Images</CopyFrom>
+    <CopyTo>{|NAMESPACE|}.MAUI\Resources\Images</CopyTo>
+  </Folder>
+  <Folder>
+    <GroupId>203</GroupId>
+    <CopyFrom>CodeGen-FilesToCopy-MAUI\xml</CopyFrom>
+    <CopyTo>{|NAMESPACE|}.MAUI\Platforms\Android\Resources\xml</CopyTo>
   </Folder>
   <Folder>
     <GroupId>203</GroupId>

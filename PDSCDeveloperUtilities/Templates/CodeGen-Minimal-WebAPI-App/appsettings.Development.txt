@@ -4,13 +4,13 @@
   },
   "<|NAMESPACE|>AppSettings": {
     "ApplicationName" : "<|APPLICATION_NAME|>",
-    "BaseWebAPIService": "http://localhost:5000/api",
-        "UserName": "ApiUser", // This should be overridden in your application
+    "BaseWebAPIService": "https://your.webapiurl.com/api",
+    "UserName": "ApiUser", // This should be overridden in your application
     "InfoMessageDefault": "Problem Attempting to {Verb} using the {ClassName} API. Please Contact Your System Administrator.",
     "CORSPolicyName": "<|NAMESPACE|>Cors",
     "JwtSettings": {
       "key": "This!Is&A*Long(Key)For#Creating(A)Symmetric*Key098asdf#lkjee*zxcv!98321",
-      "issuer": "https://localhost:7083",
+      "issuer": "https://your.webapiurl.com/api",
       "audience": "<|NAMESPACE|>WebApi",
       "minutesToExpiration": 10,
       "AllowedIPAddresses": [ "https://www.ipaddr1.com", "https://www.ipaddr2.com" ]

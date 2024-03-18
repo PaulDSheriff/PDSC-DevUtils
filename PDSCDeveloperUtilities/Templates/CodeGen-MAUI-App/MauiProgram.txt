@@ -32,6 +32,10 @@ public static class MauiProgram
     <|NAMESPACE|>AppSettings settings = new();
     builder.Services.AddSingleton<<|NAMESPACE_CLEAN|>AppSettings>(settings);
     // Add HttpClient with base address for Web API calls
+    if (DeviceInfo.Platform == DevicePlatform.Android) {
+      // Change API Address to work with Android Emulator
+      settings.BaseWebAPIAddress = settings.BaseWebAPIAddress.Replace("//localhost", "//10.0.2.2");
+    }
     RegisterHttpClient(builder, settings.BaseWebAPIAddress);
     // Add repositories
     builder.RegisterRepositories();

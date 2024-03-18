@@ -10,7 +10,7 @@ public partial class <|CLASS_NAME|>Repository
   /// Get all <|CLASS_DESC_SINGULAR|> objects
   /// </summary>
   /// <returns>A list of <|CLASS_DESC_PLURAL|> objects</returns>
-  public static List<<|CLASS_NAME|>> Get()
+  public List<<|CLASS_NAME|>> Get()
   {
     return new List<<|CLASS_NAME|>>
     {
@@ -72,17 +72,17 @@ public partial class <|CLASS_NAME|>Repository
   /// <summary>
   /// Delete a <|CLASS_DESC_SINGULAR|> object
   /// </summary>
-  /// <param name="entity">The data to insert</param>
-  /// <returns>True if delete, false if not found</returns>
-  public bool Delete(<|CLASS_NAME|> entity) {
+  /// <param name="entity">The id of the row to delete</param>
+  /// <returns>True if deleted, false if not found</returns>
+  public bool Delete(<|PK_LANGUAGE_DATA_TYPE|> id) {
     bool ret = false;
 
     // Look up the data to delete by the primary key
-    <|CLASS_NAME|>? current = Get(entity.<|PK_PROPERTY_NAME|>);
+    <|CLASS_NAME|>? current = Get(id);
 
     if (current != null) {
       // Remove data from collection
-      Get().RemoveAll(row => row.<|PK_PROPERTY_NAME|> == entity.<|PK_PROPERTY_NAME|>);
+      Get().RemoveAll(row => row.<|PK_PROPERTY_NAME|> == id);
 
       // TODO: Delete data from data store
 
